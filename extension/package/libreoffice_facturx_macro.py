@@ -1,4 +1,5 @@
 # Copyright Alexis de Lattre <alexis.delattre@akretion.com>
+# Copyright 2025 Luise Preusse <preusseluise@mail.de>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +54,7 @@ INVOICE_REFUND_LANG = {
     "avoir": "381",
     # German
     "rechnung": "380",
-    "stornorechnung": "381",
+    "gutschrift": "381",
     # Add other langs here
 }
 
@@ -93,7 +94,7 @@ def generate_facturx_xml(data):
         doc_ctx, ET.QName(ns["ram"], "GuidelineSpecifiedDocumentContextParameter")
     )
     ctx_param_id = ET.SubElement(ctx_param, ET.QName(ns["ram"], "ID"))
-    ctx_param_id.text = "urn:factur-x.eu:1p0:minimum"
+    ctx_param_id.text = "urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic"
     header_doc = ET.SubElement(root, ET.QName(ns["rsm"], "ExchangedDocument"))
     header_doc_id = ET.SubElement(header_doc, ET.QName(ns["ram"], "ID"))
     header_doc_id.text = data["invoice_number"]
@@ -105,55 +106,112 @@ def generate_facturx_xml(data):
     )
     # 102 = format YYYYMMDD
     date_node_str.text = data["invoice_date"].strftime("%Y%m%d")
+    if data.get("invoice_note"):
+        header_doc_note = ET.SubElement(header_doc, ET.QName(ns["ram"], "IncludedNote"))
+        header_doc_note_str = ET.SubElement(header_doc_note, ns["ram"], "Content")
+        header_doc_note_str.text = data["invoice_note"]
+
     trade_transaction = ET.SubElement(
         root, ET.QName(ns["rsm"], "SupplyChainTradeTransaction")
     )
+    ########### TODO ###########
+    # enter position data here
+    ############################
     trade_agreement = ET.SubElement(
         trade_transaction, ET.QName(ns["ram"], "ApplicableHeaderTradeAgreement")
     )
-    if data.get("customer_chorus_service_code"):
-        buyer_reference = ET.SubElement(
-            trade_agreement, ET.QName(ns["ram"], "BuyerReference")
-        )
-        buyer_reference.text = data["customer_chorus_service_code"]
+
+    ### Seller Trade Party ###
     seller = ET.SubElement(trade_agreement, ET.QName(ns["ram"], "SellerTradeParty"))
     seller_name = ET.SubElement(seller, ET.QName(ns["ram"], "Name"))
     seller_name.text = data["issuer_name"]
-    if data.get("issuer_siret"):
-        seller_legal_org = ET.SubElement(
-            seller, ET.QName(ns["ram"], "SpecifiedLegalOrganization")
+
+    seller_address = ET.SubElement(seller, ET.QName(ns["ram"], "PostalTradeAddress"))
+    if data.get("issuer_address_postcode"):
+        seller_address_postcode = ET.SubElement(
+            seller_address, ET.QName(ns["ram"], "PostcodeCode")
         )
-        seller_legal_org_id = ET.SubElement(
-            seller_legal_org, ET.QName(ns["ram"], "ID"), schemeID="0002"
+        seller_address_postcode.text = data["issuer_address_postcode"]
+    if data.get("issuer_address_street"):
+        seller_address_street = ET.SubElement(
+            seller_address, ET.QName(ns["ram"], "LineOne")
         )
-        seller_legal_org_id.text = data["issuer_siret"]
-    seller_country = ET.SubElement(seller, ET.QName(ns["ram"], "PostalTradeAddress"))
+        seller_address_street.text = data["issuer_address_street"]
+    if data.get("issuer_address_1"):
+        seller_address_line1 = ET.SubElement(
+            seller_address, ET.QName(ns["ram"], "LineTwo")
+        )
+        seller_address_line1.text = data["issuer_address_1"]
+    if data.get("issuer_address_2"):
+        seller_address_line2 = ET.SubElement(
+            seller_address, ET.QName(ns["ram"], "LineThree")
+        )
+        seller_address_line2.text = data["issuer_address_2"]
+    if data.get("issuer_address_city"):
+        seller_address_city = ET.SubElement(
+            seller_address, ET.QName(ns["ram"], "CityName")
+        )
+        seller_address_city.text = data["issuer_address_city"]
     seller_country_code = ET.SubElement(
-        seller_country, ET.QName(ns["ram"], "CountryID")
+        seller_address, ET.QName(ns["ram"], "CountryID")
     )
     seller_country_code.text = data["issuer_country_code"]
-    if data.get("issuer_vat_number"):
-        seller_tax_reg = ET.SubElement(
-            seller, ET.QName(ns["ram"], "SpecifiedTaxRegistration")
+    if data.get("issuer_address_state"):
+        seller_country_subdivision = ET.SubElement(
+            seller_address, ET.QName(ns["ram"], "CountrySubDivisionName")
         )
-        seller_tax_reg_id = ET.SubElement(
+        seller_country_subdivision.text = data["issuer_address_state"]
+
+    seller_tax_reg = ET.SubElement(
+        seller, ET.QName(ns["ram"], "SpecifiedTaxRegistration")
+    )
+    if data.get("issuer_vat_number"):
+        seller_tax_reg_vat_id = ET.SubElement(
             seller_tax_reg, ET.QName(ns["ram"], "ID"), schemeID="VA"
         )
-        seller_tax_reg_id.text = data["issuer_vat_number"]
+        seller_tax_reg_vat_id.text = data["issuer_vat_number"]
+    if data.get("issuer_tax_id"):
+        seller_tax_reg_nat_id = ET.SubElement(
+            seller_tax_reg, ET.QName(ns["ram"], "ID"), schemeID="FC"
+        )
+        seller_tax_reg_nat_id.text = data["issuer_tax_id"]
+    ### Buyer Trade Party ###
     buyer = ET.SubElement(trade_agreement, ET.QName(ns["ram"], "BuyerTradeParty"))
     buyer_name = ET.SubElement(buyer, ET.QName(ns["ram"], "Name"))
     buyer_name.text = data["customer_name"]
-    if data.get("customer_siret"):
-        buyer_legal_org = ET.SubElement(
-            buyer, ET.QName(ns["ram"], "SpecifiedLegalOrganization")
+    buyer_address = ET.SubElement(buyer, ET.QName(ns["ram"], "PostalTradeAddress"))
+    if data.get("customer_address_postcode"):
+        buyer_address_postcode = ET.SubElement(
+            buyer_address, ET.QName(ns["ram"], "PostcodeCode")
         )
-        buyer_legal_org_id = ET.SubElement(
-            buyer_legal_org, ET.QName(ns["ram"], "ID"), schemeID="0002"
+        buyer_address_postcode.text = data["customer_address_postcode"]
+    if data.get("customer_address_street"):
+        buyer_address_street = ET.SubElement(
+            buyer_address, ET.QName(ns["ram"], "LineOne")
         )
-        buyer_legal_org_id.text = data["customer_siret"]
-    buyer_country = ET.SubElement(buyer, ET.QName(ns["ram"], "PostalTradeAddress"))
-    buyer_country_code = ET.SubElement(buyer_country, ET.QName(ns["ram"], "CountryID"))
+        buyer_address_street.text = data["customer_address_street"]
+    if data.get("customer_address_1"):
+        buyer_address_line1 = ET.SubElement(
+            buyer_address, ET.QName(ns["ram"], "LineTwo")
+        )
+        buyer_address_line1.text = data["customer_address_1"]
+    if data.get("customer_address_2"):
+        buyer_address_line2 = ET.SubElement(
+            buyer_address, ET.QName(ns["ram"], "LineThree")
+        )
+        buyer_address_line2.text = data["customer_address_2"]
+    if data.get("customer_address_city"):
+        buyer_address_city = ET.SubElement(
+            buyer_address, ET.QName(ns["ram"], "CityName")
+        )
+        buyer_address_city.text = data["customer_address_city"]
+    buyer_country_code = ET.SubElement(buyer_address, ET.QName(ns["ram"], "CountryID"))
     buyer_country_code.text = data["customer_country_code"]
+    if data.get("customer_address_state"):
+        buyer_country_subdivision = ET.SubElement(
+            buyer_address, ET.QName(ns["ram"], "CountrySubDivisionName")
+        )
+        buyer_country_subdivision.text = data["customer_address_state"]
     if data.get("customer_vat_number"):
         buyer_tax_reg = ET.SubElement(
             buyer, ET.QName(ns["ram"], "SpecifiedTaxRegistration")
@@ -162,6 +220,7 @@ def generate_facturx_xml(data):
             buyer_tax_reg, ET.QName(ns["ram"], "ID"), schemeID="VA"
         )
         buyer_tax_reg_id.text = data["customer_vat_number"]
+    ### customer order ref 2
     if data.get("customer_order_ref"):
         buyer_order_ref = ET.SubElement(
             trade_agreement, ET.QName(ns["ram"], "BuyerOrderReferencedDocument")
@@ -170,9 +229,66 @@ def generate_facturx_xml(data):
             buyer_order_ref, ET.QName(ns["ram"], "IssuerAssignedID")
         )
         buyer_order_id.text = data["customer_order_ref"]
-    ET.SubElement(
+    ### Delivery block
+    delivery = ET.SubElement(
         trade_transaction, ET.QName(ns["ram"], "ApplicableHeaderTradeDelivery")
     )
+    ship_to_trade_party = ET.SubElement(
+        delivery, ET.QName(ns["ram"], "ShipToTradeParty")
+    )
+    ship_to_name = ET.SubElement(ship_to_trade_party, ET.QName(ns["ram"], "Name"))
+    ship_to_name.text = data["delivery_recipient"]
+    ship_to_address = ET.SubElement(
+        ship_to_trade_party, ET.QName(ns["ram"], "PostalTradeAddress")
+    )
+    if data.get("delivery_address_postcode"):
+        ship_to_address_postcode = ET.SubElement(
+            ship_to_address, ET.QName(ns["ram"], "PostcodeCode")
+        )
+        ship_to_address_postcode.text = data["delivery_address_postcode"]
+    if data.get("delivery_address_street"):
+        ship_to_address_street = ET.SubElement(
+            ship_to_address, ET.QName(ns["ram"], "LineOne")
+        )
+        ship_to_address_street.text = data["delivery_address_street"]
+    if data.get("delivery_address_1"):
+        ship_to_address_line1 = ET.SubElement(
+            ship_to_address, ET.QName(ns["ram"], "LineTwo")
+        )
+        ship_to_address_line1.text = data["delivery_address_1"]
+    if data.get("delivery_address_2"):
+        ship_to_address_line2 = ET.SubElement(
+            ship_to_address, ET.QName(ns["ram"], "LineThree")
+        )
+        ship_to_address_line2.text = data["delivery_address_2"]
+    if data.get("delivery_address_city"):
+        ship_to_address_city = ET.SubElement(
+            ship_to_address, ET.QName(ns["ram"], "CityName")
+        )
+        ship_to_address_city.text = data["delivery_address_city"]
+    ship_to_country_code = ET.SubElement(
+        ship_to_address, ET.QName(ns["ram"], "CountryID")
+    )
+    ship_to_country_code.text = data["delivery_country_code"]
+    if data.get("delivery_address_state"):
+        delivery_country_subdivision = ET.SubElement(
+            ship_to_address, ET.QName(ns["ram"], "CountrySubDivisionName")
+        )
+        delivery_country_subdivision.text = data["delivery_address_state"]
+
+    delivery_event = ET.SubElement(
+        delivery, ET.QName(ns["ram"], "ActualDeliverySupplyChainEvent")
+    )
+    delivery_event_occurrence = ET.SubElement(
+        delivery_event, ET.QName(ns["ram"], "OccurrenceDateTime")
+    )
+    delivery_date_str = ET.SubElement(
+        delivery_event_occurrence, ET.QName(ns["udt"], "DateTimeString"), format="102"
+    )
+    # 102 = format YYYYMMDD
+    delivery_date_str.text = data["delivery_date"].strftime("%Y%m%d")
+
+    ### Header Trade Settlement
     trade_settlement = ET.SubElement(
         trade_transaction, ET.QName(ns["ram"], "ApplicableHeaderTradeSettlement")
     )
@@ -180,20 +296,53 @@ def generate_facturx_xml(data):
         trade_settlement, ET.QName(ns["ram"], "InvoiceCurrencyCode")
     )
     invoice_currency.text = data["invoice_currency"]
+    trade_tax = ET.SubElement(
+        trade_settlement, ET.QName(ns["ram"], "ApplicableTradeTax")
+    )
+    ### TODO repeat for each category
+    # type = ET.SubElement(trade_tax, ET.QName(ns["ram"], "TypeCode"))
+    # type.text = "VAT"
+    # category_code = ET.SubElement(trade_tax, ET.QName(ns["ram"], "CategoryCode"))
+    # category_code.text = data["tax_category1_code"]
+    # category_rate = ET.SubElement(
+    #     trade_tax, ET.QName(ns["ram"], "RateApplicablePercent")
+    # )
+    # category_rate.text = data["tax_category1_rate"]
+
+    # if data.get("tax_category1_exemption_reason"):
+    #     exemption_reason = ET.SubElement(
+    #         trade_tax, ET.QName(ns["ram"], "ExemptionReason")
+    #     )
+    #     exemption_reason.text = data["tax_category1_code"]
+
+    # calculated_amount = ET.SubElement(
+    #     trade_tax, ET.QName(ns["ram"], "CalculatedAmount")
+    # )
+    # calculated_amount.text = "%.2f" % data["tax_category_1_sum_tax"]
+    # basis_amount = ET.SubElement(trade_tax, ET.QName(ns["ram"], "BasisAmount"))
+    # basis_amount.text = "%.2f" % data["tax_category_1_taxed_amount"]
+
+    #################
+
     sums = ET.SubElement(
         trade_settlement,
         ET.QName(ns["ram"], "SpecifiedTradeSettlementHeaderMonetarySummation"),
     )
+    line_total_amount = ET.SubElement(sums, ET.QName(ns["ram"], "LineTotalAmount"))
+    line_total_amount.text = "%.2f" % data["total_without_tax"]
     tax_basis_total_amt = ET.SubElement(
         sums, ET.QName(ns["ram"], "TaxBasisTotalAmount")
     )
-    tax_basis_total_amt.text = "%.2f" % data["total_without_tax"]
+    tax_basis_total_amt.text = "%.2f" % data["total_without_tax_inkl_charges"]
     tax_total = ET.SubElement(
         sums, ET.QName(ns["ram"], "TaxTotalAmount"), currencyID=data["invoice_currency"]
     )
     tax_total.text = "%.2f" % data["total_tax"]
     total = ET.SubElement(sums, ET.QName(ns["ram"], "GrandTotalAmount"))
     total.text = "%.2f" % data["total_with_tax"]
+    if data.get("deposits"):
+        deposits = ET.SubElement(sums, ET.QName(ns["ram"], "TotalPrepaidAmount"))
+        deposits.text = "%.2f" % data["deposits"]
     residual = ET.SubElement(sums, ET.QName(ns["ram"], "DuePayableAmount"))
     residual.text = "%.2f" % data["total_due"]
     xml_byte = ET.tostring(root)
@@ -223,100 +372,310 @@ def open_filepicker(title, path=None, mode=10, filter_tuple=None):
 
 def get_and_check_data(doc, data_sheet):
     fields = {
-        "issuer_name": {
+        "invoice_or_refund": {
             "type": "char",
             "required": True,
             "line": 3,
         },
-        "issuer_vat_number": {
+        "invoice_number": {
             "type": "char",
-            "required": False,
+            "required": True,
             "line": 4,
-        },
-        "issuer_siret": {
-            "type": "char",
-            "required": False,
-            "line": 5,
-        },
-        "issuer_country_code": {
-            "type": "char",
-            "required": True,
-            "line": 6,
-        },
-        "customer_name": {
-            "type": "char",
-            "required": True,
-            "line": 8,
-        },
-        "customer_vat_number": {
-            "type": "char",
-            "required": False,
-            "line": 9,
-        },
-        "customer_siret": {
-            "type": "char",
-            "required": False,
-            "line": 10,
-        },
-        "customer_country_code": {
-            "type": "char",
-            "required": True,
-            "line": 11,
-        },
-        "customer_chorus_service_code": {
-            "type": "char",
-            "required": False,
-            "line": 12,
-        },
-        "invoice_or_refund": {
-            "type": "char",
-            "required": False,
-            "line": 14,
         },
         "customer_order_ref": {
             "type": "char",
             "required": False,
-            "line": 15,
-        },
-        "invoice_number": {
-            "type": "char",
-            "required": True,
-            "line": 16,
+            "line": 5,
         },
         "invoice_date": {
             "type": "date",
             "required": True,
+            "line": 6,
+        },
+        "delivery_date": {
+            "type": "date",
+            "required": True,
+            "line": 7,
+        },
+        "invoice_note": {
+            "type": "char",
+            "required": False,
+            "line": 8,
+        },
+        "issuer_name": {
+            "type": "char",
+            "required": True,
+            "line": 10,
+        },
+        "issuer_address_street": {
+            "type": "char",
+            "required": False,
+            "line": 11,
+        },
+        "issuer_address_1": {
+            "type": "char",
+            "required": False,
+            "line": 12,
+        },
+        "issuer_address_2": {
+            "type": "char",
+            "required": False,
+            "line": 13,
+        },
+        "issuer_address_postcode": {
+            "type": "char",
+            "required": False,
+            "line": 14,
+        },
+        "issuer_address_city": {
+            "type": "char",
+            "required": False,
+            "line": 15,
+        },
+        "issuer_address_country_code": {
+            "type": "char",
+            "required": True,
+            "line": 16,
+        },
+        "issuer_address_state": {
+            "type": "char",
+            "required": False,
             "line": 17,
+        },
+        "issuer_vat_number": {
+            "type": "char",
+            "required": False,
+            "line": 18,
+        },
+        "issuer_tax_id": {
+            "type": "char",
+            "required": False,
+            "line": 19,
+        },
+        "issuer_phone": {
+            "type": "char",
+            "required": False,
+            "line": 20,
+        },
+        "issuer_mobile": {
+            "type": "char",
+            "required": False,
+            "line": 21,
+        },
+        "issuer_fax": {
+            "type": "char",
+            "required": False,
+            "line": 22,
+        },
+        "issuer_email": {
+            "type": "char",
+            "required": False,
+            "line": 23,
+        },
+        "issuer_note_1": {
+            "type": "char",
+            "required": False,
+            "line": 25,
+        },
+        "issuer_note_2": {
+            "type": "char",
+            "required": False,
+            "line": 26,
+        },
+        "customer_name": {
+            "type": "char",
+            "required": True,
+            "line": 28,
+        },
+        "customer_address_street": {
+            "type": "char",
+            "required": False,
+            "line": 29,
+        },
+        "customer_address_1": {
+            "type": "char",
+            "required": False,
+            "line": 30,
+        },
+        "customer_address_2": {
+            "type": "char",
+            "required": False,
+            "line": 31,
+        },
+        "customer_address_postcode": {
+            "type": "char",
+            "required": False,
+            "line": 32,
+        },
+        "customer_address_city": {
+            "type": "char",
+            "required": False,
+            "line": 33,
+        },
+        "customer_address_country_code": {
+            "type": "char",
+            "required": True,
+            "line": 34,
+        },
+        "customer_address_state": {
+            "type": "char",
+            "required": False,
+            "line": 35,
+        },
+        "customer_vat_number": {
+            "type": "char",
+            "required": False,
+            "line": 36,
+        },
+        "delivery_recipient": {
+            "type": "char",
+            "required": True,
+            "line": 38,
+        },
+        "delivery_address_street": {
+            "type": "char",
+            "required": False,
+            "line": 39,
+        },
+        "delivery_address_1": {
+            "type": "char",
+            "required": False,
+            "line": 40,
+        },
+        "delivery_address_2": {
+            "type": "char",
+            "required": False,
+            "line": 41,
+        },
+        "delivery_address_postcode": {
+            "type": "char",
+            "required": False,
+            "line": 42,
+        },
+        "delivery_address_city": {
+            "type": "char",
+            "required": False,
+            "line": 43,
+        },
+        "delivery_address_country_code": {
+            "type": "char",
+            "required": True,
+            "line": 44,
+        },
+        "delivery_address_state": {
+            "type": "char",
+            "required": False,
+            "line": 45,
+        },
+        "payment_due_date": {
+            "type": "date",
+            "required": False,
+            "line": 47,
+        },
+        "payment_instructions": {
+            "type": "char",
+            "required": False,
+            "line": 48,
         },
         "invoice_currency": {
             "type": "char",
             "required": True,
-            "line": 18,
+            "line": 50,
+        },
+        "tax_category_1_code": {
+            "type": "char",
+            "required": True,
+            "line": 51,
+        },
+        "tax_category_1_rate": {
+            "type": "float",
+            "required": True,
+            "line": 52,
+        },
+        "tax_category_1_sum_tax": {
+            "type": "float",
+            "required": True,
+            "line": 53,
+        },
+        "tax_category_1_taxed_amount": {
+            "type": "float",
+            "required": True,
+            "line": 54,
+        },
+        "tax_category_2_code": {
+            "type": "char",
+            "required": False,
+            "line": 55,
+        },
+        "tax_category_2_rate": {
+            "type": "float",
+            "required": False,
+            "line": 56,
+        },
+        "tax_category_2_sum_tax": {
+            "type": "float",
+            "required": False,
+            "line": 57,
+        },
+        "tax_category_2_taxed_amount": {
+            "type": "float",
+            "required": False,
+            "line": 58,
+        },
+        "tax_category_3_code": {
+            "type": "char",
+            "required": False,
+            "line": 59,
+        },
+        "tax_category_3_rate": {
+            "type": "float",
+            "required": False,
+            "line": 60,
+        },
+        "tax_category_3_sum_tax": {
+            "type": "float",
+            "required": False,
+            "line": 61,
+        },
+        "tax_category_3_taxed_amount": {
+            "type": "float",
+            "required": False,
+            "line": 62,
         },
         "total_without_tax": {
             "type": "float",
             "required": True,
-            "line": 20,
+            "line": 64,
+        },
+        "total_without_tax_inkl_charges": {
+            "type": "float",
+            "required": False,
+            "line": 65,
         },
         "total_tax": {
             "type": "float",
             "required": True,
-            "line": 21,
+            "line": 66,
         },
         "total_with_tax": {
             "type": "float",
             "required": True,
-            "line": 22,
+            "line": 67,
+        },
+        "deposits": {
+            "type": "float",
+            "required": False,
+            "line": 68,
         },
         "total_due": {
             "type": "float",
             "required": True,
-            "line": 23,
+            "line": 69,
         },
         "attachment_count": {
             "type": "int",
             "required": False,
-            "line": 25,
+            "line": 71,
         },
     }
 
@@ -492,8 +851,83 @@ def get_and_check_data(doc, data_sheet):
             data["invoice_or_refund"].lower()
         ]
     else:
-        return msg_box(doc, _("In the second tab, the value of cell B%s (%s) is '%s'; it must be either 'invoice' or 'refund'.") % (fields['invoice_or_refund']['line'], fields['invoice_or_refund']['label'], data['invoice_or_refund']))
+        return msg_box(
+            doc,
+            _(
+                "In the second tab, the value of cell B%s (%s) is '%s'; it must be either 'invoice' or 'refund'."
+            )
+            % (
+                fields["invoice_or_refund"]["line"],
+                fields["invoice_or_refund"]["label"],
+                data["invoice_or_refund"],
+            ),
+        )
     return data
+
+
+def get_and_check_position_data(doc, data_sheet):
+    position_data_start_line = 78
+    fields = {
+        {
+            "position_name": {
+                "type": "char",
+                "required": True,
+                "column": 1,
+            },
+            "position_netto_price": {
+                "type": "float",
+                "required": True,
+                "column": 2,
+            },
+            "position_amount": {
+                "type": "float",
+                "required": True,
+                "column": 3,
+            },
+            "position_amount_unit": {
+                "type": "char",
+                "required": True,
+                "column": 4,
+            },
+            "position_tax_category": {
+                "type": "char",
+                "required": False,
+                "column": 5,
+            },
+            "position_tax_rate": {
+                "type": "float",
+                "required": True,
+                "column": 6,
+            },
+            "position_netto_total": {
+                "type": "float",
+                "required": True,
+                "column": 7,
+            },
+            "position_note": {
+                "type": "char",
+                "required": False,
+                "column": 8,
+            },
+        }
+    }
+
+    # find number of positions
+    last_position = 0
+    starting_line = 68
+    while True:
+        cell_value = 0
+        try:
+            cell_value = int(data_sheet.getCellByPosition(0, starting_line - 1).Value)
+        except ValueError:
+            break
+        if cell_value - 1 != last_position:
+            break
+        last_position = cell_value
+        starting_line += 1
+
+    valuecell = data_sheet.getCellByPosition(1, fdict["line"] - 1)
+    labelcell = data_sheet.getCellByPosition(0, fdict["line"] - 1)
 
 
 def generate_facturx_invoice_v1(button_arg=None):
