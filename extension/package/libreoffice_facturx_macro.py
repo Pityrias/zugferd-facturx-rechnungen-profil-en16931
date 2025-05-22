@@ -43,6 +43,8 @@ import os
 import mimetypes
 import gettext
 
+import factur_x_data
+
 _ = gettext.gettext
 
 INVOICE_REFUND_LANG = {
@@ -108,7 +110,9 @@ def generate_facturx_xml(data):
     date_node_str.text = data["invoice_date"].strftime("%Y%m%d")
     if data.get("invoice_note"):
         header_doc_note = ET.SubElement(header_doc, ET.QName(ns["ram"], "IncludedNote"))
-        header_doc_note_str = ET.SubElement(header_doc_note, ns["ram"], "Content")
+        header_doc_note_str = ET.SubElement(
+            header_doc_note, ET.QName(ns["ram"], "Content")
+        )
         header_doc_note_str.text = data["invoice_note"]
 
     trade_transaction = ET.SubElement(
@@ -155,7 +159,7 @@ def generate_facturx_xml(data):
     seller_country_code = ET.SubElement(
         seller_address, ET.QName(ns["ram"], "CountryID")
     )
-    seller_country_code.text = data["issuer_country_code"]
+    seller_country_code.text = data["issuer_address_country_code"]
     if data.get("issuer_address_state"):
         seller_country_subdivision = ET.SubElement(
             seller_address, ET.QName(ns["ram"], "CountrySubDivisionName")
@@ -206,7 +210,7 @@ def generate_facturx_xml(data):
         )
         buyer_address_city.text = data["customer_address_city"]
     buyer_country_code = ET.SubElement(buyer_address, ET.QName(ns["ram"], "CountryID"))
-    buyer_country_code.text = data["customer_country_code"]
+    buyer_country_code.text = data["customer_address_country_code"]
     if data.get("customer_address_state"):
         buyer_country_subdivision = ET.SubElement(
             buyer_address, ET.QName(ns["ram"], "CountrySubDivisionName")
@@ -269,7 +273,7 @@ def generate_facturx_xml(data):
     ship_to_country_code = ET.SubElement(
         ship_to_address, ET.QName(ns["ram"], "CountryID")
     )
-    ship_to_country_code.text = data["delivery_country_code"]
+    ship_to_country_code.text = data["delivery_address_country_code"]
     if data.get("delivery_address_state"):
         delivery_country_subdivision = ET.SubElement(
             ship_to_address, ET.QName(ns["ram"], "CountrySubDivisionName")
@@ -330,10 +334,12 @@ def generate_facturx_xml(data):
     )
     line_total_amount = ET.SubElement(sums, ET.QName(ns["ram"], "LineTotalAmount"))
     line_total_amount.text = "%.2f" % data["total_without_tax"]
-    tax_basis_total_amt = ET.SubElement(
-        sums, ET.QName(ns["ram"], "TaxBasisTotalAmount")
-    )
-    tax_basis_total_amt.text = "%.2f" % data["total_without_tax_inkl_charges"]
+
+    if data.get("total_without_tax_inkl_charges"):
+        tax_basis_total_amt = ET.SubElement(
+            sums, ET.QName(ns["ram"], "TaxBasisTotalAmount")
+        )
+        tax_basis_total_amt.text = "%.2f" % data["total_without_tax_inkl_charges"]
     tax_total = ET.SubElement(
         sums, ET.QName(ns["ram"], "TaxTotalAmount"), currencyID=data["invoice_currency"]
     )
@@ -761,21 +767,11 @@ def get_and_check_data(doc, data_sheet):
                         doc, msg_start + _("country codes must have 2 letters.")
                     )
                 data[field] = data[field].upper()
-            if field.endswith("_siret") and data[field]:
-                data[field] = data[field].replace(" ", "")
-                try:
-                    validate(data[field])
-                except (
-                    InvalidChecksum,
-                    InvalidComponent,
-                    InvalidFormat,
-                    InvalidLength,
-                ) as e:
-                    return msg_box(doc, msg_start + str(e))
             if field.endswith("_vat_number"):
                 data[field] = data[field].replace(" ", "").upper()
                 if not is_valid(data[field]):
                     return msg_box(doc, msg_start + _("this VAT number is invalid."))
+            # Todo validate tax number
             if field == "invoice_currency":  # required field
                 if len(data[field]) != 3 or not data[field].isalpha():
                     return msg_box(
@@ -802,48 +798,41 @@ def get_and_check_data(doc, data_sheet):
                     )
 
     # Global checks
-    if data["issuer_country_code"] == "FR" and not data.get("issuer_siret"):
-        return msg_box(
-            doc,
-            _(
-                "In the second tab, cell B%s (%s) must have a value because the issuer's country is France."
-            )
-            % (fields["issuer_siret"]["line"], fields["issuer_siret"]["label"]),
-        )
-    diff = data["total_with_tax"] - data["total_without_tax"] - data["total_tax"]
-    if abs(diff) > 0.00001:
-        return msg_box(
-            doc,
-            _(
-                "In the second tab, the value of cell B%s (%s: %s) must be equal to the value of cell B%s (%s: %s) plus cell B%s (%s: %s)."
-            )
-            % (
-                fields["total_with_tax"]["line"],
-                fields["total_with_tax"]["label"],
-                data["total_with_tax"],
-                fields["total_without_tax"]["line"],
-                fields["total_without_tax"]["label"],
-                data["total_without_tax"],
-                fields["total_tax"]["line"],
-                fields["total_tax"]["label"],
-                data["total_tax"],
-            ),
-        )
-    if data["total_due"] - 0.00001 > data["total_with_tax"]:
-        return msg_box(
-            doc,
-            _(
-                "In the second tab, the value of cell B%s (%s: %s) cannot be superior to the value of cell B%s (%s: %s)."
-            )
-            % (
-                fields["total_due"]["line"],
-                fields["total_due"]["label"],
-                data["total_due"],
-                fields["total_with_tax"]["line"],
-                fields["total_with_tax"]["label"],
-                data["total_with_tax"],
-            ),
-        )
+    # Todo reenable checks and add new ones
+    # diff = data["total_with_tax"] - data["total_without_tax"] - data["total_tax"]
+    # if abs(diff) > 0.00001:
+    #     return msg_box(
+    #         doc,
+    #         _(
+    #             "In the second tab, the value of cell B%s (%s: %s) must be equal to the value of cell B%s (%s: %s) plus cell B%s (%s: %s)."
+    #         )
+    #         % (
+    #             fields["total_with_tax"]["line"],
+    #             fields["total_with_tax"]["label"],
+    #             data["total_with_tax"],
+    #             fields["total_without_tax"]["line"],
+    #             fields["total_without_tax"]["label"],
+    #             data["total_without_tax"],
+    #             fields["total_tax"]["line"],
+    #             fields["total_tax"]["label"],
+    #             data["total_tax"],
+    #         ),
+    #     )
+    # if data["total_due"] - 0.00001 > data["total_with_tax"]:
+    #     return msg_box(
+    #         doc,
+    #         _(
+    #             "In the second tab, the value of cell B%s (%s: %s) cannot be superior to the value of cell B%s (%s: %s)."
+    #         )
+    #         % (
+    #             fields["total_due"]["line"],
+    #             fields["total_due"]["label"],
+    #             data["total_due"],
+    #             fields["total_with_tax"]["line"],
+    #             fields["total_with_tax"]["label"],
+    #             data["total_with_tax"],
+    #         ),
+    #     )
     if not data.get("invoice_or_refund"):
         data["invoice_or_refund"] = "380"  # default value is invoice
     elif data["invoice_or_refund"].lower() in INVOICE_REFUND_LANG:
@@ -866,56 +855,11 @@ def get_and_check_data(doc, data_sheet):
 
 
 def get_and_check_position_data(doc, data_sheet):
-    position_data_start_line = 78
-    fields = {
-        {
-            "position_name": {
-                "type": "char",
-                "required": True,
-                "column": 1,
-            },
-            "position_netto_price": {
-                "type": "float",
-                "required": True,
-                "column": 2,
-            },
-            "position_amount": {
-                "type": "float",
-                "required": True,
-                "column": 3,
-            },
-            "position_amount_unit": {
-                "type": "char",
-                "required": True,
-                "column": 4,
-            },
-            "position_tax_category": {
-                "type": "char",
-                "required": False,
-                "column": 5,
-            },
-            "position_tax_rate": {
-                "type": "float",
-                "required": True,
-                "column": 6,
-            },
-            "position_netto_total": {
-                "type": "float",
-                "required": True,
-                "column": 7,
-            },
-            "position_note": {
-                "type": "char",
-                "required": False,
-                "column": 8,
-            },
-        }
-    }
-
-    # find number of positions
     last_position = 0
     starting_line = 68
+    position_data = {}
     while True:
+        # check if position index is valid and 1 bigger than previous
         cell_value = 0
         try:
             cell_value = int(data_sheet.getCellByPosition(0, starting_line - 1).Value)
@@ -923,11 +867,43 @@ def get_and_check_position_data(doc, data_sheet):
             break
         if cell_value - 1 != last_position:
             break
+        # line has position data, get it and check validity
+        item = factur_x_data.ItemData()
+        item.get_data_from_sheet(data_sheet, starting_line)
+        if not item.is_valid():
+            break
+        position_data.append(item)
+        # prepare for next loop
         last_position = cell_value
         starting_line += 1
 
-    valuecell = data_sheet.getCellByPosition(1, fdict["line"] - 1)
-    labelcell = data_sheet.getCellByPosition(0, fdict["line"] - 1)
+    return position_data
+
+
+def get_and_check_tax_category_data(doc, data_sheet):
+    last_position = 0
+    starting_line = 53
+    category_data = {}
+    while True:
+        # check if position index is valid and 1 bigger than previous
+        cell_value = 0
+        try:
+            cell_value = int(data_sheet.getCellByPosition(0, starting_line - 1).Value)
+        except ValueError:
+            break
+        if cell_value - 1 != last_position:
+            break
+        # line has position data, get it and check validity
+        cat = factur_x_data.CategoryData()
+        cat.get_data_from_sheet(data_sheet, starting_line)
+        if not cat.is_valid():
+            break
+        category_data.append(cat)
+        # prepare for next loop
+        last_position = cell_value
+        starting_line += 1
+
+    return category_data
 
 
 def generate_facturx_invoice_v1(button_arg=None):
