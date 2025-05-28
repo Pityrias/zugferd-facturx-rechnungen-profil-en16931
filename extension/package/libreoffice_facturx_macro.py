@@ -76,7 +76,7 @@ def msg_box(doc, message):
     return False
 
 
-def generate_facturx_xml(data):
+def generate_facturx_xml(data, position_data, category_data):
     ns = {
         "xsi": "http://www.w3.org/2001/XMLSchema-instance",
         "rsm": "urn:un:unece:uncefact:data:standard:" "CrossIndustryInvoice:100",
@@ -118,9 +118,76 @@ def generate_facturx_xml(data):
     trade_transaction = ET.SubElement(
         root, ET.QName(ns["rsm"], "SupplyChainTradeTransaction")
     )
-    ########### TODO ###########
-    # enter position data here
-    ############################
+    ########### Position Data ###########
+    counter = 1
+    for pos in position_data:
+        trade_line_item = ET.SubElement(
+            trade_transaction, ET.QName(ns["ram"], "IncludedSupplyChainTradeLineItem")
+        )
+        line = ET.SubElement(
+            trade_line_item, ET.QName(ns["ram"], "AssociatedDocumentLineDocument")
+        )
+        line_id = ET.SubElement(line, ET.QName(ns["ram"], "LineID"))
+        line_id.text = str(counter)
+        counter += 1
+        if pos.has_note():
+            line_note = ET.SubElement(line, ET.QName(ns["ram"], "IncludedNote"))
+            line_note_content = ET.SubElement(line_note, ET.QName(ns["ram"], "Content"))
+            line_note_content.text = pos.note
+
+        product = ET.SubElement(
+            trade_line_item, ET.QName(ns["ram"], "SpecifiedTradeProduct")
+        )
+        product_name = ET.SubElement(product, ET.QName(ns["ram"], "Name"))
+        product_name.text = pos.name
+
+        line_trade = ET.SubElement(
+            trade_line_item, ET.QName(ns["ram"], "SpecifiedLineTradeAgreement")
+        )
+        net_price = ET.SubElement(
+            line_trade, ET.QName(ns["ram"], "NetPriceProductTradePrice")
+        )
+        net_price_amount = ET.SubElement(net_price, ET.QName(ns["ram"], "ChargeAmount"))
+        net_price_amount.text = "%.2f" % pos.netto_price
+
+        line_delivery = ET.SubElement(
+            trade_line_item, ET.QName(ns["ram"], "SpecifiedLineTradeAgreement")
+        )
+        amount = ET.SubElement(
+            line_delivery, ET.QName(ns["ram"], "SpecifiedLineTradeDelivery")
+        )
+        if pos.has_unit():
+            amount_quantity = ET.SubElement(
+                amount, ET.QName(ns["ram"], "BilledQuantity"), unitCode=pos.unit
+            )
+        else:
+            amount_quantity = ET.SubElement(
+                amount, ET.QName(ns["ram"], "BilledQuantity")
+            )
+        amount_quantity.text = "%.2f" % pos.amount
+        line_settlement = ET.SubElement(
+            trade_line_item, ET.QName(ns["ram"], "SpecifiedLineTradeSettlement")
+        )
+        line_tax = ET.SubElement(
+            line_settlement, ET.QName(ns["ram"], "ApplicableTradeTax")
+        )
+        line_tax_type = ET.SubElement(line_tax, ET.QName(ns["ram"], "TypeCode"))
+        line_tax_type.text = "VAT"
+        line_tax_category = ET.SubElement(line_tax, ET.QName(ns["ram"], "CategoryCode"))
+        line_tax_category.text = pos.tax_category
+        line_tax_rate = ET.SubElement(
+            line_tax, ET.QName(ns["ram"], "RateApplicablePercent")
+        )
+        line_tax_rate.text = "%.2f" % pos.tax_rate
+        line_summation = ET.SubElement(
+            trade_line_item,
+            ET.QName(ns["ram"], "SpecifiedTradeSettlementLineMonetarySummation"),
+        )
+        line_summation_amount = ET.SubElement(
+            line_summation, ET.QName(ns["ram"], "LineTotalAmount")
+        )
+        line_summation_amount.text = "%.2f" % pos.netto_total
+
     trade_agreement = ET.SubElement(
         trade_transaction, ET.QName(ns["ram"], "ApplicableHeaderTradeAgreement")
     )
@@ -129,6 +196,27 @@ def generate_facturx_xml(data):
     seller = ET.SubElement(trade_agreement, ET.QName(ns["ram"], "SellerTradeParty"))
     seller_name = ET.SubElement(seller, ET.QName(ns["ram"], "Name"))
     seller_name.text = data["issuer_name"]
+
+    if data.get("issuer_email") or data.get("issuer_phone1"):
+        seller_contact = ET.SubElement(
+            seller, ET.QName(ns["ram"], "DefinedTradeContact")
+        )
+        if data.get("issuer_email"):
+            seller_contact_email = ET.SubElement(
+                seller_contact, ET.QName(ns["ram"], "EmailURIUniversalCommunication")
+            )
+            seller_contact_email_id = ET.SubElement(
+                seller_contact_email, ET.QName(ns["ram"], "URIID")
+            )
+            seller_contact_email_id.text = data["issuer_email"]
+        if data.get("issuer_phone1"):
+            seller_contact_phone = ET.SubElement(
+                seller_contact, ET.QName(ns["ram"], "TelephoneUniversalCommunication")
+            )
+            seller_contact_phone_number = ET.SubElement(
+                seller_contact_phone, ET.QName(ns["ram"], "CompleteNumber")
+            )
+            seller_contact_phone_number.text = data["issuer_phone1"]
 
     seller_address = ET.SubElement(seller, ET.QName(ns["ram"], "PostalTradeAddress"))
     if data.get("issuer_address_postcode"):
@@ -303,30 +391,29 @@ def generate_facturx_xml(data):
     trade_tax = ET.SubElement(
         trade_settlement, ET.QName(ns["ram"], "ApplicableTradeTax")
     )
-    ### TODO repeat for each category
-    # type = ET.SubElement(trade_tax, ET.QName(ns["ram"], "TypeCode"))
-    # type.text = "VAT"
-    # category_code = ET.SubElement(trade_tax, ET.QName(ns["ram"], "CategoryCode"))
-    # category_code.text = data["tax_category1_code"]
-    # category_rate = ET.SubElement(
-    #     trade_tax, ET.QName(ns["ram"], "RateApplicablePercent")
-    # )
-    # category_rate.text = data["tax_category1_rate"]
+    ### tax category data
+    for category in category_data:
+        type = ET.SubElement(trade_tax, ET.QName(ns["ram"], "TypeCode"))
+        type.text = "VAT"
+        category_code = ET.SubElement(trade_tax, ET.QName(ns["ram"], "CategoryCode"))
+        category_code.text = category.code
+        category_rate = ET.SubElement(
+            trade_tax, ET.QName(ns["ram"], "RateApplicablePercent")
+        )
+        category_rate.text = "%.2f" % category.rate
 
-    # if data.get("tax_category1_exemption_reason"):
-    #     exemption_reason = ET.SubElement(
-    #         trade_tax, ET.QName(ns["ram"], "ExemptionReason")
-    #     )
-    #     exemption_reason.text = data["tax_category1_code"]
+        if category.has_exempt_reason():
+            exemption_reason = ET.SubElement(
+                trade_tax, ET.QName(ns["ram"], "ExemptionReason")
+            )
+            exemption_reason.text = category.exempt_reason
 
-    # calculated_amount = ET.SubElement(
-    #     trade_tax, ET.QName(ns["ram"], "CalculatedAmount")
-    # )
-    # calculated_amount.text = "%.2f" % data["tax_category_1_sum_tax"]
-    # basis_amount = ET.SubElement(trade_tax, ET.QName(ns["ram"], "BasisAmount"))
-    # basis_amount.text = "%.2f" % data["tax_category_1_taxed_amount"]
-
-    #################
+        calculated_amount = ET.SubElement(
+            trade_tax, ET.QName(ns["ram"], "CalculatedAmount")
+        )
+        calculated_amount.text = "%.2f" % category.sum_tax
+        basis_amount = ET.SubElement(trade_tax, ET.QName(ns["ram"], "BasisAmount"))
+        basis_amount.text = "%.2f" % category.taxed_amount
 
     sums = ET.SubElement(
         trade_settlement,
@@ -458,12 +545,12 @@ def get_and_check_data(doc, data_sheet):
             "required": False,
             "line": 19,
         },
-        "issuer_phone": {
+        "issuer_phone1": {
             "type": "char",
             "required": False,
             "line": 20,
         },
-        "issuer_mobile": {
+        "issuer_phone2": {
             "type": "char",
             "required": False,
             "line": 21,
@@ -588,100 +675,40 @@ def get_and_check_data(doc, data_sheet):
             "required": True,
             "line": 50,
         },
-        "tax_category_1_code": {
-            "type": "char",
-            "required": True,
-            "line": 51,
-        },
-        "tax_category_1_rate": {
+        "total_without_tax": {
             "type": "float",
             "required": True,
             "line": 52,
         },
-        "tax_category_1_sum_tax": {
-            "type": "float",
-            "required": True,
-            "line": 53,
-        },
-        "tax_category_1_taxed_amount": {
-            "type": "float",
-            "required": True,
-            "line": 54,
-        },
-        "tax_category_2_code": {
-            "type": "char",
-            "required": False,
-            "line": 55,
-        },
-        "tax_category_2_rate": {
-            "type": "float",
-            "required": False,
-            "line": 56,
-        },
-        "tax_category_2_sum_tax": {
-            "type": "float",
-            "required": False,
-            "line": 57,
-        },
-        "tax_category_2_taxed_amount": {
-            "type": "float",
-            "required": False,
-            "line": 58,
-        },
-        "tax_category_3_code": {
-            "type": "char",
-            "required": False,
-            "line": 59,
-        },
-        "tax_category_3_rate": {
-            "type": "float",
-            "required": False,
-            "line": 60,
-        },
-        "tax_category_3_sum_tax": {
-            "type": "float",
-            "required": False,
-            "line": 61,
-        },
-        "tax_category_3_taxed_amount": {
-            "type": "float",
-            "required": False,
-            "line": 62,
-        },
-        "total_without_tax": {
-            "type": "float",
-            "required": True,
-            "line": 64,
-        },
         "total_without_tax_inkl_charges": {
             "type": "float",
             "required": False,
-            "line": 65,
+            "line": 53,
         },
         "total_tax": {
             "type": "float",
             "required": True,
-            "line": 66,
+            "line": 54,
         },
         "total_with_tax": {
             "type": "float",
             "required": True,
-            "line": 67,
+            "line": 55,
         },
         "deposits": {
             "type": "float",
             "required": False,
-            "line": 68,
+            "line": 56,
         },
         "total_due": {
             "type": "float",
             "required": True,
-            "line": 69,
+            "line": 57,
         },
         "attachment_count": {
             "type": "int",
             "required": False,
-            "line": 71,
+            "line": 59,
         },
     }
 
@@ -854,15 +881,16 @@ def get_and_check_data(doc, data_sheet):
     return data
 
 
-def get_and_check_position_data(doc, data_sheet):
+def get_and_check_position_data(doc, data_sheet, starting_line):
+    msg_box(doc, f"get position data with starting_line {starting_line}")
     last_position = 0
-    starting_line = 68
-    position_data = {}
+    position_data = []
     while True:
         # check if position index is valid and 1 bigger than previous
         cell_value = 0
         try:
-            cell_value = int(data_sheet.getCellByPosition(0, starting_line - 1).Value)
+            cell = data_sheet.getCellByPosition(0, starting_line - 1)
+            cell_value = int(cell.Value)
         except ValueError:
             break
         if cell_value - 1 != last_position:
@@ -871,38 +899,42 @@ def get_and_check_position_data(doc, data_sheet):
         item = factur_x_data.ItemData()
         item.get_data_from_sheet(data_sheet, starting_line)
         if not item.is_valid():
+            msg_box(
+                doc,
+                f"item not valid, item has values {item.name}, {item.netto_price}, {item.amount}, {item.unit}, {item.tax_category},{item.tax_rate}, {item.netto_total}, {item.note}",
+            )
             break
         position_data.append(item)
         # prepare for next loop
         last_position = cell_value
         starting_line += 1
-
+    stringval = f"got position data with {len(position_data)} entries."
+    msg_box(doc, stringval)
     return position_data
 
 
-def get_and_check_tax_category_data(doc, data_sheet):
+def get_and_check_tax_category_data(doc, data_sheet, starting_line):
     last_position = 0
-    starting_line = 53
-    category_data = {}
+    category_data = []
     while True:
         # check if position index is valid and 1 bigger than previous
         cell_value = 0
         try:
-            cell_value = int(data_sheet.getCellByPosition(0, starting_line - 1).Value)
+            cell = data_sheet.getCellByPosition(0, starting_line - 1)
+            cell_value = int(cell.getValue())
         except ValueError:
             break
         if cell_value - 1 != last_position:
             break
         # line has position data, get it and check validity
-        cat = factur_x_data.CategoryData()
-        cat.get_data_from_sheet(data_sheet, starting_line)
-        if not cat.is_valid():
+        category = factur_x_data.CategoryData()
+        category.get_data_from_sheet(data_sheet, starting_line)
+        if not category.is_valid():
             break
-        category_data.append(cat)
+        category_data.append(category)
         # prepare for next loop
         last_position = cell_value
         starting_line += 1
-
     return category_data
 
 
@@ -922,6 +954,27 @@ def generate_facturx_invoice_v1(button_arg=None):
     data = get_and_check_data(doc, data_sheet)
     if not data:
         return
+
+    # get category data
+    starting_line_tax_categories = 62
+    category_data = get_and_check_tax_category_data(
+        doc, data_sheet, starting_line_tax_categories
+    )
+    if not category_data:
+        msg_box(doc, "There must be a least one tax category starting at line 62")
+        return
+
+    # get position data from sheet
+    position_starting_line = get_position_data_starting_line(
+        doc, data_sheet, 62 + len(category_data) + 3, 0, 1, 2
+    )
+    if position_starting_line < 0:
+        msg_box(
+            doc,
+            "Could not find position data. Make sure it starts with position number 1 in column A and is located under the category data table.",
+        )
+        return
+    position_data = get_and_check_position_data(doc, data_sheet, position_starting_line)
 
     # prepare LO PDF export
     pdf_option1 = PropertyValue()
@@ -945,7 +998,7 @@ def generate_facturx_invoice_v1(button_arg=None):
     doc.storeToURL(pdf_tmp_file_url, pdf_export_args)
 
     # generate XML
-    xml_byte = generate_facturx_xml(data)
+    xml_byte = generate_facturx_xml(data, position_data, category_data)
     if not xml_byte:
         return
 
@@ -994,6 +1047,23 @@ def generate_facturx_invoice_v1(button_arg=None):
     )
     uno_openpdfviewer.execute(fx_pdf_filename_url, "", 0)
     return
+
+
+def get_position_data_starting_line(
+    doc, data_sheet, starting_line, column, value, num_lines
+):
+    for i in range(num_lines + 1):
+        line_to_test = starting_line + i
+        cell = data_sheet.getCellByPosition(column, line_to_test - 1)
+        if not cell:
+            continue
+        try:
+            cell_value = int(cell.Value)
+        except ValueError:
+            continue
+        if cell_value == value:
+            return line_to_test
+    return -1
 
 
 ##################################################
