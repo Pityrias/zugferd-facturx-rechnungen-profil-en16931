@@ -115,6 +115,20 @@ def generate_facturx_xml(data, position_data, category_data):
         )
         header_doc_note_str.text = data["invoice_note"]
 
+    if data.get("issuer_add_contact_1"):
+        header_doc_note = ET.SubElement(header_doc, ET.QName(ns["ram"], "IncludedNote"))
+        header_doc_note_str = ET.SubElement(
+            header_doc_note, ET.QName(ns["ram"], "Content")
+        )
+        header_doc_note_str.text = data["issuer_add_contact_1"]
+
+    if data.get("issuer_add_contact_2"):
+        header_doc_note = ET.SubElement(header_doc, ET.QName(ns["ram"], "IncludedNote"))
+        header_doc_note_str = ET.SubElement(
+            header_doc_note, ET.QName(ns["ram"], "Content")
+        )
+        header_doc_note_str.text = data["issuer_add_contact_2"]
+
     trade_transaction = ET.SubElement(
         root, ET.QName(ns["rsm"], "SupplyChainTradeTransaction")
     )
@@ -550,12 +564,12 @@ def get_and_check_data(doc, data_sheet):
             "required": False,
             "line": 20,
         },
-        "issuer_phone2": {
+        "issuer_add_contact_1": {
             "type": "char",
             "required": False,
             "line": 21,
         },
-        "issuer_fax": {
+        "issuer_add_contact_2": {
             "type": "char",
             "required": False,
             "line": 22,
@@ -882,7 +896,6 @@ def get_and_check_data(doc, data_sheet):
 
 
 def get_and_check_position_data(doc, data_sheet, starting_line):
-    msg_box(doc, f"get position data with starting_line {starting_line}")
     last_position = 0
     position_data = []
     while True:
@@ -908,8 +921,6 @@ def get_and_check_position_data(doc, data_sheet, starting_line):
         # prepare for next loop
         last_position = cell_value
         starting_line += 1
-    stringval = f"got position data with {len(position_data)} entries."
-    msg_box(doc, stringval)
     return position_data
 
 
@@ -1031,7 +1042,7 @@ def generate_facturx_invoice_v1(button_arg=None):
     generate_facturx_from_file(
         pdf_tmp_file.name,
         xml_byte,
-        facturx_level="minimum",
+        facturx_level="basic",
         check_xsd=False,
         pdf_metadata=pdf_metadata,
         output_pdf_file=fx_pdf_filename,
@@ -1327,7 +1338,7 @@ def _facturx_update_metadata_add_attachment(
     fname_obj = createStringObject(FACTURX_FILENAME)
     filespec_dict = DictionaryObject(
         {
-            NameObject("/AFRelationship"): NameObject("/Data"),
+            NameObject("/AFRelationship"): NameObject("/Alternative"),
             NameObject("/Desc"): createStringObject("Factur-X Invoice"),
             NameObject("/Type"): NameObject("/Filespec"),
             NameObject("/F"): fname_obj,
