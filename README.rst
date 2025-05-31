@@ -3,6 +3,7 @@
    :alt: License: GPL-3
 
 .. image:: https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-basic/blob/master/extension/profile_basic_logo.png
+   :width: 50
    :alt: Project logo
 
 ==============================
