@@ -21,13 +21,6 @@ from tempfile import NamedTemporaryFile
 from datetime import datetime, timedelta
 import xml.etree.ElementTree as ET
 from stdnum.vatin import is_valid
-from stdnum.fr.siret import (
-    validate,
-    InvalidChecksum,
-    InvalidComponent,
-    InvalidFormat,
-    InvalidLength,
-)
 from PyPDF4 import PdfFileWriter, PdfFileReader
 from PyPDF4.generic import (
     DictionaryObject,
@@ -912,7 +905,7 @@ def get_and_check_data(doc, data_sheet):
     return data
 
 
-def get_and_check_position_data(doc, data_sheet, starting_line):
+def get_position_data(doc, data_sheet, starting_line):
     last_position = 0
     position_data = []
     while True:
@@ -941,7 +934,7 @@ def get_and_check_position_data(doc, data_sheet, starting_line):
     return position_data
 
 
-def get_and_check_tax_category_data(doc, data_sheet, starting_line):
+def get_tax_category_data(doc, data_sheet, starting_line):
     last_position = 0
     category_data = []
     while True:
@@ -985,12 +978,10 @@ def generate_facturx_invoice_v1(button_arg=None):
 
     # get category data
     starting_line_tax_categories = 62
-    category_data = get_and_check_tax_category_data(
-        doc, data_sheet, starting_line_tax_categories
-    )
-    if not category_data:
-        msg_box(doc, "There must be a least one tax category starting at line 62")
-        return
+    category_data = get_tax_category_data(doc, data_sheet, starting_line_tax_categories)
+    category_check_result = check_category_data(category_data)
+    if category_check_result[0] == False:
+        msg_box(doc, category_check_result[1])
 
     # get position data from sheet
     position_starting_line = get_position_data_starting_line(
@@ -1002,7 +993,10 @@ def generate_facturx_invoice_v1(button_arg=None):
             "Could not find position data. Make sure it starts with position number 1 in column A and is located under the category data table.",
         )
         return
-    position_data = get_and_check_position_data(doc, data_sheet, position_starting_line)
+    position_data = get_position_data(doc, data_sheet, position_starting_line)
+    pos_check_result = check_position_data(position_data)
+    if pos_check_result[0] == False:
+        msg_box(doc, pos_check_result[1])
 
     # prepare LO PDF export
     pdf_option1 = PropertyValue()
