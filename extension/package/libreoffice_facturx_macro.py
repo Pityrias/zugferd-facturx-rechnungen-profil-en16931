@@ -781,6 +781,13 @@ def get_and_check_data(doc, data_sheet):
         if value or (fdict["type"] in ("float", "int") and fdict["required"]):
             data[field] = value
 
+    # check if fields that are sometimes required are present
+    if not data.get("issuer_vat_number") and not data.get("issuer_tax_id"):
+        return msg_box(
+            doc,
+            "The invoice issuer must specify either a VAT number or a national tax id.",
+        )
+
     # Check data
     for field, fdict in fields.items():
         if field in data:
@@ -849,41 +856,43 @@ def get_and_check_data(doc, data_sheet):
                     )
 
     # Global checks
-    # Todo reenable checks and add new ones
-    # diff = data["total_with_tax"] - data["total_without_tax"] - data["total_tax"]
-    # if abs(diff) > 0.00001:
-    #     return msg_box(
-    #         doc,
-    #         _(
-    #             "In the second tab, the value of cell B%s (%s: %s) must be equal to the value of cell B%s (%s: %s) plus cell B%s (%s: %s)."
-    #         )
-    #         % (
-    #             fields["total_with_tax"]["line"],
-    #             fields["total_with_tax"]["label"],
-    #             data["total_with_tax"],
-    #             fields["total_without_tax"]["line"],
-    #             fields["total_without_tax"]["label"],
-    #             data["total_without_tax"],
-    #             fields["total_tax"]["line"],
-    #             fields["total_tax"]["label"],
-    #             data["total_tax"],
-    #         ),
-    #     )
-    # if data["total_due"] - 0.00001 > data["total_with_tax"]:
-    #     return msg_box(
-    #         doc,
-    #         _(
-    #             "In the second tab, the value of cell B%s (%s: %s) cannot be superior to the value of cell B%s (%s: %s)."
-    #         )
-    #         % (
-    #             fields["total_due"]["line"],
-    #             fields["total_due"]["label"],
-    #             data["total_due"],
-    #             fields["total_with_tax"]["line"],
-    #             fields["total_with_tax"]["label"],
-    #             data["total_with_tax"],
-    #         ),
-    #     )
+    diff = data["total_with_tax"] - data["total_without_tax"] - data["total_tax"]
+    if abs(diff) > 0.00001:
+        return msg_box(
+            doc,
+            _(
+                "In the second tab, the value of cell B%s (%s: %s) must be equal to the value of cell B%s (%s: %s) plus cell B%s (%s: %s)."
+            )
+            % (
+                fields["total_with_tax"]["line"],
+                fields["total_with_tax"]["label"],
+                data["total_with_tax"],
+                fields["total_without_tax"]["line"],
+                fields["total_without_tax"]["label"],
+                data["total_without_tax"],
+                fields["total_tax"]["line"],
+                fields["total_tax"]["label"],
+                data["total_tax"],
+            ),
+        )
+    if abs(data["total_due"] - data["total_with_tax"] - data["deposits"]) > 0.00001:
+        return msg_box(
+            doc,
+            _(
+                "In the second tab, the value of cell B%s (%s: %s) must be equal to the value of cell B%s (%s: %s) plus cell B%s (%s: %s)."
+            )
+            % (
+                fields["total_due"]["line"],
+                fields["total_due"]["label"],
+                data["total_due"],
+                fields["total_with_tax"]["line"],
+                fields["total_with_tax"]["label"],
+                data["total_with_tax"],
+                fields["deposits"]["line"],
+                fields["deposits"]["label"],
+                data["deposits"],
+            ),
+        )
     if not data.get("invoice_or_refund"):
         data["invoice_or_refund"] = "380"  # default value is invoice
     elif data["invoice_or_refund"].lower() in INVOICE_REFUND_LANG:
