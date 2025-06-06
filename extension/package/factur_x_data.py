@@ -123,3 +123,37 @@ class CategoryData:
         cell = data_sheet.getCellByPosition(5, line - 1)
         if cell:
             self.exempt_reason = cell.getString()
+
+
+def check_position_data(position_data):
+    if len(position_data) < 1:
+        return (False, "There must be at least one position listed")
+    cnt = 1
+    for pos in position_data:
+        if not pos.is_valid():
+            return (False, f"Position {cnt} lacks required fields")
+        calc_price = pos.netto_price * pos.amount
+        if abs(calc_price - pos.netto_total) > 0.0001:
+            return (
+                False,
+                f"Position {cnt}: netto total is not equal to netto price times the amount",
+            )
+        cnt += 1
+    return (True, "")
+
+
+def check_category_data(category_data):
+    if len(category_data) < 1:
+        return (False, "There must be at least one tax category listed")
+    cnt = 1
+    for category in category_data:
+        if not category.is_valid():
+            return (False, f"Tax category {cnt} lacks required fields")
+        calc_tax_total = category.rate / 100 * category.taxed_amount
+        if abs(calc_tax_total - category.sum_tax) > 0.0001:
+            return (
+                False,
+                f"Tax category {cnt}: sum tax is not equal rate percent of taxed amount",
+            )
+        cnt += 1
+    return (True, "")
