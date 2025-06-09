@@ -21,6 +21,8 @@ from tempfile import NamedTemporaryFile
 from datetime import datetime, timedelta
 import xml.etree.ElementTree as ET
 from stdnum.vatin import is_valid
+from stdnum.de.stnr import is_valid as tax_id_is_valid
+from stdnum.eu.vat import is_valid as eu_is_valid
 from PyPDF4 import PdfFileWriter, PdfFileReader
 from PyPDF4.generic import (
     DictionaryObject,
@@ -826,9 +828,14 @@ def get_and_check_data(doc, data_sheet):
                     )
                 data[field] = data[field].upper()
             if field.endswith("_vat_number"):
-                data[field] = data[field].replace(" ", "").upper()
-                if not is_valid(data[field]):
+                # data[field] = data[field].replace(" ", "").upper()
+                if not is_valid(data[field]) and not eu_is_valid(data[field]):
                     return msg_box(doc, msg_start + _("this VAT number is invalid."))
+            if field.endswith("_tax_id"):
+                if not tax_id_is_valid(data[field]):
+                    return msg_box(
+                        doc, msg_start + _("this german tax number is invalid.")
+                    )
             # Todo validate tax number
             if field == "invoice_currency":  # required field
                 if len(data[field]) != 3 or not data[field].isalpha():
