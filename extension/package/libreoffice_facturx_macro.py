@@ -844,23 +844,8 @@ def get_and_check_data(doc, data_sheet):
                     )
                 data[field] = data[field].upper()
             elif field == "invoice_date":
-                max_future_days = 3
-                max_past_years = 5
-                near_future = datetime.today() + timedelta(days=max_future_days)
-                # I want to stick to the standard lib, so I don't use relativedelta
-                distant_past = datetime.today() - timedelta(days=max_past_years * 365)
-                if (
-                    data["invoice_date"] > near_future
-                    or data["invoice_date"] < distant_past
-                ):
-                    return msg_box(
-                        doc,
-                        msg_start
-                        + _(
-                            "this date must be today or within the %d past years or within the %d next days."
-                        )
-                        % (max_past_years, max_future_days),
-                    )
+                if data["invoice_date"] != datetime.today():
+                    return msg_box(doc, "The invoice date must be today.")
 
     # Global checks
     diff = data["total_with_tax"] - data["total_without_tax"] - data["total_tax"]
@@ -938,7 +923,7 @@ def get_position_data(doc, data_sheet, starting_line):
         item = factur_x_data.ItemData()
         item.get_data_from_sheet(data_sheet, starting_line)
         if not item.is_valid():
-            msg_box(
+            return msg_box(
                 doc,
                 f"item not valid, item has values {item.name}, {item.netto_price}, {item.amount}, {item.unit}, {item.tax_category},{item.tax_rate}, {item.netto_total}, {item.note}",
             )
@@ -997,14 +982,14 @@ def generate_facturx_invoice_v1(button_arg=None):
     category_data = get_tax_category_data(doc, data_sheet, starting_line_tax_categories)
     category_check_result = check_category_data(category_data)
     if category_check_result[0] == False:
-        msg_box(doc, category_check_result[1])
+        return msg_box(doc, category_check_result[1])
 
     # get position data from sheet
     position_starting_line = get_position_data_starting_line(
         doc, data_sheet, 62 + len(category_data) + 3, 0, 1, 2
     )
     if position_starting_line < 0:
-        msg_box(
+        return msg_box(
             doc,
             "Could not find position data. Make sure it starts with position number 1 in column A and is located under the category data table.",
         )
@@ -1012,7 +997,32 @@ def generate_facturx_invoice_v1(button_arg=None):
     position_data = get_position_data(doc, data_sheet, position_starting_line)
     pos_check_result = check_position_data(position_data)
     if pos_check_result[0] == False:
-        msg_box(doc, pos_check_result[1])
+        return msg_box(doc, pos_check_result[1])
+
+    # check that position and category data are consistent with general data
+    calc_sum_tax = 0.00
+    calc_sum_taxed_amount = 0.00
+    for category in category_data:
+        calc_sum_tax += category.taxed_amount
+        calc_sum_taxed_amount += category.taxed_amount
+    if abs(calc_sum_tax - data["total_tax"]) > 0.0001:
+        return msg_box(
+            doc, "The sum of vat over all categories is not equal to the total tax."
+        )
+    if abs(calc_sum_taxed_amount - data["total_without_tax"]) > 0.0001:
+        return msg_box(
+            doc,
+            "The taxed amount over all tax categories does not match the total without tax.",
+        )
+
+    calc_net_sum = 0.00
+    for pos in position_data:
+        calc_net_sum += pos.netto_total
+    if abs(calc_net_sum - data["total_without_tax"]) > 0.0001:
+        return msg_box(
+            doc,
+            "The net amount of all positions does not add up to the total without tax.",
+        )
 
     # prepare LO PDF export
     pdf_option1 = PropertyValue()
