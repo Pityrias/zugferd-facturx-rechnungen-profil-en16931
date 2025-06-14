@@ -33,7 +33,7 @@ class ItemData:
         valid = (
             len(self.name) != 0
             and self.netto_price != float("nan")
-            and self.amount != float("nan")
+            and self.amount >= 0.00000
             and len(self.tax_category) != 0
             and self.tax_rate != float("nan")
             and self.netto_total != float("nan")
