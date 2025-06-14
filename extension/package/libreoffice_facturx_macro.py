@@ -40,7 +40,6 @@ import gettext
 
 import factur_x_data
 
-
 _ = gettext.gettext
 
 INVOICE_REFUND_LANG = {
