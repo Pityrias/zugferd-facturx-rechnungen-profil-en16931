@@ -851,6 +851,10 @@ def get_and_check_data(doc, data_sheet):
                         doc,
                         f"The invoice date must be today. Today is {datetime.today()} while data has value {date_text}",
                     )
+            elif field == "payment_due_date":
+                date_text = data["payment_due_date"].strftime("%Y%m%d")
+                if date_text < datetime.today().strftime("%Y%m%d"):
+                    return msg_box(doc, "The payment due date can't be in the past.")
 
     # Global checks
     diff = data["total_with_tax"] - data["total_without_tax"] - data["total_tax"]
