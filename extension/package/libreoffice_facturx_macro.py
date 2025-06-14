@@ -828,17 +828,13 @@ def get_and_check_data(doc, data_sheet):
                         doc, msg_start + _("country codes must have 2 letters.")
                     )
                 data[field] = data[field].upper()
-            if field.endswith("_vat_number"):
-                # data[field] = data[field].replace(" ", "").upper()
+            elif field.endswith("_vat_number"):
                 if not is_valid(data[field]) and not eu_is_valid(data[field]):
-                    return msg_box(doc, msg_start + _("this VAT number is invalid."))
-            if field.endswith("_tax_id"):
+                    msg_box(doc, msg_start + _("this VAT number is invalid."))
+            elif field.endswith("_tax_id"):
                 if not tax_id_is_valid(data[field]):
-                    return msg_box(
-                        doc, msg_start + _("this german tax number is invalid.")
-                    )
-            # Todo validate tax number
-            if field == "invoice_currency":  # required field
+                    msg_box(doc, msg_start + _("this german tax number is invalid."))
+            elif field == "invoice_currency":  # required field
                 if len(data[field]) != 3 or not data[field].isalpha():
                     return msg_box(
                         doc, msg_start + _("currency codes must have 3 letters.")
