@@ -845,7 +845,7 @@ def get_and_check_data(doc, data_sheet):
                 if date_text != datetime.today().strftime("%Y%m%d"):
                     return msg_box(
                         doc,
-                        f"The invoice date must be today. Today is {datetime.today()} while data has value {date_text}",
+                        f"The invoice date must be today. If the entered date is correct please check your machines system settings.",
                     )
             elif field == "payment_due_date":
                 date_text = data["payment_due_date"].strftime("%Y%m%d")
@@ -1012,16 +1012,19 @@ def generate_facturx_invoice_v1(button_arg=None):
     calc_sum_tax = 0.00
     calc_sum_taxed_amount = 0.00
     for category in category_data:
-        calc_sum_tax += category.taxed_amount
+        calc_sum_tax += category.sum_tax
         calc_sum_taxed_amount += category.taxed_amount
     if abs(calc_sum_tax - data["total_tax"]) > 0.0001:
-        msg_box(
-            doc, "The sum of vat over all categories is not equal to the total tax."
-        )
-    if abs(calc_sum_taxed_amount - data["total_without_tax"]) > 0.0001:
+        data_val = data["total_tax"]
         msg_box(
             doc,
-            "The taxed amount over all tax categories does not match the total without tax.",
+            f"The sum of vat over all categories is not equal to the total tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_tax}",
+        )
+    if abs(calc_sum_taxed_amount - data["total_without_tax"]) > 0.0001:
+        data_val = data["total_without_tax"]
+        msg_box(
+            doc,
+            f"The taxed amount over all tax categories does not match the total without tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_taxed_amount}",
         )
 
     # Generate warning if category O is used together with differnet category
@@ -1031,7 +1034,7 @@ def generate_facturx_invoice_v1(button_arg=None):
     if "O" in category_set and len(category_set) > 1:
         msg_box(
             doc,
-            "Invoices that use tax category O should not contain positions of any other tax category.",
+            "Invoices that use tax category O must not contain positions of any other tax category.",
         )
 
     calc_net_sum = 0.00
