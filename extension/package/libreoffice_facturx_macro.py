@@ -429,6 +429,23 @@ def generate_facturx_xml(data, position_data, category_data):
         basis_amount = ET.SubElement(trade_tax, ET.QName(ns["ram"], "BasisAmount"))
         basis_amount.text = "%.2f" % category.taxed_amount
 
+    if data.get("payment_instructions") or data.get("payment_due_data"):
+        payment_terms = ET.SubElement(
+            trade_settlement,
+            ET.QName(ns["ram"], "SpecifiedTradePaymentTerms"),
+        )
+        if data.get("payment_instructions"):
+            payment_terms_description = ET.SubElement(
+                payment_terms, ET.QName(ns["ram"], "Description")
+            )
+            payment_terms_description.text = data["payment_instructions"]
+        if data.get("payment_due_date"):
+            payment_due_date = ET.SubElement(
+                payment_terms, ET.QName(ns["udt"], "DateTimeString"), format="102"
+            )
+            # 102 = format YYYYMMDD
+            payment_due_date.text = data["payment_due_date"].strftime("%Y%m%d")
+
     sums = ET.SubElement(
         trade_settlement,
         ET.QName(ns["ram"], "SpecifiedTradeSettlementHeaderMonetarySummation"),
