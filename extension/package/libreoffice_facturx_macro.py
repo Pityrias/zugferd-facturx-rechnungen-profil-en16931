@@ -46,9 +46,6 @@ INVOICE_REFUND_LANG = {
     # English
     "invoice": "380",
     "refund": "381",
-    # French
-    "facture": "380",
-    "avoir": "381",
     # German
     "rechnung": "380",
     "gutschrift": "381",
@@ -787,7 +784,9 @@ def get_and_check_data(doc, data_sheet):
     if not data.get("issuer_vat_number") and not data.get("issuer_tax_id"):
         return msg_box(
             doc,
-            "The invoice issuer must specify either a VAT number or a national tax id.",
+            _(
+                "The invoice issuer must specify either a VAT number or a national tax id."
+            ),
         )
 
     # Check data
@@ -844,12 +843,14 @@ def get_and_check_data(doc, data_sheet):
                 if date_text != datetime.today().strftime("%Y%m%d"):
                     return msg_box(
                         doc,
-                        f"The invoice date must be today. If the entered date is correct please check your machines system settings.",
+                        _(
+                            f"The invoice date must be today. If the entered date is correct please check your machines system settings."
+                        ),
                     )
             elif field == "payment_due_date":
                 date_text = data["payment_due_date"].strftime("%Y%m%d")
                 if date_text < datetime.today().strftime("%Y%m%d"):
-                    return msg_box(doc, "The payment due date can't be in the past.")
+                    return msg_box(doc, _("The payment due date can't be in the past."))
 
     # Global checks
     diff = data["total_with_tax"] - data["total_without_tax"] - data["total_tax"]
@@ -933,7 +934,9 @@ def get_position_data(doc, data_sheet, starting_line):
         if not item.is_valid():
             return msg_box(
                 doc,
-                f"item {item.name} is not valid, check that all required fields are filled.",
+                _(
+                    f"item {item.name} is not valid, check that all required fields are filled."
+                ),
             )
             break
         position_data.append(item)
@@ -974,8 +977,6 @@ def generate_facturx_invoice_v1(button_arg=None):
     localedir = os.path.join(macro_path, "i18n")
     gettext.bindtextdomain("facturx_macro", localedir=localedir)
     gettext.textdomain("facturx_macro")  # set 'facturx_macro' as global domain
-    # msg = _("Missing 'Data' tab in the spreadsheet.")
-    # print('msg=', msg)
     if len(doc.Sheets) < 2:
         return msg_box(doc, _("The spreadsheet must contain at least 2 tabs."))
     inv_sheet = doc.Sheets[0]
@@ -999,7 +1000,9 @@ def generate_facturx_invoice_v1(button_arg=None):
     if position_starting_line < 0:
         return msg_box(
             doc,
-            "Could not find position data. Make sure it starts with position number 1 in column A and is located under the category data table.",
+            _(
+                "Could not find position data. Make sure it starts with position number 1 in column A and is located under the category data table."
+            ),
         )
         return
     position_data = get_position_data(doc, data_sheet, position_starting_line)
