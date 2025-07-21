@@ -1,17 +1,17 @@
-# Translations template for PROJECT.
-# Copyright (C) 2025 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# German translations for factur-x-zugferd-libreoffice-extension.
+# Copyright (C) 2025 Luise Preuße
+# This file is distributed under the same license as the factur-x-zugferd-libreoffice-extension project.
+# Luise Preusse <preusseluise@mail.de>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: 2025-07-19 18:21+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2025-07-19 18:23+0200\n"
+"Last-Translator: Luise Preusse <preusseluise@mail.de>\n"
+"Language: de\n"
+"Language-Team: de Luise Preusse <preusseluise@mail.de>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../libreoffice_facturx_macro.py:60
 msgid "Factur-X Error"
-msgstr ""
+msgstr "Factur-X Fehler"
 
 #: ../libreoffice_facturx_macro.py:758
 #, python-format
@@ -29,122 +29,137 @@ msgid ""
 "cell and select 'Format Cells': in the first tab, select 'Date' as "
 "'Category' and check that the selected 'Format' matches the format "
 "currently used in the cell."
-msgstr ""
+msgstr "Die Zelle B%s (%s) im zweiten Tab scheint kein Datumsfeld zu sein."
+"Bitte überprüfen Sie das Format. Dazu klicken Sie mit rechts auf die Zelle"
+" und wählen Sie 'Zellen formatieren' aus: Im ersten Tab wählen Sie Datum"
+" als Kategorie und prüfen Sie, dass das ausgewählte Format zu dem Wert"
+" in der Zelle passt."
 
 #: ../libreoffice_facturx_macro.py:774
 #, python-format
 msgid ""
 "In the second tab, cell B%s (%s) is a required field but it is currently "
 "empty or its type is wrong."
-msgstr ""
+msgstr "Die Zelle B%s (%s) in Tab zwei is ein erforderliches Feld, aber"
+"entweder leer oder falsch formatiert."
 
 #: ../libreoffice_facturx_macro.py:788
 msgid "The invoice issuer must specify either a VAT number or a national tax id."
-msgstr ""
+msgstr "Der Aussteller der Rechnung muss entweder eine Umsatzsteuer-Id oder eine"
+" Steuernummer angeben."
 
 #: ../libreoffice_facturx_macro.py:798
 #, python-format
 msgid "In the second tab, the value of cell B%s (%s) is '%s';"
-msgstr ""
+msgstr "Der Wert der Zelle B%s (%s) in Tab zwei ist '%s';"
 
 #: ../libreoffice_facturx_macro.py:807
 msgid "it must be a float."
-msgstr ""
+msgstr "er muss eine Kommazahl sein."
 
 #: ../libreoffice_facturx_macro.py:809 ../libreoffice_facturx_macro.py:814
 msgid "it must be positive."
-msgstr ""
+msgstr "er muss positiv sein."
 
 #: ../libreoffice_facturx_macro.py:812
 msgid "it must be an integer."
-msgstr ""
+msgstr "er muss eine Ganzzahl sein."
 
 #: ../libreoffice_facturx_macro.py:817
 msgid "it must be a date."
-msgstr ""
+msgstr "er muss ein Datum sein."
 
 #: ../libreoffice_facturx_macro.py:820
 msgid "it must be a string."
-msgstr ""
+msgstr "er muss ein Text sein."
 
 #: ../libreoffice_facturx_macro.py:826
 msgid "country codes must have 2 letters."
-msgstr ""
+msgstr "Ländercodes müssen zwei Buchstaben"
+" haben."
 
 #: ../libreoffice_facturx_macro.py:831
 msgid "this VAT number is invalid."
-msgstr ""
+msgstr "Ungültige Umsatzsteuer-Id."
 
 #: ../libreoffice_facturx_macro.py:834
 msgid "this german tax number is invalid."
-msgstr ""
+msgstr "diese Steuernummer ist ungültig."
 
 #: ../libreoffice_facturx_macro.py:838
 msgid "currency codes must have 3 letters."
-msgstr ""
+msgstr "Währungscodes müssen drei Buchstaben"
+" haben."
 
 #: ../libreoffice_facturx_macro.py:847
 msgid ""
 "The invoice date must be today. If the entered date is correct please "
 "check your machines system settings."
-msgstr ""
+msgstr "Das Austelldatum der Rechnung muss heute sein. Wenn das"
+" eingetragene Datum stimmt, überprüfen Sie die Systemzeit ihres"
+" Computers."
 
 #: ../libreoffice_facturx_macro.py:853
 msgid "The payment due date can't be in the past."
-msgstr ""
+msgstr "Das Fälligkeitsdatum kann nicht in der"
+" Vergangenheit liegen."
 
 #: ../libreoffice_facturx_macro.py:861 ../libreoffice_facturx_macro.py:883
 #, python-format
 msgid ""
 "In the second tab, the value of cell B%s (%s: %s) must be equal to the "
 "value of cell B%s (%s: %s) plus cell B%s (%s: %s)."
-msgstr ""
+msgstr "Der Wert von Zelle B%s (%s) in Tab zwei muss gleich der Summe"
+" der Zellen B%s (%s: %s) und B%s (%s: %s) sein."
 
 #: ../libreoffice_facturx_macro.py:907
 #, python-format
 msgid ""
 "In the second tab, the value of cell B%s (%s) is '%s'; it must be either "
 "'invoice' or 'refund'."
-msgstr ""
+msgstr "Der Wert von Zelle B%s (%s) in Tab zwei ist '%s'; er muss entweder"
+"'rechnung' oder 'gutschrift' sein."
 
 #: ../libreoffice_facturx_macro.py:981
 msgid "The spreadsheet must contain at least 2 tabs."
-msgstr ""
+msgstr "Das Dokument muss mindestens zwei Tabs enthalten."
 
 #: ../libreoffice_facturx_macro.py:1004
 msgid ""
 "Could not find position data. Make sure it starts with position number 1 "
 "in column A and is located under the category data table."
-msgstr ""
+msgstr "Es konnten keine Positionsdaten gefunden werden. Stellen Sie sicher"
+", dass die Positionen unterhalb der Kategoriedaten eingetragen sind und in"
+" Spalte A nummeriert sind, beginnend mit '1'."
 
 #: ../libreoffice_facturx_macro.py:1081
 #, python-format
 msgid "Select attachment No. %d"
-msgstr ""
+msgstr "Wählen Sie Anhang Nr. %d aus."
 
 #: ../libreoffice_facturx_macro.py:1089
 msgid "Save Factur-X PDF As"
-msgstr ""
+msgstr "Factur-X PDF speichern unter"
 
 #: ../libreoffice_facturx_macro.py:1097
 msgid "Invoice"
-msgstr ""
+msgstr "Rechnung"
 
 #: ../libreoffice_facturx_macro.py:1098
 #, python-format
 msgid "%s: Invoice %s"
-msgstr ""
+msgstr "%s: Rechnung %s"
 
 #: ../libreoffice_facturx_macro.py:1099
 #, python-format
 msgid "Factur-X invoice %s issued by %s"
-msgstr ""
+msgstr "Factur-X Rechnung %s ausgestellt von %s"
 
 #: ../factur_x_data.py:132
 msgid "There must be at least one position listed"
-msgstr ""
+msgstr "Es muss mindestens eine Position aufgeführt sein."
 
 #: ../factur_x_data.py:151
 msgid "There must be at least one tax category listed"
-msgstr ""
+msgstr "Es muss mindestens eine Steuerkategorie aufgeführt sein."
 
