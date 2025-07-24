@@ -1020,13 +1020,13 @@ def generate_facturx_invoice_v1(button_arg=None):
         data_val = data["total_tax"]
         msg_box(
             doc,
-            f"The sum of vat over all categories is not equal to the total tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_tax}",
+            _(f"The sum of vat over all categories is not equal to the total tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_tax}"),
         )
     if abs(calc_sum_taxed_amount - data["total_without_tax"]) > 0.0001:
         data_val = data["total_without_tax"]
         msg_box(
             doc,
-            f"The taxed amount over all tax categories does not match the total without tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_taxed_amount}",
+            _(f"The taxed amount over all tax categories does not match the total without tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_taxed_amount}"),
         )
 
     # Generate warning if category O is used together with differnet category
@@ -1036,7 +1036,7 @@ def generate_facturx_invoice_v1(button_arg=None):
     if "O" in category_set and len(category_set) > 1:
         msg_box(
             doc,
-            "Invoices that use tax category O must not contain positions of any other tax category.",
+            _("Invoices that use tax category O must not contain positions of any other tax category."),
         )
 
     calc_net_sum = 0.00
@@ -1045,7 +1045,7 @@ def generate_facturx_invoice_v1(button_arg=None):
     if abs(calc_net_sum - data["total_without_tax"]) > 0.0001:
         msg_box(
             doc,
-            "The net amount of all positions does not add up to the total without tax.",
+            _("The net amount of all positions does not add up to the total without tax."),
         )
 
     # prepare LO PDF export
