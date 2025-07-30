@@ -755,9 +755,8 @@ def get_and_check_data(doc, data_sheet):
                 return msg_box(
                     doc,
                     _(
-                        "In the second tab, cell B%s (%s) doesn't seem to be a date field. Check that the type of the cell has a date format. For that, right clic on the cell and select 'Format Cells': in the first tab, select 'Date' as 'Category' and check that the selected 'Format' matches the format currently used in the cell."
-                    )
-                    % (fdict["line"], fdict["label"]),
+                        "In the second tab, cell B{line} ({label}) doesn't seem to be a date field. Check that the type of the cell has a date format. For that, right clic on the cell and select 'Format Cells': in the first tab, select 'Date' as 'Category' and check that the selected 'Format' matches the format currently used in the cell."
+                    ).format(line=fdict["line"], label=fdict["label"]),
                 )
             date_as_int = int(valuecell.Value)
             value = datetime.fromordinal(
@@ -771,9 +770,8 @@ def get_and_check_data(doc, data_sheet):
                 return msg_box(
                     doc,
                     _(
-                        "In the second tab, cell B%s (%s) is a required field but it is currently empty or its type is wrong."
-                    )
-                    % (fdict["line"], fdict["label"]),
+                        "In the second tab, cell B{line} ({label}) is a required field but it is currently empty or its type is wrong."
+                    ).format(line=fdict["line"], label=fdict["label"]),
                 )
             elif fdict["type"] == "float" and not value:
                 value = 0.0
@@ -795,10 +793,12 @@ def get_and_check_data(doc, data_sheet):
             value_display = data[field]
             if fdict["type"] == "date":
                 value_display = data[field].strftime("%d %B %Y")
-            msg_start = _("In the second tab, the value of cell B%s (%s) is '%s';") % (
-                fdict["line"],
-                fdict["label"],
-                value_display,
+            msg_start = _(
+                "In the second tab, the value of cell B{line} ({label}) is '{value}';"
+            ).format(
+                line=fdict["line"],
+                label=fdict["label"],
+                value=value_display,
             )
             msg_start += " "
             # check type
@@ -844,7 +844,7 @@ def get_and_check_data(doc, data_sheet):
                     return msg_box(
                         doc,
                         _(
-                            f"The invoice date must be today. If the entered date is correct please check your machines system settings."
+                            "The invoice date must be today. If the entered date is correct please check your machines system settings."
                         ),
                     )
             elif field == "payment_due_date":
@@ -858,18 +858,17 @@ def get_and_check_data(doc, data_sheet):
         return msg_box(
             doc,
             _(
-                "In the second tab, the value of cell B%s (%s: %s) must be equal to the value of cell B%s (%s: %s) plus cell B%s (%s: %s)."
-            )
-            % (
-                fields["total_with_tax"]["line"],
-                fields["total_with_tax"]["label"],
-                data["total_with_tax"],
-                fields["total_without_tax"]["line"],
-                fields["total_without_tax"]["label"],
-                data["total_without_tax"],
-                fields["total_tax"]["line"],
-                fields["total_tax"]["label"],
-                data["total_tax"],
+                "In the second tab, the value of cell B{line1} ({label1}: {val1}) must be equal to the value of cell B{line2} ({label2}: {val2}) plus cell B{line3} ({label3}: {val3})."
+            ).format(
+                line1=fields["total_with_tax"]["line"],
+                label1=fields["total_with_tax"]["label"],
+                val1=data["total_with_tax"],
+                line2=fields["total_without_tax"]["line"],
+                label2=fields["total_without_tax"]["label"],
+                val2=data["total_without_tax"],
+                line3=fields["total_tax"]["line"],
+                label3=fields["total_tax"]["label"],
+                val3=data["total_tax"],
             ),
         )
     deposits_value = 0.0
@@ -880,18 +879,17 @@ def get_and_check_data(doc, data_sheet):
         return msg_box(
             doc,
             _(
-                "In the second tab, the value of cell B%s (%s: %s) must be equal to the value of cell B%s (%s: %s) plus cell B%s (%s: %s)."
-            )
-            % (
-                fields["total_due"]["line"],
-                fields["total_due"]["label"],
-                data["total_due"],
-                fields["total_with_tax"]["line"],
-                fields["total_with_tax"]["label"],
-                data["total_with_tax"],
-                fields["deposits"]["line"],
-                fields["deposits"]["label"],
-                deposits_value,
+                "In the second tab, the value of cell B{line1} ({label1}: {val1}) must be equal to the value of cell B{line2} ({label2}: {val2}) plus cell B{line3} ({label3}: {val3})."
+            ).format(
+                line1=fields["total_due"]["line"],
+                label1=fields["total_due"]["label"],
+                val1=data["total_due"],
+                line2=fields["total_with_tax"]["line"],
+                label2=fields["total_with_tax"]["label"],
+                val2=data["total_with_tax"],
+                line3=fields["deposits"]["line"],
+                label3=fields["deposits"]["label"],
+                val3=deposits_value,
             ),
         )
     if not data.get("invoice_or_refund"):
@@ -904,12 +902,11 @@ def get_and_check_data(doc, data_sheet):
         return msg_box(
             doc,
             _(
-                "In the second tab, the value of cell B%s (%s) is '%s'; it must be either 'invoice' or 'refund'."
-            )
-            % (
-                fields["invoice_or_refund"]["line"],
-                fields["invoice_or_refund"]["label"],
-                data["invoice_or_refund"],
+                "In the second tab, the value of cell B{line} ({label}) is '{value}'; it must be either 'invoice' or 'refund'."
+            ).format(
+                line=fields["invoice_or_refund"]["line"],
+                label=fields["invoice_or_refund"]["label"],
+                value=data["invoice_or_refund"],
             ),
         )
     return data
@@ -1020,13 +1017,17 @@ def generate_facturx_invoice_v1(button_arg=None):
         data_val = data["total_tax"]
         msg_box(
             doc,
-            _(f"The sum of vat over all categories is not equal to the total tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_tax}"),
+            _(
+                f"The sum of vat over all categories is not equal to the total tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_tax}"
+            ),
         )
     if abs(calc_sum_taxed_amount - data["total_without_tax"]) > 0.0001:
         data_val = data["total_without_tax"]
         msg_box(
             doc,
-            _(f"The taxed amount over all tax categories does not match the total without tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_taxed_amount}"),
+            _(
+                f"The taxed amount over all tax categories does not match the total without tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_taxed_amount}"
+            ),
         )
 
     # Generate warning if category O is used together with differnet category
@@ -1036,7 +1037,9 @@ def generate_facturx_invoice_v1(button_arg=None):
     if "O" in category_set and len(category_set) > 1:
         msg_box(
             doc,
-            _("Invoices that use tax category O must not contain positions of any other tax category."),
+            _(
+                "Invoices that use tax category O must not contain positions of any other tax category."
+            ),
         )
 
     calc_net_sum = 0.00
@@ -1045,7 +1048,9 @@ def generate_facturx_invoice_v1(button_arg=None):
     if abs(calc_net_sum - data["total_without_tax"]) > 0.0001:
         msg_box(
             doc,
-            _("The net amount of all positions does not add up to the total without tax."),
+            _(
+                "The net amount of all positions does not add up to the total without tax."
+            ),
         )
 
     # prepare LO PDF export
@@ -1078,7 +1083,7 @@ def generate_facturx_invoice_v1(button_arg=None):
     additional_attachments = {}
     if data.get("attachment_count"):
         for a in range(data["attachment_count"]):
-            attach_title = _("Select attachment No. %d") % (a + 1)
+            attach_title = _("Select attachment No. {num}").format(num=a + 1)
             attachment_url = open_filepicker(attach_title, mode=0)
             if attachment_url:
                 attach_filename = uno.fileUrlToSystemPath(attachment_url)
@@ -1095,9 +1100,12 @@ def generate_facturx_invoice_v1(button_arg=None):
     pdf_metadata = {
         "author": data["issuer_name"],
         "keywords": ",".join(["Factur-X", _("Invoice")]),
-        "title": _("%s: Invoice %s") % (data["issuer_name"], data["invoice_number"]),
-        "subject": _("Factur-X invoice %s issued by %s")
-        % (data["invoice_number"], data["issuer_name"]),
+        "title": _("{issuer}: Invoice {number}").format(
+            issuer=data["issuer_name"], number=data["invoice_number"]
+        ),
+        "subject": _("Factur-X invoice {number} issued by {issuer}").format(
+            number=data["invoice_number"], issuer=data["issuer_name"]
+        ),
     }
 
     generate_facturx_from_file(

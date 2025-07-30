@@ -1,21 +1,20 @@
-# Translations template for PROJECT.
-# Copyright (C) 2025 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
+# English translations for PACKAGE package.
+# Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # <EMAIL@ADDRESS>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-19 18:21+0200\n"
-"PO-Revision-Date: 2025-07-26 21:47+0200\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-24 18:32+0200\n"
+"PO-Revision-Date: 2025-07-30 19:49+0200\n"
 "Last-Translator: <EMAIL@ADDRESS>\n"
 "Language-Team: English\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CP1252\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
-"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../libreoffice_facturx_macro.py:60
@@ -23,77 +22,77 @@ msgid "Factur-X Error"
 msgstr "Factur-X Error"
 
 #: ../libreoffice_facturx_macro.py:758
-#, python-format
+#, python-brace-format
 msgid ""
-"In the second tab, cell B%s (%s) doesn't seem to be a date field. Check that "
-"the type of the cell has a date format. For that, right clic on the cell and "
-"select 'Format Cells': in the first tab, select 'Date' as 'Category' and "
-"check that the selected 'Format' matches the format currently used in the "
-"cell."
+"In the second tab, cell B{line} ({label}) doesn't seem to be a date field. "
+"Check that the type of the cell has a date format. For that, right clic on "
+"the cell and select 'Format Cells': in the first tab, select 'Date' as "
+"'Category' and check that the selected 'Format' matches the format currently "
+"used in the cell."
 msgstr ""
-"In the second tab, cell B%s (%s) doesn't seem to be a date field. Check that "
-"the type of the cell has a date format. For that, right clic on the cell and "
-"select 'Format Cells': in the first tab, select 'Date' as 'Category' and "
-"check that the selected 'Format' matches the format currently used in the "
-"cell."
+"In the second tab, cell B{line} ({label}) doesn't seem to be a date field. "
+"Check that the type of the cell has a date format. For that, right clic on "
+"the cell and select 'Format Cells': in the first tab, select 'Date' as "
+"'Category' and check that the selected 'Format' matches the format currently "
+"used in the cell."
 
-#: ../libreoffice_facturx_macro.py:774
-#, python-format
+#: ../libreoffice_facturx_macro.py:773
+#, python-brace-format
 msgid ""
-"In the second tab, cell B%s (%s) is a required field but it is currently "
-"empty or its type is wrong."
+"In the second tab, cell B{line} ({label}) is a required field but it is "
+"currently empty or its type is wrong."
 msgstr ""
-"In the second tab, cell B%s (%s) is a required field but it is currently "
-"empty or its type is wrong."
+"In the second tab, cell B{line} ({label}) is a required field but it is "
+"currently empty or its type is wrong."
 
-#: ../libreoffice_facturx_macro.py:788
+#: ../libreoffice_facturx_macro.py:786
 msgid ""
 "The invoice issuer must specify either a VAT number or a national tax id."
 msgstr ""
 "The invoice issuer must specify either a VAT number or a national tax id."
 
-#: ../libreoffice_facturx_macro.py:798
-#, python-format
-msgid "In the second tab, the value of cell B%s (%s) is '%s';"
-msgstr "In the second tab, the value of cell B%s (%s) is '%s';"
+#: ../libreoffice_facturx_macro.py:796
+#, python-brace-format
+msgid "In the second tab, the value of cell B{line} ({label}) is '{value}';"
+msgstr "In the second tab, the value of cell B{line} ({label}) is '{value}';"
 
-#: ../libreoffice_facturx_macro.py:807
+#: ../libreoffice_facturx_macro.py:805
 msgid "it must be a float."
 msgstr "it must be a float."
 
-#: ../libreoffice_facturx_macro.py:809 ../libreoffice_facturx_macro.py:814
+#: ../libreoffice_facturx_macro.py:807 ../libreoffice_facturx_macro.py:812
 msgid "it must be positive."
 msgstr "it must be positive."
 
-#: ../libreoffice_facturx_macro.py:812
+#: ../libreoffice_facturx_macro.py:810
 msgid "it must be an integer."
 msgstr "it must be an integer."
 
-#: ../libreoffice_facturx_macro.py:817
+#: ../libreoffice_facturx_macro.py:815
 msgid "it must be a date."
 msgstr "it must be a date."
 
-#: ../libreoffice_facturx_macro.py:820
+#: ../libreoffice_facturx_macro.py:818
 msgid "it must be a string."
 msgstr "it must be a string."
 
-#: ../libreoffice_facturx_macro.py:826
+#: ../libreoffice_facturx_macro.py:824
 msgid "country codes must have 2 letters."
 msgstr "country codes must have 2 letters."
 
-#: ../libreoffice_facturx_macro.py:831
+#: ../libreoffice_facturx_macro.py:829
 msgid "this VAT number is invalid."
 msgstr "this VAT number is invalid."
 
-#: ../libreoffice_facturx_macro.py:834
+#: ../libreoffice_facturx_macro.py:832
 msgid "this german tax number is invalid."
 msgstr "this german tax number is invalid."
 
-#: ../libreoffice_facturx_macro.py:838
+#: ../libreoffice_facturx_macro.py:836
 msgid "currency codes must have 3 letters."
 msgstr "currency codes must have 3 letters."
 
-#: ../libreoffice_facturx_macro.py:847
+#: ../libreoffice_facturx_macro.py:845
 msgid ""
 "The invoice date must be today. If the entered date is correct please check "
 "your machines system settings."
@@ -101,33 +100,35 @@ msgstr ""
 "The invoice date must be today. If the entered date is correct please check "
 "your machines system settings."
 
-#: ../libreoffice_facturx_macro.py:853
+#: ../libreoffice_facturx_macro.py:851
 msgid "The payment due date can't be in the past."
 msgstr "The payment due date can't be in the past."
 
-#: ../libreoffice_facturx_macro.py:861 ../libreoffice_facturx_macro.py:883
-#, python-format
+#: ../libreoffice_facturx_macro.py:859 ../libreoffice_facturx_macro.py:880
+#, python-brace-format
 msgid ""
-"In the second tab, the value of cell B%s (%s: %s) must be equal to the value "
-"of cell B%s (%s: %s) plus cell B%s (%s: %s)."
+"In the second tab, the value of cell B{line1} ({label1}: {val1}) must be "
+"equal to the value of cell B{line2} ({label2}: {val2}) plus cell B{line3} "
+"({label3}: {val3})."
 msgstr ""
-"In the second tab, the value of cell B%s (%s: %s) must be equal to the value "
-"of cell B%s (%s: %s) plus cell B%s (%s: %s)."
+"In the second tab, the value of cell B{line1} ({label1}: {val1}) must be "
+"equal to the value of cell B{line2} ({label2}: {val2}) plus cell B{line3} "
+"({label3}: {val3})."
 
-#: ../libreoffice_facturx_macro.py:907
-#, python-format
+#: ../libreoffice_facturx_macro.py:903
+#, python-brace-format
 msgid ""
-"In the second tab, the value of cell B%s (%s) is '%s'; it must be either "
-"'invoice' or 'refund'."
+"In the second tab, the value of cell B{line} ({label}) is '{value}'; it must "
+"be either 'invoice' or 'refund'."
 msgstr ""
-"In the second tab, the value of cell B%s (%s) is '%s'; it must be either "
-"'invoice' or 'refund'."
+"In the second tab, the value of cell B{line} ({label}) is '{value}'; it must "
+"be either 'invoice' or 'refund'."
 
-#: ../libreoffice_facturx_macro.py:981
+#: ../libreoffice_facturx_macro.py:976
 msgid "The spreadsheet must contain at least 2 tabs."
 msgstr "The spreadsheet must contain at least 2 tabs."
 
-#: ../libreoffice_facturx_macro.py:1004
+#: ../libreoffice_facturx_macro.py:999
 msgid ""
 "Could not find position data. Make sure it starts with position number 1 in "
 "column A and is located under the category data table."
@@ -135,33 +136,59 @@ msgstr ""
 "Could not find position data. Make sure it starts with position number 1 in "
 "column A and is located under the category data table."
 
-#: ../libreoffice_facturx_macro.py:1081
-#, python-format
-msgid "Select attachment No. %d"
-msgstr "Select attachment No. %d"
+#: ../libreoffice_facturx_macro.py:1039
+msgid ""
+"Invoices that use tax category O must not contain positions of any other tax "
+"category."
+msgstr ""
+"Invoices that use tax category O must not contain positions of any other tax "
+"category."
 
-#: ../libreoffice_facturx_macro.py:1089
+#: ../libreoffice_facturx_macro.py:1050
+msgid ""
+"The net amount of all positions does not add up to the total without tax."
+msgstr ""
+"The net amount of all positions does not add up to the total without tax."
+
+#: ../libreoffice_facturx_macro.py:1084
+#, python-brace-format
+msgid "Select attachment No. {num}"
+msgstr "Select attachment No. {num}"
+
+#: ../libreoffice_facturx_macro.py:1092
 msgid "Save Factur-X PDF As"
 msgstr "Save Factur-X PDF As"
 
-#: ../libreoffice_facturx_macro.py:1097
+#: ../libreoffice_facturx_macro.py:1100
 msgid "Invoice"
 msgstr "Invoice"
 
-#: ../libreoffice_facturx_macro.py:1098
-#, python-format
-msgid "%s: Invoice %s"
-msgstr "%s: Invoice %s"
+#: ../libreoffice_facturx_macro.py:1101
+#, python-brace-format
+msgid "{issuer}: Invoice {number}"
+msgstr "{issuer}: Invoice {number}"
 
-#: ../libreoffice_facturx_macro.py:1099
-#, python-format
-msgid "Factur-X invoice %s issued by %s"
-msgstr "Factur-X invoice %s issued by %s"
+#: ../libreoffice_facturx_macro.py:1104
+#, python-brace-format
+msgid "Factur-X invoice {number} issued by {issuer}"
+msgstr "Factur-X invoice {number} issued by {issuer}"
 
-#: ../factur_x_data.py:132
+#: ../factur_x_data.py:140
 msgid "There must be at least one position listed"
 msgstr "There must be at least one position listed"
 
-#: ../factur_x_data.py:151
+#: ../factur_x_data.py:150
+#, python-brace-format
+msgid ""
+"Position {cnt}: netto total is not equal to netto price times the amount"
+msgstr ""
+"Position {cnt}: netto total is not equal to netto price times the amount"
+
+#: ../factur_x_data.py:159
 msgid "There must be at least one tax category listed"
 msgstr "There must be at least one tax category listed"
+
+#: ../factur_x_data.py:169
+#, python-brace-format
+msgid "Tax category {cnt}: sum tax is not equal rate percent of taxed amount"
+msgstr "Tax category {cnt}: sum tax is not equal rate percent of taxed amount"

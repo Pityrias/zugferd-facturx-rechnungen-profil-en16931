@@ -13,10 +13,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+import os
+import gettext
+
+# Set up gettext to use the same domain and localedir as libreoffice_facturx_macro.py
+macro_path = os.path.dirname(os.path.abspath(__file__))
+localedir = os.path.join(macro_path, "i18n")
+gettext.bindtextdomain("facturx_macro", localedir=localedir)
+gettext.textdomain("facturx_macro")
+_ = gettext.gettext
+
 import uno
 import unohelper
-
-_ = gettext.gettext
 
 
 class ItemData:
@@ -139,8 +147,8 @@ def check_position_data(position_data):
             return (
                 False,
                 _(
-                    f"Position {cnt}: netto total is not equal to netto price times the amount"
-                ),
+                    "Position {cnt}: netto total is not equal to netto price times the amount"
+                ).format(cnt=cnt),
             )
         cnt += 1
     return (True, "")
@@ -158,8 +166,8 @@ def check_category_data(category_data):
             return (
                 False,
                 _(
-                    f"Tax category {cnt}: sum tax is not equal rate percent of taxed amount"
-                ),
+                    "Tax category {cnt}: sum tax is not equal rate percent of taxed amount"
+                ).format(cnt=cnt),
             )
         cnt += 1
     return (True, "")
