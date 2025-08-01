@@ -157,18 +157,15 @@ def generate_facturx_xml(data, position_data, category_data):
         net_price_amount.text = "%.4f" % pos.netto_price
 
         line_delivery = ET.SubElement(
-            trade_line_item, ET.QName(ns["ram"], "SpecifiedLineTradeAgreement")
-        )
-        amount = ET.SubElement(
-            line_delivery, ET.QName(ns["ram"], "SpecifiedLineTradeDelivery")
+            trade_line_item, ET.QName(ns["ram"], "SpecifiedLineTradeDelivery")
         )
         if pos.has_unit():
             amount_quantity = ET.SubElement(
-                amount, ET.QName(ns["ram"], "BilledQuantity"), unitCode=pos.unit
+                line_delivery, ET.QName(ns["ram"], "BilledQuantity"), unitCode=pos.unit
             )
         else:
             amount_quantity = ET.SubElement(
-                amount, ET.QName(ns["ram"], "BilledQuantity")
+                line_delivery, ET.QName(ns["ram"], "BilledQuantity")
             )
         amount_quantity.text = "%.4f" % pos.amount
         line_settlement = ET.SubElement(
