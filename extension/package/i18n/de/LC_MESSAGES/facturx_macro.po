@@ -29,8 +29,7 @@ msgid ""
 "the cell and select 'Format Cells': in the first tab, select 'Date' as "
 "'Category' and check that the selected 'Format' matches the format currently "
 "used in the cell."
-msgstr ""
-"Die Zelle B{line} ({label}) im zweiten Tab scheint kein Datumsfeld zu "
+msgstr "Die Zelle B{line} ({label}) im zweiten Tab scheint kein Datumsfeld zu "
 "sein.Bitte überprüfen Sie das Format. Dazu klicken Sie mit rechts auf die "
 "Zelle und wählen Sie 'Zellen formatieren' aus: Im ersten Tab wählen Sie "
 "Datum als Kategorie und prüfen Sie, dass das ausgewählte Format zu dem Wert "
@@ -41,15 +40,13 @@ msgstr ""
 msgid ""
 "In the second tab, cell B{line} ({label}) is a required field but it is "
 "currently empty or its type is wrong."
-msgstr ""
-"Die Zelle B{line} ({label}) in Tab zwei is ein erforderliches Feld, "
-"aberentweder leer oder falsch formatiert."
+msgstr "Die Zelle B{line} ({label}) in Tab zwei is ein erforderliches Feld, "
+"aber entweder leer oder falsch formatiert."
 
 #: ../libreoffice_facturx_macro.py:786
 msgid ""
 "The invoice issuer must specify either a VAT number or a national tax id."
-msgstr ""
-"Der Aussteller der Rechnung muss entweder eine Umsatzsteuer-Id oder eine "
+msgstr "Der Aussteller der Rechnung muss entweder eine Umsatzsteuer-Id oder eine "
 "Steuernummer angeben."
 
 #: ../libreoffice_facturx_macro.py:797
@@ -97,8 +94,7 @@ msgstr "Währungscodes müssen drei Buchstaben haben."
 msgid ""
 "The invoice date must be today. If the entered date is correct please check "
 "your machines system settings."
-msgstr ""
-"Das Austelldatum der Rechnung muss heute sein. Wenn das eingetragene Datum "
+msgstr "Das Austelldatum der Rechnung muss heute sein. Wenn das eingetragene Datum "
 "stimmt, überprüfen Sie die Systemzeit ihres Computers."
 
 #: ../libreoffice_facturx_macro.py:853
@@ -111,8 +107,7 @@ msgid ""
 "In the second tab, the value of cell B{line1} ({label1}: {val1}) must be "
 "equal to the value of cell B{line2} ({label2}: {val2}) plus cell B{line3} "
 "({label3}: {val3})."
-msgstr ""
-"Der Wert von Zelle B{line1} ({label1}: {val1}) in Tab zwei muss gleich der "
+msgstr "Der Wert von Zelle B{line1} ({label1}: {val1}) in Tab zwei muss gleich der "
 "Summe der ZellenB{line2} ({label2}: {val2}) und B{line3} ({label3}: {val3}) "
 "sein."
 
@@ -121,8 +116,7 @@ msgstr ""
 msgid ""
 "In the second tab, the value of cell B{line} ({label}) is '{value}'; it must "
 "be either 'invoice' or 'refund'."
-msgstr ""
-"Der Wert von Zelle B{line} ({label}) in Tab zwei ist '{value}'; er muss "
+msgstr "Der Wert von Zelle B{line} ({label}) in Tab zwei ist '{value}'; er muss "
 "entweder'rechnung' oder 'gutschrift' sein."
 
 #: ../libreoffice_facturx_macro.py:978
@@ -133,8 +127,7 @@ msgstr "Das Dokument muss mindestens zwei Tabs enthalten."
 msgid ""
 "Could not find position data. Make sure it starts with position number 1 in "
 "column A and is located under the category data table."
-msgstr ""
-"Es konnten keine Positionsdaten gefunden werden. Stellen Sie sicher, dass "
+msgstr "Es konnten keine Positionsdaten gefunden werden. Stellen Sie sicher, dass "
 "die Positionen unterhalb der Kategoriedaten eingetragen sind und in Spalte A "
 "nummeriert sind, beginnend mit '1'."
 
@@ -142,15 +135,13 @@ msgstr ""
 msgid ""
 "Invoices that use tax category O must not contain positions of any other tax "
 "category."
-msgstr ""
-"Rechnungen die Steuerkategorie O beinhalten, dürfen keine Positionen einer "
-"anderenSteuerkategorie enthalten."
+msgstr "Rechnungen die Steuerkategorie O beinhalten, dürfen keine Positionen einer "
+"anderen Steuerkategorie enthalten."
 
 #: ../libreoffice_facturx_macro.py:1052
 msgid ""
 "The net amount of all positions does not add up to the total without tax."
-msgstr ""
-"Die Netto-Summe aller Positionen stimmt nicht mit der Gesamtsumme ohne "
+msgstr "Die Netto-Summe aller Positionen stimmt nicht mit der Gesamtsumme ohne "
 "Steuern überein."
 
 #: ../libreoffice_facturx_macro.py:1086
@@ -178,13 +169,14 @@ msgstr "Factur-X Rechnung {number} ausgestellt von {issuer}"
 
 #: ../factur_x_data.py:140
 msgid "There must be at least one position listed"
-msgstr ""
+msgstr "Es muss mindestens eine Position aufgeführt sein."
 
 #: ../factur_x_data.py:150
 #, python-brace-format
 msgid ""
 "Position {cnt}: netto total is not equal to netto price times the amount"
-msgstr "Es muss mindestens eine Position aufgeführt sein."
+msgstr "Postion {cnt}: Die Nettosumme entspricht nicht dem Produkt aus "
+"Nettopreis und Menge"
 
 #: ../factur_x_data.py:159
 msgid "There must be at least one tax category listed"
