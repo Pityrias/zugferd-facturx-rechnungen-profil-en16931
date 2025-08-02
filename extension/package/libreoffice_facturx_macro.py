@@ -1,5 +1,5 @@
 # Copyright Alexis de Lattre <alexis.delattre@akretion.com>
-# Copyright 2025 Luise Preusse <preusseluise@mail.de>
+# Copyright 2025 Luise Preusse <pityrias@posteo.eu>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

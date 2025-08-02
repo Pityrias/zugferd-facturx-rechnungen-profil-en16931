@@ -1,15 +1,16 @@
 # German translations for factur-x-zugferd-libreoffice-extension.
 # Copyright (C) 2025 Luise Preuße
 # This file is distributed under the same license as the factur-x-zugferd-libreoffice-extension project.
-# Luise Preusse <preusseluise@mail.de>, 2025.
+# Luise Preusse <pityrias@posteo.eu>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-24 18:32+0200\n"
 "PO-Revision-Date: 2025-07-30 19:49+0200\n"
-"Last-Translator: Luise Preusse <preusseluise@mail.de>\n"
-"Language-Team: German Luise Preusse <preusseluise@mail.de>\n"
+"Last-Translator: Luise Preusse <pityrias@posteo.eu>\n"
+"Language-Team: German Luise Preusse <pityrias@posteo.eu>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,143 +29,149 @@ msgid ""
 "the cell and select 'Format Cells': in the first tab, select 'Date' as "
 "'Category' and check that the selected 'Format' matches the format currently "
 "used in the cell."
-msgstr "Die Zelle B{line} ({label}) im zweiten Tab scheint kein Datumsfeld zu sein."
-"Bitte überprüfen Sie das Format. Dazu klicken Sie mit rechts auf die Zelle"
-" und wählen Sie 'Zellen formatieren' aus: Im ersten Tab wählen Sie Datum"
-" als Kategorie und prüfen Sie, dass das ausgewählte Format zu dem Wert"
-" in der Zelle passt."
+msgstr ""
+"Die Zelle B{line} ({label}) im zweiten Tab scheint kein Datumsfeld zu "
+"sein.Bitte überprüfen Sie das Format. Dazu klicken Sie mit rechts auf die "
+"Zelle und wählen Sie 'Zellen formatieren' aus: Im ersten Tab wählen Sie "
+"Datum als Kategorie und prüfen Sie, dass das ausgewählte Format zu dem Wert "
+"in der Zelle passt."
 
 #: ../libreoffice_facturx_macro.py:773
 #, python-brace-format
 msgid ""
 "In the second tab, cell B{line} ({label}) is a required field but it is "
 "currently empty or its type is wrong."
-msgstr "Die Zelle B{line} ({label}) in Tab zwei is ein erforderliches Feld, aber"
-"entweder leer oder falsch formatiert."
+msgstr ""
+"Die Zelle B{line} ({label}) in Tab zwei is ein erforderliches Feld, "
+"aberentweder leer oder falsch formatiert."
 
 #: ../libreoffice_facturx_macro.py:786
 msgid ""
 "The invoice issuer must specify either a VAT number or a national tax id."
-msgstr "Der Aussteller der Rechnung muss entweder eine Umsatzsteuer-Id oder eine"
-" Steuernummer angeben."
+msgstr ""
+"Der Aussteller der Rechnung muss entweder eine Umsatzsteuer-Id oder eine "
+"Steuernummer angeben."
 
-#: ../libreoffice_facturx_macro.py:796
+#: ../libreoffice_facturx_macro.py:797
 #, python-brace-format
 msgid "In the second tab, the value of cell B{line} ({label}) is '{value}';"
 msgstr "Der Wert der Zelle BB{line} ({label}) in Tab zwei ist '{value}';"
 
-#: ../libreoffice_facturx_macro.py:805
+#: ../libreoffice_facturx_macro.py:807
 msgid "it must be a float."
 msgstr "er muss eine Kommazahl sein."
 
-#: ../libreoffice_facturx_macro.py:807 ../libreoffice_facturx_macro.py:812
+#: ../libreoffice_facturx_macro.py:809 ../libreoffice_facturx_macro.py:814
 msgid "it must be positive."
 msgstr "er muss positiv sein."
 
-#: ../libreoffice_facturx_macro.py:810
+#: ../libreoffice_facturx_macro.py:812
 msgid "it must be an integer."
 msgstr "er muss eine Ganzzahl sein."
 
-#: ../libreoffice_facturx_macro.py:815
+#: ../libreoffice_facturx_macro.py:817
 msgid "it must be a date."
 msgstr "er muss ein Datum sein."
 
-#: ../libreoffice_facturx_macro.py:818
+#: ../libreoffice_facturx_macro.py:820
 msgid "it must be a string."
 msgstr "er muss ein Text sein."
 
-#: ../libreoffice_facturx_macro.py:824
+#: ../libreoffice_facturx_macro.py:826
 msgid "country codes must have 2 letters."
-msgstr "Ländercodes müssen zwei Buchstaben"
-" haben."
+msgstr "Ländercodes müssen zwei Buchstaben haben."
 
-#: ../libreoffice_facturx_macro.py:829
+#: ../libreoffice_facturx_macro.py:831
 msgid "this VAT number is invalid."
 msgstr "diese Umsatzsteuer-Id ist ungültig."
 
-#: ../libreoffice_facturx_macro.py:832
+#: ../libreoffice_facturx_macro.py:834
 msgid "this german tax number is invalid."
 msgstr "diese Steuernummer ist ungültig."
 
-#: ../libreoffice_facturx_macro.py:836
+#: ../libreoffice_facturx_macro.py:838
 msgid "currency codes must have 3 letters."
-msgstr "Währungscodes müssen drei Buchstaben"
-" haben."
+msgstr "Währungscodes müssen drei Buchstaben haben."
 
-#: ../libreoffice_facturx_macro.py:845
+#: ../libreoffice_facturx_macro.py:847
 msgid ""
 "The invoice date must be today. If the entered date is correct please check "
 "your machines system settings."
-msgstr "Das Austelldatum der Rechnung muss heute sein. Wenn das"
-" eingetragene Datum stimmt, überprüfen Sie die Systemzeit ihres"
-" Computers."
+msgstr ""
+"Das Austelldatum der Rechnung muss heute sein. Wenn das eingetragene Datum "
+"stimmt, überprüfen Sie die Systemzeit ihres Computers."
 
-#: ../libreoffice_facturx_macro.py:851
+#: ../libreoffice_facturx_macro.py:853
 msgid "The payment due date can't be in the past."
-msgstr "Das Fälligkeitsdatum kann nicht in der"
-" Vergangenheit liegen."
+msgstr "Das Fälligkeitsdatum kann nicht in der Vergangenheit liegen."
 
-#: ../libreoffice_facturx_macro.py:859 ../libreoffice_facturx_macro.py:880
+#: ../libreoffice_facturx_macro.py:861 ../libreoffice_facturx_macro.py:882
 #, python-brace-format
 msgid ""
 "In the second tab, the value of cell B{line1} ({label1}: {val1}) must be "
 "equal to the value of cell B{line2} ({label2}: {val2}) plus cell B{line3} "
 "({label3}: {val3})."
-msgstr "Der Wert von Zelle B{line1} ({label1}: {val1}) in Tab zwei muss gleich der Summe"
-" der ZellenB{line2} ({label2}: {val2}) und B{line3} "
-"({label3}: {val3}) sein."
+msgstr ""
+"Der Wert von Zelle B{line1} ({label1}: {val1}) in Tab zwei muss gleich der "
+"Summe der ZellenB{line2} ({label2}: {val2}) und B{line3} ({label3}: {val3}) "
+"sein."
 
-#: ../libreoffice_facturx_macro.py:903
+#: ../libreoffice_facturx_macro.py:905
 #, python-brace-format
 msgid ""
 "In the second tab, the value of cell B{line} ({label}) is '{value}'; it must "
 "be either 'invoice' or 'refund'."
-msgstr "Der Wert von Zelle B{line} ({label}) in Tab zwei ist '{value}'; er muss entweder"
-"'rechnung' oder 'gutschrift' sein."
+msgstr ""
+"Der Wert von Zelle B{line} ({label}) in Tab zwei ist '{value}'; er muss "
+"entweder'rechnung' oder 'gutschrift' sein."
 
-#: ../libreoffice_facturx_macro.py:976
+#: ../libreoffice_facturx_macro.py:978
 msgid "The spreadsheet must contain at least 2 tabs."
 msgstr "Das Dokument muss mindestens zwei Tabs enthalten."
 
-#: ../libreoffice_facturx_macro.py:999
+#: ../libreoffice_facturx_macro.py:1001
 msgid ""
 "Could not find position data. Make sure it starts with position number 1 in "
 "column A and is located under the category data table."
-msgstr "Es konnten keine Positionsdaten gefunden werden. Stellen Sie sicher"
-", dass die Positionen unterhalb der Kategoriedaten eingetragen sind und in"
-" Spalte A nummeriert sind, beginnend mit '1'."
+msgstr ""
+"Es konnten keine Positionsdaten gefunden werden. Stellen Sie sicher, dass "
+"die Positionen unterhalb der Kategoriedaten eingetragen sind und in Spalte A "
+"nummeriert sind, beginnend mit '1'."
 
-#: ../libreoffice_facturx_macro.py:1039
+#: ../libreoffice_facturx_macro.py:1041
 msgid ""
 "Invoices that use tax category O must not contain positions of any other tax "
 "category."
-msgstr "Rechnungen die Steuerkategorie O beinhalten, dürfen keine Positionen einer anderen"
-"Steuerkategorie enthalten."
+msgstr ""
+"Rechnungen die Steuerkategorie O beinhalten, dürfen keine Positionen einer "
+"anderenSteuerkategorie enthalten."
 
-#: ../libreoffice_facturx_macro.py:1050
+#: ../libreoffice_facturx_macro.py:1052
 msgid ""
 "The net amount of all positions does not add up to the total without tax."
-msgstr "Die Netto-Summe aller Positionen stimmt nicht mit der Gesamtsumme ohne Steuern überein."
+msgstr ""
+"Die Netto-Summe aller Positionen stimmt nicht mit der Gesamtsumme ohne "
+"Steuern überein."
 
-#: ../libreoffice_facturx_macro.py:1084
+#: ../libreoffice_facturx_macro.py:1086
 #, python-brace-format
 msgid "Select attachment No. {num}"
 msgstr "Wählen Sie Anhang Nr. {num} aus."
 
-#: ../libreoffice_facturx_macro.py:1092
+#: ../libreoffice_facturx_macro.py:1094
 msgid "Save Factur-X PDF As"
 msgstr "Factur-X PDF speichern unter"
 
-#: ../libreoffice_facturx_macro.py:1100
+#: ../libreoffice_facturx_macro.py:1102
 msgid "Invoice"
 msgstr "Rechnung"
 
-#: ../libreoffice_facturx_macro.py:1101
+#: ../libreoffice_facturx_macro.py:1103
 #, python-brace-format
 msgid "{issuer}: Invoice {number}"
 msgstr "{issuer}: Rechnung {number}"
 
-#: ../libreoffice_facturx_macro.py:1104
+#: ../libreoffice_facturx_macro.py:1106
 #, python-brace-format
 msgid "Factur-X invoice {number} issued by {issuer}"
 msgstr "Factur-X Rechnung {number} ausgestellt von {issuer}"
@@ -186,5 +193,6 @@ msgstr "Es muss mindestens eine Steuerkategorie aufgeführt sein."
 #: ../factur_x_data.py:169
 #, python-brace-format
 msgid "Tax category {cnt}: sum tax is not equal rate percent of taxed amount"
-msgstr "Steuerkategorie {cnt}: Die Summe der Steuern entspricht nicht der Steuerrate des"
-" zu versteuernden Betrags."
+msgstr ""
+"Steuerkategorie {cnt}: Die Summe der Steuern entspricht nicht der Steuerrate "
+"des zu versteuernden Betrags."
