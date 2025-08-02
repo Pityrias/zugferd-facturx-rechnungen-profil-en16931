@@ -183,7 +183,7 @@ def generate_facturx_xml(data, position_data, category_data):
         )
         line_tax_rate.text = "%.2f" % pos.tax_rate
         line_summation = ET.SubElement(
-            trade_line_item,
+            line_settlement,
             ET.QName(ns["ram"], "SpecifiedTradeSettlementLineMonetarySummation"),
         )
         line_summation_amount = ET.SubElement(
