@@ -391,32 +391,33 @@ def generate_facturx_xml(data, position_data, category_data):
         trade_settlement, ET.QName(ns["ram"], "InvoiceCurrencyCode")
     )
     invoice_currency.text = data["invoice_currency"]
-    trade_tax = ET.SubElement(
-        trade_settlement, ET.QName(ns["ram"], "ApplicableTradeTax")
-    )
     ### tax category data
     for category in category_data:
+        trade_tax = ET.SubElement(
+            trade_settlement, ET.QName(ns["ram"], "ApplicableTradeTax")
+        )
+
+        calculated_amount = ET.SubElement(
+            trade_tax, ET.QName(ns["ram"], "CalculatedAmount")
+        )
+        calculated_amount.text = "%.2f" % category.sum_tax
         type = ET.SubElement(trade_tax, ET.QName(ns["ram"], "TypeCode"))
         type.text = "VAT"
-        category_code = ET.SubElement(trade_tax, ET.QName(ns["ram"], "CategoryCode"))
-        category_code.text = category.code
-        category_rate = ET.SubElement(
-            trade_tax, ET.QName(ns["ram"], "RateApplicablePercent")
-        )
-        category_rate.text = "%.2f" % category.rate
-
         if category.has_exempt_reason():
             exemption_reason = ET.SubElement(
                 trade_tax, ET.QName(ns["ram"], "ExemptionReason")
             )
             exemption_reason.text = category.exempt_reason
 
-        calculated_amount = ET.SubElement(
-            trade_tax, ET.QName(ns["ram"], "CalculatedAmount")
-        )
-        calculated_amount.text = "%.2f" % category.sum_tax
         basis_amount = ET.SubElement(trade_tax, ET.QName(ns["ram"], "BasisAmount"))
         basis_amount.text = "%.2f" % category.taxed_amount
+
+        category_code = ET.SubElement(trade_tax, ET.QName(ns["ram"], "CategoryCode"))
+        category_code.text = category.code
+        category_rate = ET.SubElement(
+            trade_tax, ET.QName(ns["ram"], "RateApplicablePercent")
+        )
+        category_rate.text = "%.2f" % category.rate
 
     if data.get("payment_instructions") or data.get("payment_due_date"):
         payment_terms = ET.SubElement(
