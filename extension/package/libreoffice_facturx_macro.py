@@ -430,8 +430,11 @@ def generate_facturx_xml(data, position_data, category_data):
             )
             payment_terms_description.text = data["payment_instructions"]
         if data.get("payment_due_date"):
+            payment_due = ET.SubElement(
+                payment_terms, ET.QName(ns["ram"], "DueDateDateTime")
+            )
             payment_due_date = ET.SubElement(
-                payment_terms, ET.QName(ns["udt"], "DateTimeString"), format="102"
+                payment_due, ET.QName(ns["udt"], "DateTimeString"), format="102"
             )
             # 102 = format YYYYMMDD
             payment_due_date.text = data["payment_due_date"].strftime("%Y%m%d")
