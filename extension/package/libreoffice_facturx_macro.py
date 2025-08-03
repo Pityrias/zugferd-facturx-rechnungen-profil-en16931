@@ -202,6 +202,7 @@ def generate_facturx_xml(data, position_data, category_data):
         line_tax_rate = ET.SubElement(
             line_tax, ET.QName(ns["ram"], "RateApplicablePercent")
         )
+
         line_tax_rate.text = "%.2f" % pos.tax_rate
         line_summation = ET.SubElement(
             line_settlement,
@@ -1040,6 +1041,17 @@ def generate_facturx_invoice_v1(button_arg=None):
             doc,
             _(
                 "Invoices that use tax category O must not contain positions of any other tax category."
+            ),
+        )
+
+    # Generate warning if category K is used without buyer and seller VAT number
+    data.get("vat")
+    both_vat_numbers = data.get("issuer_vat_number") and data.get("customer_vat_number")
+    if "K" in category_set and not both_vat_numbers:
+        msg_box(
+            doc,
+            _(
+                "Invoices that use tax category K must specify a seller and buyer VAT number."
             ),
         )
 
