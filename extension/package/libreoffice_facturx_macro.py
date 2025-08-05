@@ -107,20 +107,6 @@ def generate_facturx_xml(data, position_data, category_data):
         )
         header_doc_note_str.text = data["invoice_note"]
 
-    if data.get("issuer_email"):
-        header_doc_note = ET.SubElement(header_doc, ET.QName(ns["ram"], "IncludedNote"))
-        header_doc_note_str = ET.SubElement(
-            header_doc_note, ET.QName(ns["ram"], "Content")
-        )
-        header_doc_note_str.text = "Email: " + data["issuer_email"]
-
-    if data.get("issuer_phone1"):
-        header_doc_note = ET.SubElement(header_doc, ET.QName(ns["ram"], "IncludedNote"))
-        header_doc_note_str = ET.SubElement(
-            header_doc_note, ET.QName(ns["ram"], "Content")
-        )
-        header_doc_note_str.text = "Phone: " + data["issuer_phone1"]
-
     if data.get("issuer_add_contact_1"):
         header_doc_note = ET.SubElement(header_doc, ET.QName(ns["ram"], "IncludedNote"))
         header_doc_note_str = ET.SubElement(
@@ -134,13 +120,6 @@ def generate_facturx_xml(data, position_data, category_data):
             header_doc_note, ET.QName(ns["ram"], "Content")
         )
         header_doc_note_str.text = data["issuer_add_contact_2"]
-
-    if data.get("issuer_tax_id"):
-        header_doc_note = ET.SubElement(header_doc, ET.QName(ns["ram"], "IncludedNote"))
-        header_doc_note_str = ET.SubElement(
-            header_doc_note, ET.QName(ns["ram"], "Content")
-        )
-        header_doc_note_str.text = "National tax Id: " + data["issuer_tax_id"]
 
     trade_transaction = ET.SubElement(
         root, ET.QName(ns["rsm"], "SupplyChainTradeTransaction")
@@ -222,6 +201,27 @@ def generate_facturx_xml(data, position_data, category_data):
     seller_name = ET.SubElement(seller, ET.QName(ns["ram"], "Name"))
     seller_name.text = data["issuer_name"]
 
+    if data.get("issuer_email") or data.get("issuer_phone1"):
+        seller_contact = ET.SubElement(
+            seller, ET.QName(ns["ram"], "DefinedTradeContact")
+        )
+        if data.get("issuer_email"):
+            seller_contact_email = ET.SubElement(
+                seller_contact, ET.QName(ns["ram"], "EmailURIUniversalCommunication")
+            )
+            seller_contact_email_id = ET.SubElement(
+                seller_contact_email, ET.QName(ns["ram"], "URIID")
+            )
+            seller_contact_email_id.text = data["issuer_email"]
+        if data.get("issuer_phone1"):
+            seller_contact_phone = ET.SubElement(
+                seller_contact, ET.QName(ns["ram"], "TelephoneUniversalCommunication")
+            )
+            seller_contact_phone_number = ET.SubElement(
+                seller_contact_phone, ET.QName(ns["ram"], "CompleteNumber")
+            )
+            seller_contact_phone_number.text = data["issuer_phone1"]
+
     seller_address = ET.SubElement(seller, ET.QName(ns["ram"], "PostalTradeAddress"))
     if data.get("issuer_address_postcode"):
         seller_address_postcode = ET.SubElement(
@@ -266,7 +266,7 @@ def generate_facturx_xml(data, position_data, category_data):
             seller_tax_reg, ET.QName(ns["ram"], "ID"), schemeID="VA"
         )
         seller_tax_reg_vat_id.text = data["issuer_vat_number"]
-    elif data.get("issuer_tax_id"):
+    if data.get("issuer_tax_id"):
         seller_tax_reg_nat_id = ET.SubElement(
             seller_tax_reg, ET.QName(ns["ram"], "ID"), schemeID="FC"
         )
