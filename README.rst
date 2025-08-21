@@ -2,7 +2,7 @@
    :target: https://www.gnu.org/licenses/gpl
    :alt: License: GPL-3
 
-.. image:: https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-basic/blob/master/extension/profile_basic_logo.png
+.. image:: https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-basic/blob/master/extension/profile_en16931_logo.png
    :width: 50
    :alt: Project logo
 
@@ -14,7 +14,7 @@ LibreOffice ZUGFeRD/Factur-X Extension
 
 Dieses Projekt ist ein Fork/Ableger von der "LibreOffice Factur-X Extension" von Alexis de Lattre von Aktretion France `Link <https://github.com/akretion/factur-x-libreoffice-extension>`_.
 
-Zweck dieses Projekts ist die Erweiterung der urpsrünglichen Extension, sodass sie die rechtlichen Anforderungen an Rechnungen zwischen Unternehmen in Deutschland erfüllt. Dabei setzt dieses Projekt das Profil Basic aus dem Factur-X Standard in Version 1.07.2 bzw. ZUGFeRD Version 2.3.2 um. Dieses Profil ist das Minimalprofil, das nach UStG in Deutschland ab dem 1. Januar 2027 (oder 1. Januar 2028 für Unternehmen mit einem Jahresumsatz \<= 800.000 Euro) als gültiges Format für B2B Rechnungen anerkannt ist.
+Zweck dieses Projekts ist die Erweiterung der urpsrünglichen Extension, sodass sie die rechtlichen Anforderungen an Rechnungen zwischen Unternehmen in Deutschland erfüllt. Dabei setzt dieses Projekt das Profil EN16931 aus dem Factur-X Standard in Version 1.07.2 bzw. ZUGFeRD Version 2.3.2 um. Dieses Profil ist nach UStG in Deutschland ab dem 1. Januar 2027 (oder 1. Januar 2028 für Unternehmen mit einem Jahresumsatz \<= 800.000 Euro) als gültiges Format für B2B Rechnungen anerkannt.
 
 Folgende Ziele verfolgt dieses Projekt:
 
@@ -40,7 +40,7 @@ Dieses Makro ist noch in einer frühen Entwicklungsphase und ist noch nicht als 
 
 This project is a fork of the "LibreOffice Factur-X Extension" by Alexis de Lattre from Akretion France `Link <https://github.com/akretion/factur-x-libreoffice-extension>`_.
 
-The purpose of this project is to extend the original project so that it meets the legal requirements for invoices between companies in Germany. This project implements the Basic profile from the Factur-X standard in version 1.07.2 or ZUGFeRD version 2.3.2. This profile is the minimum that is recognized as a valid format for B2B invoices in Germany according to UStG from January 1, 2027 (or January 1, 2028 for companies with an annual turnover \<= 800,000 euros).
+The purpose of this project is to extend the original project so that it meets the legal requirements for invoices between companies in Germany. This project implements the EN16931 profile from the Factur-X standard in version 1.07.2 or ZUGFeRD version 2.3.2. This profile is recognized as a valid format for B2B invoices in Germany according to UStG from January 1, 2027 (or January 1, 2028 for companies with an annual turnover \<= 800,000 euros).
 
 The goals of this project are:
 
