@@ -121,6 +121,13 @@ def generate_facturx_xml(data, position_data, category_data):
         )
         header_doc_note_str.text = data["issuer_add_contact_2"]
 
+    if data.get("issuer_tax_id"):
+        header_doc_note = ET.SubElement(header_doc, ET.QName(ns["ram"], "IncludedNote"))
+        header_doc_note_str = ET.SubElement(
+            header_doc_note, ET.QName(ns["ram"], "Content")
+        )
+        header_doc_note_str.text = "National tax Id: " + data["issuer_tax_id"]
+
     trade_transaction = ET.SubElement(
         root, ET.QName(ns["rsm"], "SupplyChainTradeTransaction")
     )
@@ -266,7 +273,7 @@ def generate_facturx_xml(data, position_data, category_data):
             seller_tax_reg, ET.QName(ns["ram"], "ID"), schemeID="VA"
         )
         seller_tax_reg_vat_id.text = data["issuer_vat_number"]
-    if data.get("issuer_tax_id"):
+    elif data.get("issuer_tax_id"):
         seller_tax_reg_nat_id = ET.SubElement(
             seller_tax_reg, ET.QName(ns["ram"], "ID"), schemeID="FC"
         )
