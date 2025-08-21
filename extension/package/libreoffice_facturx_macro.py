@@ -88,7 +88,7 @@ def generate_facturx_xml(data, position_data, category_data):
         doc_ctx, ET.QName(ns["ram"], "GuidelineSpecifiedDocumentContextParameter")
     )
     ctx_param_id = ET.SubElement(ctx_param, ET.QName(ns["ram"], "ID"))
-    ctx_param_id.text = "urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic"
+    ctx_param_id.text = "urn:cen.eu:en16931:2017"
     header_doc = ET.SubElement(root, ET.QName(ns["rsm"], "ExchangedDocument"))
     header_doc_id = ET.SubElement(header_doc, ET.QName(ns["ram"], "ID"))
     header_doc_id.text = data["invoice_number"]
@@ -1131,7 +1131,7 @@ def generate_facturx_invoice_v1(button_arg=None):
     generate_facturx_from_file(
         pdf_tmp_file.name,
         xml_byte,
-        facturx_level="basic",
+        facturx_level="en16931",
         check_xsd=False,
         pdf_metadata=pdf_metadata,
         output_pdf_file=fx_pdf_filename,
