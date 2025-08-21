@@ -21,7 +21,7 @@ msgstr ""
 msgid "Factur-X Error"
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:760
+#: ../libreoffice_facturx_macro.py:767
 #, python-brace-format
 msgid ""
 "In the second tab, cell B{line} ({label}) doesn't seem to be a date field. "
@@ -31,70 +31,70 @@ msgid ""
 "used in the cell."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:775
+#: ../libreoffice_facturx_macro.py:782
 #, python-brace-format
 msgid ""
 "In the second tab, cell B{line} ({label}) is a required field but it is "
 "currently empty or its type is wrong."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:788
+#: ../libreoffice_facturx_macro.py:795
 msgid ""
 "The invoice issuer must specify either a VAT number or a national tax id."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:799
+#: ../libreoffice_facturx_macro.py:806
 #, python-brace-format
 msgid "In the second tab, the value of cell B{line} ({label}) is '{value}';"
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:809
+#: ../libreoffice_facturx_macro.py:816
 msgid "it must be a float."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:811 ../libreoffice_facturx_macro.py:816
+#: ../libreoffice_facturx_macro.py:818 ../libreoffice_facturx_macro.py:823
 msgid "it must be positive."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:814
+#: ../libreoffice_facturx_macro.py:821
 msgid "it must be an integer."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:819
+#: ../libreoffice_facturx_macro.py:826
 msgid "it must be a date."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:822
+#: ../libreoffice_facturx_macro.py:829
 msgid "it must be a string."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:828
+#: ../libreoffice_facturx_macro.py:835
 msgid "country codes must have 2 letters."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:833
+#: ../libreoffice_facturx_macro.py:840
 msgid "this VAT number is invalid."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:836
+#: ../libreoffice_facturx_macro.py:843
 msgid "this german tax number is invalid."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:840
+#: ../libreoffice_facturx_macro.py:847
 msgid "currency codes must have 3 letters."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:849
+#: ../libreoffice_facturx_macro.py:856
 msgid ""
 "The invoice date must be today. If the entered date is correct please check "
 "your machines system settings."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:855
+#: ../libreoffice_facturx_macro.py:862
 msgid "The payment due date can't be in the past."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:863 ../libreoffice_facturx_macro.py:884
+#: ../libreoffice_facturx_macro.py:870 ../libreoffice_facturx_macro.py:891
 #, python-brace-format
 msgid ""
 "In the second tab, the value of cell B{line1} ({label1}: {val1}) must be "
@@ -102,58 +102,58 @@ msgid ""
 "({label3}: {val3})."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:907
+#: ../libreoffice_facturx_macro.py:914
 #, python-brace-format
 msgid ""
 "In the second tab, the value of cell B{line} ({label}) is '{value}'; it must "
 "be either 'invoice' or 'refund'."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:980
+#: ../libreoffice_facturx_macro.py:987
 msgid "The spreadsheet must contain at least 2 tabs."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:1003
+#: ../libreoffice_facturx_macro.py:1010
 msgid ""
 "Could not find position data. Make sure it starts with position number 1 in "
 "column A and is located under the category data table."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:1043
+#: ../libreoffice_facturx_macro.py:1050
 msgid ""
 "Invoices that use tax category O must not contain positions of any other tax "
 "category."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:1054
+#: ../libreoffice_facturx_macro.py:1061
 msgid ""
 "Invoices that use tax category K must specify a seller and buyer VAT number."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:1065
+#: ../libreoffice_facturx_macro.py:1072
 msgid ""
 "The net amount of all positions does not add up to the total without tax."
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:1099
+#: ../libreoffice_facturx_macro.py:1106
 #, python-brace-format
 msgid "Select attachment No. {num}"
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:1107
+#: ../libreoffice_facturx_macro.py:1114
 msgid "Save Factur-X PDF As"
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:1115
+#: ../libreoffice_facturx_macro.py:1122
 msgid "Invoice"
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:1116
+#: ../libreoffice_facturx_macro.py:1123
 #, python-brace-format
 msgid "{issuer}: Invoice {number}"
 msgstr ""
 
-#: ../libreoffice_facturx_macro.py:1119
+#: ../libreoffice_facturx_macro.py:1126
 #, python-brace-format
 msgid "Factur-X invoice {number} issued by {issuer}"
 msgstr ""
