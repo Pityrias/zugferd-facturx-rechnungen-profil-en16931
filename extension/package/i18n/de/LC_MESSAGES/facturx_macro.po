@@ -147,7 +147,6 @@ msgstr ""
 "anderen Steuerkategorie enthalten."
 
 #: ../libreoffice_facturx_macro.py:1061
-#, fuzzy
 msgid ""
 "Invoices that use tax category K must specify a seller and buyer VAT number."
 msgstr ""
