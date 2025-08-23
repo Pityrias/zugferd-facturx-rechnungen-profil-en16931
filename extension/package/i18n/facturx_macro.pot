@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the factur-x-zugferd-libreoffice-extension project.
 # Luise Preusse <pityrias@posteo.eu>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
