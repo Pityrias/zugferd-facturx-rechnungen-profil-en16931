@@ -26,7 +26,7 @@
                                 <!--
                                 https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Framework_URI_Specification -->
                                 <value>
-                                    vnd.sun.star.script:Factur-X-EN16931.oxt|package|libreoffice_facturx_macro.py$generate_facturx_invoice_v1?language=Python&amp;location=user:uno_packages</value>
+                                    vnd.sun.star.script:factur-x_profile_en-16931.oxt|package|libreoffice_facturx_macro.py$generate_facturx_invoice_v1?language=Python&amp;location=user:uno_packages</value>
                             </prop>
                             <prop oor:name="Title" oor:type="xs:string">
                                 <value xml:lang="en-US">Export as Factur-X...</value>
@@ -44,7 +44,7 @@
             <node oor:name="facturx.image" oor:op="replace">
                 <prop oor:name="URL" oor:type="xs:string">
                     <value>
-                        vnd.sun.star.script:Factur-X-EN16931.oxt|package|libreoffice_facturx_macro.py$generate_facturx_invoice_v1?language=Python&amp;location=user:uno_packages</value>
+                        vnd.sun.star.script:factur-x_profile_en-16931.oxt|package|libreoffice_facturx_macro.py$generate_facturx_invoice_v1?language=Python&amp;location=user:uno_packages</value>
                 </prop>
                 <node oor:name="UserDefinedImages">
                     <prop oor:name="ImageSmallURL">
