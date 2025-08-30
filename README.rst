@@ -2,7 +2,7 @@
    :target: https://www.gnu.org/licenses/gpl
    :alt: License: GPL-3
 
-.. image:: https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-basic/blob/master/extension/profile_en16931_logo.png
+.. image:: https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-basic/blob/master/profile_en16931_logo.png
    :width: 50
    :alt: Project logo
 
@@ -33,7 +33,7 @@ Diese Software ist ein Open-Source Projekt und unter der `GPL-3 Lizenz <https://
 Benutzung
 ==============================
 
-Dieses Makro ist noch in einer frühen Entwicklungsphase und ist noch nicht als LibreOffice Erweiterung auffindbar. Zum aktuellen Zeitpunkt ist von einer Nutzung abzuraten.
+Dieses Makro ist noch in einer frühen Entwicklungsphase und ist noch nicht im LibreOffice Extension Center auffindbar. Der aktuelle Stand der Erweiterung kann `hier <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_ heruntergeladen werden.
 
 
 ==============================
@@ -57,5 +57,5 @@ This software is an open-source project and is licensed under the `GPL-3 license
 Usage
 ==============================
 
-This macro is still in an early development phase and is not yet available as a LibreOffice extension. At this time, it is not recommended for use.
+This macro is still in an early development phase and is not yet available in the libreoffice extension center. The current version of the extension can be downloaded `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_
 
