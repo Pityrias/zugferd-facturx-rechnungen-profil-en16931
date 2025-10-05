@@ -16,7 +16,7 @@ Laden Sie die Datei `factur-x_profile_en-16931.oxt` von gitlab [hier](https://gi
 Die Erweiterung wird nun als installiert angezeigt. Klicken Sie auf `Schließen` und wählen Sie `Später neu starten` aus.
 ![Bild Installation fertig](../images/install_oxt2.jpg)
 
-## Einrichtung der Erweiterung
+## Erstellen einer Rechnung
 
 ### Herunterladen der Vorlage
 
@@ -65,5 +65,26 @@ Führen Sie folgende Schritte aus:
 
 ![Bild Speicherdialog](../images/check_rechnung.jpg)
 
+### Anpassung der Anzahl an Positionen
+
+todo
+
+## Anpassen der Vorlage
+
+Das Aussehen der Rechnung kann auf vielfältige Weise angepasst werden. Dieses Kapitel erklärt, welche Möglichkeiten es gibt und was zu beachten ist.
+
+
+### Wichtige Hinweise
+
+Das finale Aussehen der Rechnung ergibt sich aus der Rechnungsansicht in Tab 1 der Vorlage. Alle kosmetischen Änderungen sollten in dieser Ansicht gemacht werden. Die Datenansicht dient als Grundlage der eingebetteten xml Datei. Dabei erwartet die Erweiterung bestimmte Daten in bestimmten Zeilen. 
+**Die Zeilennummer der Einträge in der Datenansicht in Tab 2 darf NICHT verändert werden. Sonst kann keine gültige E-Rechnung generiert werden.** Die meisten Einträge der Datenansicht werden aus spezifischen Zeilen der Rechnungsansicht ausgelesen. Die Zuweisung, welche Zelle in Tab 1 den gewünschten Wert enthält, darf natürlich angepasst werden.
+
+- Datenformat Alternative erklären
+
+### Anpassen der Rechnungsansicht
+
+### Anpassen der Datenansicht
+
+### Verwendung einer Adresstabelle
 
 
