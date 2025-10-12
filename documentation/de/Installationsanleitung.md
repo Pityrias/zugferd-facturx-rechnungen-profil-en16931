@@ -39,9 +39,10 @@ Beim Start sollten Sie jetzt folgenden Dialog sehen.
 ![Bild Makros deaktiviert](../images/activate_macros.jpg)
 
 Klicken Sie auf `Makros aktivieren`.
+
 **Hinweis: Makros können Schadsoftware enthalten. Aktivieren Sie Makros nur in Dokumenten, denen Sie vertrauen.**
 
-### Erstellen einer ersten ZUGFERD/Factur-X Rechnung
+### Testen des Makros
 
 Die Datei `factur-X_Rechnung_einfach.ods` sollte jetzt offen sein, ohne dass eine Warnung zur Makrosicherheit am oberen Rand angezeigt wird. Testen Sie die Erweiterung anhand der Vorlage. 
 
@@ -63,16 +64,43 @@ Führen Sie folgende Schritte aus:
 
 7. Öffnen Sie das eben erstellte PDF und prüfen Sie, dass die Datei wie erwartet aussieht. Wenn Sie Adobe Acrobat zum Öffnen verwendet haben, sollte angezeigt werden, dass eine `factur-x.xml` Datei eingebettet ist.
 
-![Bild Speicherdialog](../images/check_rechnung.jpg)
+![Bild Prüfen der Rechnung](../images/check_rechnung.jpg)
 
-### Anpassung der Anzahl an Positionen
+### Anpassen der Anzahl an Positionen oder Steuerkategorien
+
+Das Rechnungstemplate beinhaltet drei Positionen und Steuerkategorien. Da das Hinzufügen neuer Einträge für beide Tabellen gleich funktioniert, erklärt dieses Kapitel am Beispiel der Positionsdaten. Um eine neue Position hinzuzufügen, führen Sie folgende Schritte aus:
+
+1. Klicken Sie auf die Zeilennummer der letzten Position in der Leiste links. Nun sollte die gesamte Zeile markiert sein.
+![Bild Zeile markieren](../images/position_add0.jpg)
+2. Klicken Sie mit der rechten Maustaste und wählen Sie "Zeilen unterhalb einfügen" aus.
+![Bild Zeile einfügen](../images/position_add1.jpg)
+3. Nun befindet sich eine leere Zeile am Ende der Tabelle.
+![Bild Tabelle erweitern](../images/position_add2.jpg)
+4. Klicken Sie in die letzte befüllte Zeile der Tabelle und markieren Sie die Tabelleneinträge. Bewegen Sie den Mauszeiger an die rechte untere Ecke des markierten Bereichs. Der Curson nimmt die Form eines schwarzen Kreuzes an. Halten Sie die linke Maustaste gedrückt und ziehen Sie den Cursor über die darunterliegende Zeile. Sobald die untere Zeile mit einem pinken Rahmen hervorgehoben wird, lassen Sie die Maustaste los.
+![Bild Tabelle erweitern](../images/position_add3.jpg)
+5. Die neue Zeile ist nun mit Werten befüllt. Die Positionsnummer wurde automatisch hochgezählt, andere Werte wurden aus der darüberliegenden Zeile kopiert. Passen Sie die Werte an.
+6. Sobald Sie alle Positionen in der Positionstabelle haben, passen Sie die Umsatzsteueraufschlüsselung an.
+7. Jetzt müssen die neuen Positionen in der Datenansicht hinzugefügt werden. Wechseln Sie in den `Daten` Tab.
+8. Scrollen Sie herunter zur Positionstablelle. Fügen Sie bei Bedarf eine neue Zeile unterhalb der letzten Zeile ein. Das funktioniert wie in Schritt 2 beschrieben.
+9. Wiederholen Sie Schritt 4. Markieren Sie die Inhalte des letzten Eintrags der Positionsdaten, bewegen Sie den Mauszeiger zum rechten unteren Rand und halten Sie die Maus gedrückt während Sie den nun kreuzförmigen Cursor nach unten ziehen.
+![Bild Tabelle erweitern](../images/position_add4.jpg)
+10. Die neue Zeile sollte die Informationen aus der Rechnungsansicht enthalten.
+![Bild Neue Daten](../images/position_add5.jpg)
+
+Um eine Positon oder Steuerkategorie zu entfernen, wählen Sie die Zeile wie In Schritt 1 beschrieben aus, klicken Sie aber auf "Zeilen löschen".
+
+### Wichtige Hinweise zur Rechnungserstellung
 
 todo
+- Umsatzsteueraufschlüsselung
+- welche Daten eintragen
+- Alternative
+- Fußzeile und Note Felder
+
 
 ## Anpassen der Vorlage
 
 Das Aussehen der Rechnung kann auf vielfältige Weise angepasst werden. Dieses Kapitel erklärt, welche Möglichkeiten es gibt und was zu beachten ist.
-
 
 ### Wichtige Hinweise
 
