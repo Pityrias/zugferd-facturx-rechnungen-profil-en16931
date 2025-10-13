@@ -16,8 +16,6 @@ Laden Sie die Datei `factur-x_profile_en-16931.oxt` von gitlab [hier](https://gi
 Die Erweiterung wird nun als installiert angezeigt. Klicken Sie auf `Schließen` und wählen Sie `Später neu starten` aus.
 ![Bild Installation fertig](../images/install_oxt2.jpg)
 
-## Erstellen einer Rechnung
-
 ### Herunterladen der Vorlage
 
 Die Erweiterung liest die Daten für den xml-Teil der E-Rechnung aus einer speziell formatierten Tabelle im zweiten Tab der Rechnungsdatei aus. Eine Rechnungsvorlage namens `factur-x_Rechnung_einfach.ods` kann [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) heruntergeladen werden. Öffnen Sie die Vorlage durch einen Doppelklick.
@@ -40,31 +38,46 @@ Beim Start sollten Sie jetzt folgenden Dialog sehen.
 
 Klicken Sie auf `Makros aktivieren`.
 
+Die Datei `factur-X_Rechnung_einfach.ods` sollte jetzt offen sein, ohne dass eine Warnung zur Makrosicherheit am oberen Rand angezeigt wird.
+
 **Hinweis: Makros können Schadsoftware enthalten. Aktivieren Sie Makros nur in Dokumenten, denen Sie vertrauen.**
 
 ### Testen des Makros
 
-Die Datei `factur-X_Rechnung_einfach.ods` sollte jetzt offen sein, ohne dass eine Warnung zur Makrosicherheit am oberen Rand angezeigt wird. Testen Sie die Erweiterung anhand der Vorlage. 
+Dieser Abschnitt testet das Zusammenspiel von Makro und Vorlage, indem eine E-Rechnung mit minimalen Anpassungen erstellt wird. Wie Sie die Vorlage für Ihre eigenen Rechnungen anpassen können, erklären spätere Kapitel. Dort finden sich auch wichtige Hinweise zu den gesetzlichen Anforderungen an die Rechnung.
 
-Führen Sie folgende Schritte aus:
+Um direkt eine E-Rechnung aus der Vorlage zu erstellen, führen Sie folgende Schritte aus:
 1. Klicken Sie am unteren Bildschirmrand auf den Tab `Rechnung` umd die Rechnungsansicht anzuzeigen. (siehe Bild Rechnungsansicht)
 2. Prüfen Sie, dass das Feld `Datum:` das aktuelle Datum enthält.
 3. Scrollen Sie nach unten und prüfen Sie, dass das Datum hinter `Zu Zahlen bis zum:` in der Zukunft liegt. Wenn nicht, ändern Sie das Datum.
-
 ![Bild Rechnungsansicht](../images/ansicht_rechnung.jpg)
-
 4. Klicken Sie am unteren Bildschirmrand auf den Tab `Daten` um die Datenansicht zu öffnen. (siehe Bild Datenansicht)
 5. Klicken Sie auf den Button `Factur-X PDF Rechnung erstellen`.
-
 ![Bild Datenansicht](../images/ansicht_daten.jpg)
-
 6. Wählen Sie einen Dateispeicherort aus, geben Sie einen Dateinamen ein und klicken Sie auf `Speichern`.
-
 ![Bild Speicherdialog](../images/rechnung_speichern.jpg)
-
 7. Öffnen Sie das eben erstellte PDF und prüfen Sie, dass die Datei wie erwartet aussieht. Wenn Sie Adobe Acrobat zum Öffnen verwendet haben, sollte angezeigt werden, dass eine `factur-x.xml` Datei eingebettet ist.
-
 ![Bild Prüfen der Rechnung](../images/check_rechnung.jpg)
+
+## Erstellen einer Rechnung
+
+Dieses Kapitel erklärt was beim Erstellen einer echten Rechnung zu beachten ist.
+Es behandelt folgende Themen:
+
+- Wichtige Hinweise
+- Personalisierung der Vorlage
+- Anpassen von Datums und Freitextfeldern
+- Anpassen der Positions- und Umsatzsteuerkategorien
+- Anpassen der Umsatzsteueraufschlüselung und der Gesamtsummen
+- Verwendung der Vorlage mit Adressdatenbankanbindung
+
+### Wichtige Hinweise
+
+todo
+
+### Personalisierung der Vorlage
+
+### Anpassen von Datums und Freitextfeldern
 
 ### Anpassen der Anzahl an Positionen oder Steuerkategorien
 
@@ -89,16 +102,13 @@ Das Rechnungstemplate beinhaltet drei Positionen und Steuerkategorien. Da das Hi
 
 Um eine Positon oder Steuerkategorie zu entfernen, wählen Sie die Zeile wie In Schritt 1 beschrieben aus, klicken Sie aber auf "Zeilen löschen".
 
-### Wichtige Hinweise zur Rechnungserstellung
+### Anpassen der Umsatzsteueraufschlüsselung
 
-todo
-- Umsatzsteueraufschlüsselung
-- welche Daten eintragen
-- Alternative
-- Fußzeile und Note Felder
+### Anpassen der Umsatzsteueraufschlüselung und der Gesamtsummen
 
+### Verwendung der Vorlage mit Adressdatenbankanbindung
 
-## Anpassen der Vorlage
+## Weiterführende Anpassungen der Vorlage
 
 Das Aussehen der Rechnung kann auf vielfältige Weise angepasst werden. Dieses Kapitel erklärt, welche Möglichkeiten es gibt und was zu beachten ist.
 
