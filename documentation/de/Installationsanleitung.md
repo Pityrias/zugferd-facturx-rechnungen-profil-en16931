@@ -121,7 +121,28 @@ Die Positions- und Steuerkategorien können eine variable Anzahl an Elementen ha
 
 ### Personalisierung der Vorlage
 
-### Anpassen von Datums und Freitextfeldern
+Bevor Sie ihre erste eigene Rechnung erstellen, entfernen Sie das Beispiellogo am Anfang der Rechnung. Sie können es durch ein eigenes ersetzen, indem Sie in der Menüleiste auf `Einfügen` und dann `Bild` klicken. Sie können den Bereich natürlich auch freilassen.
+
+Die Größe des Bereichs ist so gewählt, dass das Adressfeld der ausgedruckten Rechnung unter dem Fenster eines DIN A4 Umschlags liegt. Für Briefumschlänge im Format DIN lang sind Pfalzmarkierungen auf der ersten Rechnungsseite platziert. Um diese Abstände anzupassen, können Sie die Größe von Zeile 1 und Spalte A anpassen. Beachten Sie aber, dass es einen voreingestellten Druckrand gibt, der beim Druck hinzugefügt wird. Die Einstellung dafür ist im Menü unter `Format` -> `Seitenvorlage` -> `Allgemein` im Abschnitt `Seitenränder`zu finden.
+
+Im nächsten Schritt tragen Sie Ihre Kontaktdaten in die dafür vorgesehenen Felder im oberen rechten Bereich der Rechnung ein. Vergessen Sie nicht auch die Zeile(n) über der Empfängeradresse anzupassen. Falls Sie bestimmte Kontaktdaten nicht angeben wollen, lassen Sie das Feld frei und löschen Sie den Beschreibungstext im Feld davor. **Falls Sie die nun freie Zeile stört, verringern Sie die Größe der Zeile, löschen Sie diese aber keinesfalls und schieben Sie den Inhalt der darunter liegenden Feler auch NICHT nach oben.**
+
+Zum Schluss füllen Sie die Fußzeile aus. Die Informationen aus den Zeilen `Bankverbindung` und `Handelsregister` werden als Freitext in die xml Datei eingefügt und können von Ihnen durch beliebige andere Informationen ersetzt oder freigelassen werden. **Von den Feldern Ust-IdNr. und Steuernummer muss mindestens eines vorhanden und ausgefüllt sein.** Für Felder die Sie nicht verwenden wollen, können Sie natürlich auch den Beschreibungstext entfernen.
+
+Speichern Sie die veränderte Vorlage nun ab, sodass Sie diese allgemeinen Anpassungen nicht bei jeder Rechnung wiederholen müssen.
+
+### Eintragen der allgemeinen Rechnungsinformationen
+
+Nachdem Sie nun allgemeine Informationen über Ihr Unternehmen eingetragen haben, wird es Zeit die rechnungsspezifischen Informationen einzutragen>
+
+- Stellen Sie ein, ob es sich um eine Rechnung oder Gutschrift/Stornorechnung handelt. Klicken Sie dafür auf das Wort `Rechnung`vor der Rechnungsnummer und dann auf den kleinen grauen Pfeil, der neben dem Feld erschienen ist, um eine Auswahl zu treffen.
+- Tragen Sie die Rechnungsnummer ein.
+- Das Austelldatum wird automatisch auf das aktuelle Datum gesetzt.
+- Tragen Sie (wenn vorhanden) die Bestellreferenz ein, sonst lassen Sie das Feld frei
+- Der Liefer- und Leistungszeitraum muss ein Datum im Format tt.mm.jjjj sein. Falls es sich um einen Zeitraum handelt, tragen Sie den letzten Tag ein.
+- Schreiben Sie den Rechnungstext. Hier können Sie auch Informationen unterbringen, die in kein anderes Feld der Vorlage passen.
+- Tragen Sie das Fälligkeitsdatum unter den Belegsummen ein. Dieses Datum muss in der Zukunft liegen. Das Format ist tt.mm.yyyy
+- Darunter ist Platz für die Zahlungsbedingungen als Freitext. Hier können Sie auch Besonderheiten wie Skonto spezifizieren. Wir empfehlen auch die Bankverbindung hier noch einmal einzutragen.
 
 ### Anpassen der Anzahl an Positionen oder Steuerkategorien
 
@@ -171,7 +192,11 @@ Um eine Positon oder Steuerkategorie zu entfernen, wählen Sie die Zeile wie In 
 
 ## Weiterführende Anpassungen der Vorlage
 
-Das Aussehen der Rechnung kann auf vielfältige Weise angepasst werden. Dieses Kapitel erklärt, welche Möglichkeiten es gibt und was zu beachten ist.
+todo
+
+In Kapitel `Personalisierung der Vorlage` wurde erklärt wie das Aussehen der Rechnung auf einfache Art angepasst werden kann. Dieses Kapitel erklärt wie tiefgreifende Änderungen an der Vorlage vorgenommen werden können, ohne das die daraus entstehende E-Rechnung ungültig wird.
+
+**Hinweis: Dieses Kapitel setzt Kenntnisse über die Verwendung von Formeln in LibreOffice Writer oder Microsoft Word voraus.**
 
 ### Wichtige Hinweise
 
@@ -186,4 +211,4 @@ Das finale Aussehen der Rechnung ergibt sich aus der Rechnungsansicht in Tab 1 d
 
 ### Verwendung einer Adresstabelle
 
-
+## Fehlerbehandlung
