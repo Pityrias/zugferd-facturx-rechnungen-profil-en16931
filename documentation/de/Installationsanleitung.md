@@ -184,11 +184,23 @@ Das Rechnungstemplate beinhaltet drei Positionen und Steuerkategorien. Da das Hi
 
 Um eine Positon oder Steuerkategorie zu entfernen, wählen Sie die Zeile wie In Schritt 1 beschrieben aus, klicken Sie aber auf "Zeilen löschen".
 
-### Anpassen der Umsatzsteueraufschlüsselung
+### Anpassen der Umsatzsteueraufschlüsselung und der Gesamtsummen
 
-### Anpassen der Umsatzsteueraufschlüselung und der Gesamtsummen
+In der Umsatzsteueraufschlüsselung muss für jede Steuerkategorie, die in den Positionsdaten auftaucht, der zu versteuernde Betrag angegeben werden. Behandeln sie Mehrwertsteuer (S) mit 7% und 19% als zwei verschiedene Kategorien. In die Spalte "Zu versteuernder Betrag" tragen Sie die Summe aller Postions-Nettobeträge ein, die nach der Kategorie besteuert werden. Der Inhalt der anderen Felder wird automatisch berechnet.
+
+Sobald die Positions- und Umsatzsteuerdaten komplett sind, sollten auch die Belegsummen die korrekten Beträge anzeigen. Wurde bereits eine Anzahlung geleistet, können Sie diese eintragen.
+
+**Wichtig: Überprüfen Sie alle Beträge!**
 
 ### Verwendung der Vorlage mit Adressdatenbankanbindung
+
+Neben der Standardvorlage `factur-X_Rechnung_einfach.ods` ist [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) noch eine experimentelle Vorlage `factur-X_Rechnung_mit_Datenbank.ods` vorhanden. Zu dieser laden Sie bitte auch die Datei `Adressdatenbank.ods` herunter.
+
+Die Adressdatenbank besteht aus einer einfachen Tabelle, in der Sie die Adressen ihrer Kunden eintragen können. Öffnen Sie die Rechnungsvorlage `factur-X_Rechnung_mit_Datenbank.ods`. Diese hat einen weiteren Tab `Datenbankanbindung`. In der Ansicht finden Sie den Einfügebereich (siehe Markierung "1" im Bild) und die Vorschau der eingetragenen Daten (Markierung "2").
+
+![Bild Datenbankeinbindung](../images/database1.jpg)
+
+todo
 
 ## Weiterführende Anpassungen der Vorlage
 
