@@ -14,7 +14,9 @@
     - [Personalisierung der Vorlage](#personalisierung-der-vorlage)
     - [Eintragen der allgemeinen Rechnungsinformationen](#eintragen-der-allgemeinen-rechnungsinformationen)
     - [Anpassen der Anzahl an Positionen oder Steuerkategorien](#anpassen-der-anzahl-an-positionen-oder-steuerkategorien)
-      - [Anpassung in der Datenansicht](#anpassung-in-der-datenansicht)
+      - [Hinweise zu den Steuerkategorien](#hinweise-zu-den-steuerkategorien)
+      - [Hinweise zu den Positionsdaten](#hinweise-zu-den-positionsdaten)
+      - [Hinzufügen und Entfernen von Positonen/Steuerkategorien](#hinzufügen-und-entfernen-von-positonensteuerkategorien)
     - [Anpassen der Umsatzsteueraufschlüsselung und der Gesamtsummen](#anpassen-der-umsatzsteueraufschlüsselung-und-der-gesamtsummen)
     - [Verwendung der Vorlage mit Adressdatenbankanbindung](#verwendung-der-vorlage-mit-adressdatenbankanbindung)
     - [Adressen eintragen](#adressen-eintragen)
@@ -172,6 +174,8 @@ Nachdem Sie nun allgemeine Informationen über Ihr Unternehmen eingetragen haben
 
 ### Anpassen der Anzahl an Positionen oder Steuerkategorien
 
+#### Hinweise zu den Steuerkategorien
+
 Die Steuerkategorie-Tabelle beinhaltet eine Zeile pro verwendeter Steuerkategorie, die ersten zwei Zeilen erkären die Bedeutung der einzelnen Spalten. Beachten Sie folgende Hinweise:
 
 - Spalte A Nummer: Wird automatisch erstellt und ist aus technischen Gründen vorhanden.
@@ -181,13 +185,15 @@ Die Steuerkategorie-Tabelle beinhaltet eine Zeile pro verwendeter Steuerkategori
 - Spalte E Betrag der nach Kategorie besteuert wird: Bitte Wert ohne Einheitenzeichen eintragen
 - Spalte F Grund Steuerbefreiung: Bei einer Versteuerung mit 0% kann hier ein Grund für die Steuerbefreiung als Text angegeben werden.
 
+#### Hinweise zu den Positionsdaten
+
 Die Positions-Tabelle beinhaltet eine Zeile pro aufgeführter Position, die ersten zwei Zeilen erkären die Bedeutung der einzelnen Spalten. Beachten Sie folgende Hinweise:
 
 - Spalte A Nummer: Wird automatisch erstellt und ist aus technischen Gründen vorhanden.
 - Spalte E Einheitencode: Optionale Codierung für die Einheit der Menge. Diese Codes kommen aus der UN/ECE Recommendation No. 20 „Codes for Units of Measure Used in International Trade“. Häufige Beispielcodes sind in Tab 3 `Codes` aufgeführt, so wird die Einheit `Stck` beispielsweise als `C62` eingetragen.
 - Spalte I Bemerkung: Freitextfeld für anders nicht abbildbare Informationen und Bemerkungen zur Position
 
-#### Anpassung in der Datenansicht
+#### Hinzufügen und Entfernen von Positonen/Steuerkategorien
 
 Das Rechnungstemplate beinhaltet drei Positionen und Steuerkategorien. Da das Hinzufügen neuer Einträge für beide Tabellen gleich funktioniert, erklärt dieses Kapitel am Beispiel der Positionsdaten. Um eine neue Position hinzuzufügen, führen Sie folgende Schritte aus:
 
