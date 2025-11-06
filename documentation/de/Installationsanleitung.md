@@ -194,13 +194,54 @@ Sobald die Positions- und Umsatzsteuerdaten komplett sind, sollten auch die Bele
 
 ### Verwendung der Vorlage mit Adressdatenbankanbindung
 
-Neben der Standardvorlage `factur-X_Rechnung_einfach.ods` ist [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) noch eine experimentelle Vorlage `factur-X_Rechnung_mit_Datenbank.ods` vorhanden. Zu dieser laden Sie bitte auch die Datei `Adressdatenbank.ods` herunter.
+Neben der Standardvorlage `factur-X_Rechnung_einfach.ods` ist [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) noch eine experimentelle Vorlage `factur-X_Rechnung_mit_Datenbank.ods` vorhanden. Zu dieser laden Sie bitte auch die Datei `Adressdatenbank.odb` herunter.
 
-Die Adressdatenbank besteht aus einer einfachen Tabelle, in der Sie die Adressen ihrer Kunden eintragen können. Öffnen Sie die Rechnungsvorlage `factur-X_Rechnung_mit_Datenbank.ods`. Diese hat einen weiteren Tab `Datenbankanbindung`. In der Ansicht finden Sie den Einfügebereich (siehe Markierung "1" im Bild) und die Vorschau der eingetragenen Daten (Markierung "2").
+### Adressen eintragen
 
-![Bild Datenbankeinbindung](../images/database1.jpg)
+Die Adressdatenbank enthält eine Tabelle, in der Sie die Adressen ihrer Kunden eintragen können. Öffnen Sie die Datei und klicken Sie in der Datenbank-Leiste auf der linken Seite auf den Punkt `Tabellen`. Sie sehen nun die Tabelle `Adressen` in der unteren Hälfte der Ansicht. Öffnen Sie die Tabelle mit einem Doppelklick.
 
-todo
+![Bild Datenbank Tabelle](../images/database3.jpg)
+
+Es öffnet sich ein weiteres Fenster mit einer Tabellenansicht, hier können Sie die Kontaktdaten ihrer Kunden eintragen. Sobald Sie die notwendigen Daten eingetragen haben, speichern und schließen Sie beide Fenster.
+
+Öffnen Sie die Rechnungsvorlage `factur-X_Rechnung_mit_Datenbank.ods`. Diese hat einen weiteren Tab `Datenbankanbindung`. In der Ansicht finden Sie den Einfügebereich (siehe Markierung "1" im Bild) und die Vorschau der eingetragenen Daten (Markierung "2").
+
+![Bild Tab Datenbankanbindung](../images/database1.jpg)
+
+### Verknüpfung Datenquellen
+
+Damit die Daten aus der Adressdatei in der Rechnung zur Verfügung stehen, muss einmalig eine Verknüpfung der Dateien in LibreOffice hergestellt werden. 
+
+Klicken Sie in der Rechnungsvorlage in der Menüleiste auf `Ansicht` und dann `Datenquellen`. Es öffnen sich zwei Bereiche oberhalb der Rechnung. Der linke Teil enthält eine Liste verknüpfter Datenquellen, der Eintrag `Bibliography` ist ein Beispieleintrag der immer vorhanden ist. Ist die Adressdatenbank in diesem Fenster aufgeführt, kann der Rest dieses Abschnitts übersprungen werden.
+
+![Bild Ansicht Datenquellen](../images/database2.jpg)
+
+Klicken Sie mit der rechten Maustaste in das Feld und wählen Sie `Registrierte Datenbanken`aus.
+
+![Bild Datenbankeinbindung Dialog](../images/database4.jpg)
+
+Es öffnet sich ein neuer Dialog, klicken Sie erst auf `Neu` und dann auf `Durchsuchen`. Wählen Sie die Adressdatei aus und klicken Sie dann auf `Öffnen`. Bei Bedarf können Sie im Feld `Registrierter Name` den Namen anpassen, unter welchem die Adressdatei in LibreOffice angezeigt wird. Bestätigen Sie dann beide Dialoge mit `OK`.
+
+![Bild Datenbankeinbindung abschließen](../images/database5.jpg)
+
+Sie sehen die Adressdatenbank nun in dem Datenquellen-Bereich, in dem vorher nur der `Bibliography` Eintrag zu sehen war.
+
+### Einfügen von Daten in die Rechnung
+
+Um Kontaktdaten in die Rechnung einzufügen, stellen Sie sicher, dass die Rechnungsvorlage im Tab `Datenbankanbindung` ist und die Datenquellen-Ansicht eingeschaltet ist (Menü-> Ansicht -> Datenquellen oder Strg+Shift+F4). Klicken Sie auf das kleine Plus-Symbol neben dem Namen der Adressdatenbank in der Datenquellen-Ansicht und danach auf das kleine Plus neben dem Eintrag `Tabellen`. Mit einem Doppelklick auf den Namen der Adresstabelle (hier `Adressen`) erscheinen ihre Kundendaten im rechten Fenster der Datenquellen-Ansicht.
+
+![Bild Datenbankeinbindung einblenden](../images/database6.jpg)
+
+Um eine Adresse aus dieser Ansicht in die Rechnung einzufügen, führen Sie folgende Schritte aus:
+
+1. Wählen Sie die gewünschte Adresse in der Datenansicht aus, indem Sie auf das graue Kästchen links neben der ID des Eintrags klicken. Die gesamte Zeile ist nun blau markiert.
+2. Klicken Sie in das Feld `A1` des Tabellendokuments. Es enthält den Text ID.
+3. Klicken Sie auf das `Daten in Text` Symbol.
+4. Der gesamte Bereich `A1-G2` ist nun blau markiert und entält die ausgewählten Adressdaten.
+5. Kontrollieren Sie im Vorschaubereich weiter unten im Dokument, dass die korrekten Daten angezeigt werden.
+6. Wenn Sie nun zurück zum Tab `Rechnung` wechseln, sind die Adressdaten bereits eingetragen.
+
+![Bild Daten einfügen](../images/database7.jpg)
 
 ## Weiterführende Anpassungen der Vorlage
 
@@ -220,7 +261,5 @@ Das finale Aussehen der Rechnung ergibt sich aus der Rechnungsansicht in Tab 1 d
 ### Anpassen der Rechnungsansicht
 
 ### Anpassen der Datenansicht
-
-### Verwendung einer Adresstabelle
 
 ## Fehlerbehandlung
