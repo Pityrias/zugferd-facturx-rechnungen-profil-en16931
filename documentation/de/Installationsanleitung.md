@@ -36,13 +36,11 @@ Unter https://de.libreoffice.org/download/download kann LibreOffice heruntergela
 
 ### Installation der Erweiterung
 
-Laden Sie die Datei `factur-x_profile_en-16931.oxt` von gitlab [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) herunter. Klicken Sie dazu auf die Datei und anschließend auf den `Download raw` Button oben rechts. ![Bild Download](../images/download_oxt.jpg)
+Laden Sie die Datei `factur-x_profile_en-16931.oxt` von gitlab [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) herunter. Klicken Sie dazu auf die Datei und anschließend auf den `Download raw` Button oben rechts. ![Gif Download](../images/download_oxt.gif)
 
 Öffnen Sie die heruntergeladene Datei mit einem Doppelklick um die Erweiterung zu installieren.
-![Bild Installation](../images/install_oxt.jpg)
-
-Die Erweiterung wird nun als installiert angezeigt. Klicken Sie auf `Schließen` und wählen Sie `Später neu starten` aus.
-![Bild Installation fertig](../images/install_oxt2.jpg)
+Die Erweiterung wird nun als installiert angezeigt. Klicken Sie auf `Schließen` und wählen Sie `Jetzt neu starten` aus. Falls nach dem Neustart ein erneuter Installationsdialog angezeigt wird, können Sie diesen einfach schließen.
+![Gif Installation oxt](../images/install_oxt.gif)
 
 ### Herunterladen der Vorlage
 
@@ -197,22 +195,18 @@ Die Positions-Tabelle beinhaltet eine Zeile pro aufgeführter Position, die erst
 
 Das Rechnungstemplate beinhaltet drei Positionen und Steuerkategorien. Da das Hinzufügen neuer Einträge für beide Tabellen gleich funktioniert, erklärt dieses Kapitel am Beispiel der Positionsdaten. Um eine neue Position hinzuzufügen, führen Sie folgende Schritte aus:
 
+![Gif Positionen hinzufügen](../images/add_position_data.jpg)
+
 1. Klicken Sie auf die Zeilennummer der letzten Position in der Leiste links. Nun sollte die gesamte Zeile markiert sein.
-![Bild Zeile markieren](../images/position_add0.jpg)
 2. Klicken Sie mit der rechten Maustaste und wählen Sie "Zeilen unterhalb einfügen" aus.
-![Bild Zeile einfügen](../images/position_add1.jpg)
 3. Nun befindet sich eine leere Zeile am Ende der Tabelle.
-![Bild Tabelle erweitern](../images/position_add2.jpg)
 4. Klicken Sie in die letzte befüllte Zeile der Tabelle und markieren Sie die Tabelleneinträge. Bewegen Sie den Mauszeiger an die rechte untere Ecke des markierten Bereichs. Der Curson nimmt die Form eines schwarzen Kreuzes an. Halten Sie die linke Maustaste gedrückt und ziehen Sie den Cursor über die darunterliegende Zeile. Sobald die untere Zeile mit einem pinken Rahmen hervorgehoben wird, lassen Sie die Maustaste los.
-![Bild Tabelle erweitern](../images/position_add3.jpg)
 5. Die neue Zeile ist nun mit Werten befüllt. Die Positionsnummer wurde automatisch hochgezählt, andere Werte wurden aus der darüberliegenden Zeile kopiert. Passen Sie die Werte an.
 6. Sobald Sie alle Positionen in der Positionstabelle haben, passen Sie die Umsatzsteueraufschlüsselung an.
 7. Jetzt müssen die neuen Positionen in der Datenansicht hinzugefügt werden. Wechseln Sie in den `Daten` Tab.
 8. Scrollen Sie herunter zur Positionstablelle. Fügen Sie bei Bedarf eine neue Zeile unterhalb der letzten Zeile ein. Das funktioniert wie in Schritt 2 beschrieben.
 9. Wiederholen Sie Schritt 4. Markieren Sie die Inhalte des letzten Eintrags der Positionsdaten, bewegen Sie den Mauszeiger zum rechten unteren Rand und halten Sie die Maus gedrückt während Sie den nun kreuzförmigen Cursor nach unten ziehen.
-![Bild Tabelle erweitern](../images/position_add4.jpg)
 10. Die neue Zeile sollte die Informationen aus der Rechnungsansicht enthalten.
-![Bild Neue Daten](../images/position_add5.jpg)
 
 Um eine Positon oder Steuerkategorie zu entfernen, wählen Sie die Zeile wie In Schritt 1 beschrieben aus, klicken Sie aber auf "Zeilen löschen".
 
@@ -246,15 +240,11 @@ Damit die Daten aus der Adressdatei in der Rechnung zur Verfügung stehen, muss 
 
 Klicken Sie in der Rechnungsvorlage in der Menüleiste auf `Ansicht` und dann `Datenquellen`. Es öffnen sich zwei Bereiche oberhalb der Rechnung. Der linke Teil enthält eine Liste verknüpfter Datenquellen, der Eintrag `Bibliography` ist ein Beispieleintrag der immer vorhanden ist. Ist die Adressdatenbank in diesem Fenster aufgeführt, kann der Rest dieses Abschnitts übersprungen werden.
 
-![Bild Ansicht Datenquellen](../images/database2.jpg)
+![Gif Registrierung Datenquellen](../images/link_database.gif)
 
 Klicken Sie mit der rechten Maustaste in das Feld und wählen Sie `Registrierte Datenbanken`aus.
 
-![Bild Datenbankeinbindung Dialog](../images/database4.jpg)
-
 Es öffnet sich ein neuer Dialog, klicken Sie erst auf `Neu` und dann auf `Durchsuchen`. Wählen Sie die Adressdatei aus und klicken Sie dann auf `Öffnen`. Bei Bedarf können Sie im Feld `Registrierter Name` den Namen anpassen, unter welchem die Adressdatei in LibreOffice angezeigt wird. Bestätigen Sie dann beide Dialoge mit `OK`.
-
-![Bild Datenbankeinbindung abschließen](../images/database5.jpg)
 
 Sie sehen die Adressdatenbank nun in dem Datenquellen-Bereich, in dem vorher nur der `Bibliography` Eintrag zu sehen war.
 
@@ -262,7 +252,7 @@ Sie sehen die Adressdatenbank nun in dem Datenquellen-Bereich, in dem vorher nur
 
 Um Kontaktdaten in die Rechnung einzufügen, stellen Sie sicher, dass die Rechnungsvorlage im Tab `Datenbankanbindung` ist und die Datenquellen-Ansicht eingeschaltet ist (Menü-> Ansicht -> Datenquellen oder Strg+Shift+F4). Klicken Sie auf das kleine Plus-Symbol neben dem Namen der Adressdatenbank in der Datenquellen-Ansicht und danach auf das kleine Plus neben dem Eintrag `Tabellen`. Mit einem Doppelklick auf den Namen der Adresstabelle (hier `Adressen`) erscheinen ihre Kundendaten im rechten Fenster der Datenquellen-Ansicht.
 
-![Bild Datenbankeinbindung einblenden](../images/database6.jpg)
+![Gif Datenbankeinbindung nutzen](../images/use_database.gif)
 
 Um eine Adresse aus dieser Ansicht in die Rechnung einzufügen, führen Sie folgende Schritte aus:
 
@@ -272,8 +262,6 @@ Um eine Adresse aus dieser Ansicht in die Rechnung einzufügen, führen Sie folg
 4. Der gesamte Bereich `A1-G2` ist nun blau markiert und entält die ausgewählten Adressdaten.
 5. Kontrollieren Sie im Vorschaubereich weiter unten im Dokument, dass die korrekten Daten angezeigt werden.
 6. Wenn Sie nun zurück zum Tab `Rechnung` wechseln, sind die Adressdaten bereits eingetragen.
-
-![Bild Daten einfügen](../images/database7.jpg)
 
 ## Weiterführende Anpassungen der Vorlage
 
