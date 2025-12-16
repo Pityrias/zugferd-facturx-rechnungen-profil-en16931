@@ -265,8 +265,6 @@ Um eine Adresse aus dieser Ansicht in die Rechnung einzufügen, führen Sie folg
 
 ## Weiterführende Anpassungen der Vorlage
 
-todo
-
 In Kapitel `Personalisierung der Vorlage` wurde erklärt wie das Aussehen der Rechnung auf einfache Art angepasst werden kann. Dieses Kapitel erklärt wie tiefgreifende Änderungen an der Vorlage vorgenommen werden können, ohne das die daraus entstehende E-Rechnung ungültig wird.
 
 **Hinweis: Dieses Kapitel setzt Kenntnisse über die Verwendung von Formeln in LibreOffice Writer oder Microsoft Word voraus.**
@@ -274,12 +272,23 @@ In Kapitel `Personalisierung der Vorlage` wurde erklärt wie das Aussehen der Re
 ### Wichtige Hinweise
 
 Das finale Aussehen der Rechnung ergibt sich aus der Rechnungsansicht in Tab 1 der Vorlage. Alle kosmetischen Änderungen sollten in dieser Ansicht gemacht werden. Die Datenansicht dient als Grundlage der eingebetteten xml Datei. Dabei erwartet die Erweiterung bestimmte Daten in bestimmten Zeilen. 
-**Die Zeilennummer der Einträge in der Datenansicht in Tab 2 darf NICHT verändert werden. Sonst kann keine gültige E-Rechnung generiert werden.** Die meisten Einträge der Datenansicht werden aus spezifischen Zeilen der Rechnungsansicht ausgelesen. Die Zuweisung, welche Zelle in Tab 1 den gewünschten Wert enthält, darf natürlich angepasst werden.
-
-- Datenformat Alternative erklären
+**Die Zeilennummer der Einträge in der Datenansicht in Tab 2 darf NICHT verändert werden. Sonst kann keine gültige E-Rechnung generiert werden.** Die meisten Einträge der Datenansicht werden aus spezifischen Zellen der Rechnungsansicht ausgelesen. Die Zuweisung, welche Zelle in Tab 1 den gewünschten Wert enthält, kann problemlos angepasst werden.
 
 ### Anpassen der Rechnungsansicht
 
+Diese Ansicht kann beliebig angepasst werden, solange die Datenansicht in Tab 2 weiterhin die korrekten Daten erhält. Außerdem muss die Datenbeziehung ALTERNATIVE beibehalten werden, damit die Rechnung gültig bleibt (siehe [Datenbeziehung Alternative](#die-datenbeziehung-alternative)).
+
 ### Anpassen der Datenansicht
 
+Die Inhalte der Spalte B in Tab 2 der Vorlage werden ausgelesen, um den xml Teil der Rechnung zu füllen. Welche Zeile welchen Wert enthalten soll und in welchem Format, kann den anderen Spalten der Tabelle entnommen werden.
+
+Bei Anpassungen ist es notwendig, dass die Daten im richtigen Format vorliegen. In einigen Feldern werden auch Funktionen angewandt, um Teilstrings aus der Rechnungsansicht auszulesen oder zusammenzufügen. **Stellen Sie sicher, dass sie die aktuelle Zuweisung eines Feldes verstehen, bevor Sie dieses verändern.**
+
+
+Da die Anzahl der Steuerkategorien und Positionen variabel ist, werden diese Daten anders vom Makro ausgelesen. Für die Steuerkategorien wird geprüft, ob in Spalte A in Zeile 62 der Wert "1" steht. Wenn ja werden die Inhalte der anderen Spalten ausgelesen und als Steuerkategorie interpretiert. Dann wird kontrolliert ob in der nächsten Zeile der Wert "2" steht, und der Vorgang wird wiederholt. Die Schleife bricht ab, sobald eine Zelle in Spalte A nicht die nachfolgende Nummer enthält.
+
+Für die Positionsdaten geht das Makro gleich vor, wobei die Startzeile sich aus 65 + Anzahl der Steuerkategorien ergibt.
+
 ## Fehlerbehandlung
+
+Tritt ein Fehler auf, wird vor dem Export eine Messagebox mit der Fehlermeldung angezeigt. Bei schwerwiegenden Fehlern bricht der Export an dieser Stelle auch ab.
