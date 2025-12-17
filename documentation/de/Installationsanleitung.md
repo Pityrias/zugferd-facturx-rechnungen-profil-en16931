@@ -280,10 +280,28 @@ Diese Ansicht kann beliebig angepasst werden, solange die Datenansicht in Tab 2 
 
 ### Anpassen der Datenansicht
 
-Die Inhalte der Spalte B in Tab 2 der Vorlage werden ausgelesen, um den xml Teil der Rechnung zu füllen. Welche Zeile welchen Wert enthalten soll und in welchem Format, kann den anderen Spalten der Tabelle entnommen werden.
+Die Inhalte der Spalte B in Tab 2 der Vorlage werden ausgelesen, um den xml Teil der Rechnung zu füllen. Welche Zeile welchen Wert enthalten soll und in welchem Format, kann den anderen Spalten der Tabelle entnommen werden. Die Zuordnung jeder Zeile zu einem Wert im xml ist im python Quellcode des Makros hardgecoded.
 
 Bei Anpassungen ist es notwendig, dass die Daten im richtigen Format vorliegen. In einigen Feldern werden auch Funktionen angewandt, um Teilstrings aus der Rechnungsansicht auszulesen oder zusammenzufügen. **Stellen Sie sicher, dass sie die aktuelle Zuweisung eines Feldes verstehen, bevor Sie dieses verändern.**
 
+Es folgt eine kurze Erläuterung zu den Werten, die nicht direkt aus der Rechnungsansicht kopiert werden:
+
+| Zeile | Wert | Bemerkung  |
+|---|---|---|
+| 3 | Typ | Es MUSS der String "rechnung" oder "gutschrift" im Feld stehen |
+| 14| Postleitzahl | Postleitzahl und Stadt stehen im gleichen Feld, weshalb die ersten 5 Zeichen als PLZ interpretiert werden  |
+| 15| Stadt | Postleitzahl und Stadt stehen im gleichen Feld, weshalb alle Zeichen bis auf die ersten 6 ausgelesen werden  |
+| 16 | Land | Schlägt das Land im Codes-Tab nach, um den passenden 2 Buchstabencode herauszusuchen |
+| 21 | Zusatz-Information| Zusammengesetzung aus Feld mit Beschreibung des Inhalts und dem Wert. Dies ist notwendig, da die Werte in ein Notiz Feld geschrieben werden und sonst nicht klar wäre, was der Wert bedeuten soll. |
+| 22  | Zusatz-Information| Zusammengesetzung aus Feld mit Beschreibung des Inhalts und dem Wert. Dies ist notwendig, da die Werte in ein Notiz Feld geschrieben werden und sonst nicht klar wäre, was der Wert bedeuten soll. |
+| 38-45 | Lieferadresse | Verweist auf Kundeninformation, da angenommen wird, dass Liefer- und Rechnungsadresse identisch sind |
+| 50 | Währungscode | Währung der Rechnung, auf EUR festgelegt. Codes müssen ISO 4217 entsprechen.|
+| 52-52 | Beträge | Die Wert Funktion konveritert den Feldinhalt zu einer Zahl ohne zusätzliche Währungszeichen oä |
+| Steuerkategorie Spalte B | Steuerkategorie Code | Nimmt das erste Zeichen des entspr. Feldes. Die möglichen Steuerkategorien sind so definiert, dass der erste Buchstabe der Kategorie entspricht. Kategorie AE wird zur Zeit nicht unterstützt. |
+|Steuerkategorie F | Grund | Die T Funktion sorgt dafür, dass das Feld leer bleibt, wenn kein Text vorhanden ist. Das verhindert, dass das Feld ungewollt den Wert "0" enthalten kann.|
+| Position E | Einheitencode | Schägt den Einheitencode im Codes Tab nach. Codes müssen UN/ECE Rec No 20 entsprechen. Im Tab Codes findet sich nur eine Auswahl, welche aber erweitert werden kann. |
+| Position G | Ust % | Zieht den Steuersatz aus der Spalte mit der Steuerkategorie jeder Position. Es wird die Klammer rechts entfernt, dann wird anhand der Gesamtlänge des Texts bestimmt ob der Prozentsatz ein- oder zweistellig ist. Dieser wird dann von rechts ausgelesen.
+|Position I | Bemerkung | Die T Funktion sorgt dafür, dass das Feld leer bleibt, wenn kein Text vorhanden ist. Das verhindert, dass das Feld ungewollt den Wert "0" enthalten kann.|
 
 Da die Anzahl der Steuerkategorien und Positionen variabel ist, werden diese Daten anders vom Makro ausgelesen. Für die Steuerkategorien wird geprüft, ob in Spalte A in Zeile 62 der Wert "1" steht. Wenn ja werden die Inhalte der anderen Spalten ausgelesen und als Steuerkategorie interpretiert. Dann wird kontrolliert ob in der nächsten Zeile der Wert "2" steht, und der Vorgang wird wiederholt. Die Schleife bricht ab, sobald eine Zelle in Spalte A nicht die nachfolgende Nummer enthält.
 
