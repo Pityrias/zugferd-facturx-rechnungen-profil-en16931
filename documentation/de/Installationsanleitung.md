@@ -310,3 +310,37 @@ Für die Positionsdaten geht das Makro gleich vor, wobei die Startzeile sich aus
 ## Fehlerbehandlung
 
 Tritt ein Fehler auf, wird vor dem Export eine Messagebox mit der Fehlermeldung angezeigt. Bei schwerwiegenden Fehlern bricht der Export an dieser Stelle auch ab.
+
+Die folgende Tabelle enthält eine Übersicht mit möglichen Fehlermeldungen und eine kurze Beschreibung über nötige Anpassungen, damit der nächste Export funktioniert. 
+
+Falls Sie die Zellformatierung anpassen sollen, klicken Sie mit rechts auf die Zelle und wählen Sie 'Zellen formatieren' aus: Im ersten Tab wählen Sie den gewünschten Typ aus und prüfen Sie, dass das ausgewählte Format zu dem erwarteten Wert der Zelle passt.
+
+| Fehlermeldung | Fehlerursache | Lösung
+|---|---|---|
+| Das Dokument muss mindestens zwei Tabs enthalten. | Es fehlen wichtige Tabs wie Daten- oder Rechnungsansicht. | Laden Sie die Vorlage neu herunter (siehe [Installation der Erweiterung]). |
+| Der Wert von Zelle X in Tab zwei ist Y; er muss entwedewr 'rechnung' oder 'gutschrift' sein. | Das Feld Typ in Tab zwei enthält einen ungültigen Wert. Es muss eines der Wörter 'rechnung' oder 'gutschrfit' ohne ' und in Kleinbuchstaben enthalten. Prüfen Sie auch, dass keine Leerzeichen am Anfang oder Ende stehen. |
+| Die Zelle X im zweiten Tab scheint kein Datumsfeld zu sein.Bitte überprüfen Sie das Format. Dazu klicken Sie mit rechts auf die Zelle und wählen Sie 'Zellen formatieren' aus: Im ersten Tab wählen Sie Datum als Kategorie und prüfen Sie, dass das ausgewählte Format zu dem Wert in der Zelle passt. | Der Inhalt der Zelle kann nicht als Datum interpretiert werden. | Prüfen Sie den Inhalt des Feldes und folgen Sie den Anweisungen in der Fehlermeldung.|
+| Die Zelle X in Tab zwei is ein erforderliches Feld, aber entweder leer oder falsch formatiert. | Ein notwendiges Feld für eine gültige Factur-X Rechnung ist nicht ausgefüllt. | Füllen Sie das angegebene Feld aus. Welche Felder notwendig sind ist auch in Tab 2 farbig codiert. |
+| Der Aussteller der Rechnung muss entweder eine Umsatzsteuer-Id oder eine Steuernummer angeben. | In Deutschland ist die Angabe von UstId oder Steuernummer vorgeschrieben. | Tragen Sie einen oder beide Werte ein. |
+| Der Wert der Zelle X in Tab zwei ist Y; er muss eine Kommazahl sein. | Das Feld enthält keine Kommazahl. | Geben Sie eine Kommazahl ein, achten Sie auf die Zellformatierung und darauf den korrekten Trenner zu verwenden (',' in deutscher-, '.' in englischer Installation) |
+| Der Wert der Zelle X in Tab zwei ist Y; er muss positiv sein. | Das Feld akzeptiert keine negativen Zahlen. | Prüfen Sie den Feldinhalt und prüfen Sie die Zellenformatierung. |
+| Der Wert der Zelle X in Tab zwei ist Y; er muss eine Ganzzahl sein. | Das Feld akzeptiert keine Kommazahl. | Geben Sie eine Ganzzahl ein und prüfen Sie die Zellenformatierung. |
+| Der Wert der Zelle X in Tab zwei ist Y; er muss eine Ganzzahl sein. | Das Feld aktzeptiert nur ein Datum. | Geben Sie ein Datum ein und prüfen Sie die Zellenformatierung. |
+| Der Wert der Zelle X in Tab zwei ist Y; er muss ein Text sein. | Das Feld aktzeptiert nur Freitext. | Geben Sie einen Text ein und prüfen Sie die Zellenformatierung. |
+| Ländercodes müssen zwei Buchstaben haben. | Die Landesangabe entspricht nicht DIN ISO 3166. | Wählen Sie in der Rechnungsansicht das Land in der Dropdown-Box aus. Haben Sie diese gelöscht, können Sie den 2-Buchstabencode auch im Tab 'Codes' manuell nachschlagen und in Tab 2 eintragen. |
+| diese Umsatzsteuer-Id ist ungültig. | Die Umsatzsteuer-Id ist nicht gültig. | Prüfen Sie ihre Eingabe auf Tippfehler. |
+| diese Steuernummer ist ungültig. | Die Steuernummer ist nicht gültig. | Prüfen Sie ihre Eingabe auf Tippfehler. |
+| Währungscodes müssen drei Buchstaben haben. | Die Währungsangabe entspricht nicht ISO 4217 | Schlagen Sie den korrekten Code für die angegebene Währung nach. |
+| Das Austelldatum der Rechnung muss heute sein. Wenn das eingetragene Datum stimmt, überprüfen Sie die Systemzeit ihres Computers. | Das Rechnungsdatum muss das tagesaktuelle Datum sein. | Geben Sie das aktuelle Datum ein. Prüfen Sie, dass die Systemzeit ihres Computers korrekt eingestellt ist, diese wird zur Überprüfung verwendet. |
+| Das Fälligkeitsdatum kann nicht in der Vergangenheit liegen. | Zahlungsfristen dürfen den Gläubiger nicht unangemessen benachteiligen. | Geben Sie ein Datum ein, dass in der Zukunft liegt. Wenn nicht anders vereinbart gilt ein Frist von 30 Tagen (§286 Abs. 3 BGB).|
+| Der Wert von Zelle X in Tab zwei muss gleich der Summe der Zellen Y und Z sein. | Es wurde ein Fehler in der Berechnung von Zelle X festgestellt. | Prüfen Sie die Berechnung manuell nach. Kontrollieren Sie die Werte, Formeln und Zellenformate. |
+| Es konnten keine Positionsdaten gefunden werden. Stellen Sie sicher, dass die Positionen unterhalb der Kategoriedaten eingetragen sind und in Spalte A nummeriert sind, beginnend mit '1' | Es wurden keine Positionsdaten erkannt | Prüfen Sie, dass mindestens eine Position vorhanden ist. Die Positionstabelle beginnt direkt unter der Steuerkategorie-Tabelle, ohne Leerzeilen. Entfernen Sie solche und stellen Sie sicher, dass in Spalte A die Nummer der Position (1,2,3,... in dieser Reihenfolge) steht. |
+| Rechnungen die Steuerkategorie O beinhalten, dürfen keine Positionen einer anderen Steuerkategorie enthalten | Eine Rechnung mit Steuerkategorie 'O' erlaubt keine anderen Steuerkategorien. | Stellen Sie eine separate Rechnung für die Positionen mit Kategorie 'O' aus. |
+| Rechnungen die Steuerkategorie K beinhalten, müssen für Käufer und Verkäufer eine Umsatzsteuer-Id angeben. | Es fehlen Angaben zur Umsatzsteuer-Id. | Tragen Sie die Umsatzsteuer-Id von Käufer und Verkäufer ein.|
+| Die Netto-Summe aller Positionen stimmt nicht mit der Gesamtsumme ohne Steuern überein. | Es wurde ein Fehler in der Berechnung deR Netto-Gesamtsumme gefunden. Prüfen Sie die Berechnung manuell nach. Kontrollieren Sie die Werte, Formeln und Zellenformate. |
+| Es muss mindestens eine Position aufgeführt sein. | Sie versuchen eine Rechnung über nichts auszustellen. | Stellen Sie sicher, dass mindestens eine Positon vorhanden und in Rechnungs- und Datenansicht abgebildet ist. |
+| Postion X: Die Nettosumme entspricht nicht dem Produkt aus Nettopreis und Menge | Es wurde ein Fehler in der Berechnung der Nettosumme einer Position gefunden. | Prüfen Sie die Berechnung manuell nach. Kontrollieren Sie die Werte, Formeln und Zellenformate. Der Nettobetrag einer Position ergibt sich aus Nettopreis multipliziert mit der Menge. |
+| Es muss mindestens eine Steuerkategorie aufgeführt sein. | Es ist keine Steuerkategorie angegeben. | Geben Sie eine Steuerkategorie an, im Tab 'Codes' finden Sie eine Erklärung zu den unterstützten Kategorien.|
+| Steuerkategorie X: Die Summe der Steuern entspricht nicht der Steuerrate des zu versteuernden Betrags. | Es wurde ein Fehler in der Berechnung der Steuersumme einer Kategorie gefunden. | Prüfen Sie die Berechnung manuell nach. Kontrollieren Sie die Werte, Formeln und Zellenformate. Die Summe der Steuern ergibt sich aus dem in der Kategorie zu versteuernden Betrag multipliziert mit der Steuerrate. |
+
+
