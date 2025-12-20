@@ -34,7 +34,7 @@ Benutzung
 ==============================
 
 Dieses Makro ist noch in einer frühen Entwicklungsphase und ist noch nicht im LibreOffice Extension Center auffindbar. Der aktuelle Stand der Erweiterung kann `hier <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_ heruntergeladen werden.
-
+Eine Anleitung für Benutzer findet sich `hier <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/de/Installationsanleitung.md>`_ 
 
 ==============================
 
@@ -58,4 +58,5 @@ Usage
 ==============================
 
 This macro is still in an early development phase and is not yet available in the libreoffice extension center. The current version of the extension can be downloaded `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_
+Currently the user manual and invoice template are only available in german `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/de/Installationsanleitung.md>`_ 
 
