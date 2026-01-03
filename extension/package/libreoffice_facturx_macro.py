@@ -863,7 +863,7 @@ def get_and_check_data(doc, data_sheet):
 
     # Global checks
     diff = data["total_with_tax"] - data["total_without_tax"] - data["total_tax"]
-    if abs(diff) > 0.00001:
+    if abs(diff) > 0.001:
         return msg_box(
             doc,
             _(
@@ -884,7 +884,7 @@ def get_and_check_data(doc, data_sheet):
     if data.get("deposits"):
         deposits_value = data["deposits"]
 
-    if abs(data["total_due"] - data["total_with_tax"] - deposits_value) > 0.00001:
+    if abs(data["total_due"] - data["total_with_tax"] - deposits_value) > 0.001:
         return msg_box(
             doc,
             _(
@@ -1022,7 +1022,7 @@ def generate_facturx_invoice_v1(button_arg=None):
     for category in category_data:
         calc_sum_tax += category.sum_tax
         calc_sum_taxed_amount += category.taxed_amount
-    if abs(calc_sum_tax - data["total_tax"]) > 0.0001:
+    if abs(calc_sum_tax - data["total_tax"]) > 0.001:
         data_val = data["total_tax"]
         msg_box(
             doc,
@@ -1030,7 +1030,7 @@ def generate_facturx_invoice_v1(button_arg=None):
                 f"The sum of vat over all categories is not equal to the total tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_tax}"
             ),
         )
-    if abs(calc_sum_taxed_amount - data["total_without_tax"]) > 0.0001:
+    if abs(calc_sum_taxed_amount - data["total_without_tax"]) > 0.001:
         data_val = data["total_without_tax"]
         msg_box(
             doc,
@@ -1065,7 +1065,7 @@ def generate_facturx_invoice_v1(button_arg=None):
     calc_net_sum = 0.00
     for pos in position_data:
         calc_net_sum += pos.netto_total
-    if abs(calc_net_sum - data["total_without_tax"]) > 0.0001:
+    if abs(calc_net_sum - data["total_without_tax"]) > 0.001:
         msg_box(
             doc,
             _(
