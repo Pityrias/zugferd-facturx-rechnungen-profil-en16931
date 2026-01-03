@@ -143,7 +143,7 @@ def check_position_data(position_data):
         if not pos.is_valid():
             return (False, _(f"Position {cnt} lacks required fields"))
         calc_price = round(pos.netto_price * pos.amount, 2)
-        if abs(calc_price - pos.netto_total) > 0.0001:
+        if abs(calc_price - pos.netto_total) > 0.001:
             return (
                 False,
                 _(
@@ -162,7 +162,7 @@ def check_category_data(category_data):
         if not category.is_valid():
             return (False, _(f"Tax category {cnt} lacks required fields"))
         calc_tax_total = round(category.rate / 100 * category.taxed_amount, 2)
-        if abs(calc_tax_total - category.sum_tax) > 0.0001:
+        if abs(calc_tax_total - category.sum_tax) > 0.001:
             return (
                 False,
                 _(
