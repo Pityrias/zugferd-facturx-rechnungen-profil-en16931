@@ -24,7 +24,7 @@ Folgende Ziele verfolgt dieses Projekt:
 
 - Offline nutzbar
 
-Details zum ZUFGeRD/Factur-X Standard finden sich hier: `Veröffentlichungen FeRD <https://www.ferd-net.de/ueber-uns/ressourcen-1/veroeffentlichungen?tx_solr%5Bq%5D=Factur-X>`_
+Details zum ZUFGeRD/Factur-X Standard finden sich hier: `Veröffentlichungen FeRD <https://www.ferd-net.de/ueber-uns/ressourcen-1/veroeffentlichungen?tx_solr%5Bq%5D=Factur-X>`_.
 
 Diese Software ist ein Open-Source Projekt und unter der `GPL-3 Lizenz <https://www.gnu.org/licenses/gpl-3.0.html>`_ lizenziert. Die Umsetzung des Factur-X Standards wurde nach bestem Wissen und Gewissen vorgenommen, jedoch ohne Gewährleistung der Richtigkeit oder Vollständigkeit. Die Nutzung erfolgt auf eigene Verantwortung.
 
@@ -34,7 +34,7 @@ Benutzung
 ==============================
 
 Dieses Makro ist noch in einer frühen Entwicklungsphase und ist noch nicht im LibreOffice Extension Center auffindbar. Der aktuelle Stand der Erweiterung kann `hier <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_ heruntergeladen werden.
-Eine Anleitung für Benutzer findet sich `hier <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/de/Installationsanleitung.md>`_ 
+Eine Anleitung für Benutzer findet sich `hier <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/de/Installationsanleitung.md>`_.
 
 ==============================
 
@@ -50,13 +50,13 @@ The goals of this project are:
 
 - Usable offline
 
-Details about the ZUGFeRD/Factur-X standard can be found here: `Publications FeRD <https://www.ferd-net.de/ueber-uns/ressourcen-1/veroeffentlichungen?tx_solr%5Bq%5D=Factur-X>`_
+Details about the ZUGFeRD/Factur-X standard can be found here: `Publications FeRD <https://www.ferd-net.de/ueber-uns/ressourcen-1/veroeffentlichungen?tx_solr%5Bq%5D=Factur-X>`_.
 This software is an open-source project and is licensed under the `GPL-3 license <https://www.gnu.org/licenses/gpl-3.0.html>`_. The implementation of the Factur-X standard has been done to the best of our knowledge and belief, but without warranty of accuracy or completeness. Use is at your own risk.
 
 ==============================
 Usage
 ==============================
 
-This macro is still in an early development phase and is not yet available in the libreoffice extension center. The current version of the extension can be downloaded `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_
-Currently the user manual and invoice template are only available in german `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/de/Installationsanleitung.md>`_ 
+This macro is still in an early development phase and is not yet available in the libreoffice extension center. The current version of the extension can be downloaded `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_.
+Currently the user manual and invoice template are only available in german `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/de/Installationsanleitung.md>`_.
 
