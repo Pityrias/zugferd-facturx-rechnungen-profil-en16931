@@ -1,6 +1,6 @@
 # Benutzerhandbuch
 
-Diese Anleitung erklärt die Verwendung der "factur-x_profile_en-16931" LibreOffice Erweiterung zusammen mit der Rechnungsvorlage "factur-x_Rechnung_einfach.ods" aus dem GitHub Repository [zugferd-facturx-rechnungen-profil-en16931](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931). Einige Arbeitsabläufe in diesem Dokument werden in animierter Form als `gif` dargestellt. Es empfiehlt sich daher, diese Anleitung online anzuschauen.
+Diese Anleitung erklärt die Verwendung der "factur-x_profile_en-16931" LibreOffice Erweiterung zusammen mit der Rechnungsvorlage "factur-x_Rechnung_einfach.ods" aus dem GitHub Repository [zugferd-facturx-rechnungen-profil-en16931](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931). Einige Arbeitsabläufe in diesem Dokument werden in animierter Form als `gif` dargestellt. Es empfiehlt sich daher, diese Anleitung online anzuschauen. Falls Sie eine Abbildung oder Animation größer sehen wollen, klicken Sie diese einfach in Ihrem Browser an.
 
 - [Benutzerhandbuch](#benutzerhandbuch)
   - [Installation](#installation)
@@ -38,15 +38,28 @@ Unter https://de.libreoffice.org/download/download kann LibreOffice heruntergela
 
 ### Installation der Erweiterung
 
-Laden Sie die Datei `factur-x_profile_en-16931.oxt` [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) herunter. Klicken Sie dazu auf die Datei und anschließend auf den `Download raw` Button oben rechts. ![Gif Download](../images/download_oxt.gif)
+Laden Sie die Datei `factur-x_profile_en-16931.oxt` [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) herunter. Klicken Sie dazu auf die Datei und anschließend auf den `Download raw` Button oben rechts.
+
+![Gif Download](../images/download_oxt.gif)
 
 Öffnen Sie die heruntergeladene Datei mit einem Doppelklick, um die Erweiterung zu installieren.
-Die Erweiterung wird nun als installiert angezeigt. Klicken Sie auf `Schließen` und wählen Sie `Jetzt neu starten` aus. Falls nach dem Neustart ein erneuter Installationsdialog angezeigt wird, können Sie diesen einfach schließen.
+Die Erweiterung wird nun als installiert angezeigt. Klicken Sie auf `Schließen` und wählen Sie `Später starten` aus. Schließen Sie LibreOffice nun. Sollten Sie beim nächsten Start von LibreOffice den Installationsdialog erneut sehen, können Sie diesen mit "Abbrechen" schließen.
+
 ![Gif Installation oxt](../images/install_oxt.gif)
 
 ### Herunterladen der Vorlage
 
-Die Erweiterung liest die Daten für den xml-Teil der E-Rechnung aus einer speziell formatierten Tabelle im zweiten Tab der Rechnungsdatei aus. Eine Rechnungsvorlage namens `factur-x_Rechnung_einfach.ods` kann [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) heruntergeladen werden. Öffnen Sie die Vorlage durch einen Doppelklick.
+Die Erweiterung liest die Daten für den xml-Teil der E-Rechnung aus einer speziell formatierten Tabelle im zweiten Tab der Rechnungsdatei aus. Eine Beispielrechnung namens `factur-x_Rechnung_einfach.ods` kann [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) heruntergeladen werden. Öffnen Sie die Vorlage nach dem Herunterladen durch einen Doppelklick. 
+
+Falls sich ein anderes Programm als LibreOffice öffnet, muss LibreOffice noch als Standardprogramm für `ods`-Dateien konfiguriert werden. In diesem Fall führen Sie folgende Schritte aus (unter Windows):
+
+1. Schließen Sie das Programm, in dem die Beispielrechnung geöffnet wurde.
+2. Klicken Sie mit rechts auf die Rechnung.
+3. Bewegen Sie den Mauszeiger über den Punkt "Öffnen mit".
+4. Es taucht ein weiteres Kontextmenü rechts vom aktuellen Fenster auf.
+5. Klicken Sie in diesem Fenster auf den Punkt "Andere App auswählen".
+6. Wählen Sie LibreOffice aus und bestätigen Sie unten mit dem "Immer" Button.
+7. Doppelklicken Sie auf die Rechnung, sie wird nun in LibreOffice geöffnet.
 
 ### Einstellungen zur Makrosicherheit
 
@@ -76,15 +89,22 @@ Dieser Abschnitt testet das Zusammenspiel von Makro und Vorlage, indem eine E-Re
 
 Um direkt eine E-Rechnung aus der Vorlage zu erstellen, führen Sie folgende Schritte aus:
 1. Klicken Sie am unteren Bildschirmrand auf den Tab `Rechnung` umd die Rechnungsansicht anzuzeigen. (siehe Bild Rechnungsansicht)
-2. Prüfen Sie, dass das Feld `Datum:` das aktuelle Datum enthält.
+2. Prüfen Sie, dass das Feld `Datum` das aktuelle Datum enthält.
 3. Scrollen Sie nach unten und prüfen Sie, dass das Datum hinter `Zu Zahlen bis zum:` in der Zukunft liegt. Wenn nicht, ändern Sie das Datum.
+
 ![Bild Rechnungsansicht](../images/ansicht_rechnung.jpg)
+
 4. Klicken Sie am unteren Bildschirmrand auf den Tab `Daten` um die Datenansicht zu öffnen. (siehe Bild Datenansicht)
 5. Klicken Sie auf den Button `Factur-X PDF Rechnung erstellen`.
+
 ![Bild Datenansicht](../images/ansicht_daten.jpg)
+
 6. Wählen Sie einen Dateispeicherort aus, geben Sie einen Dateinamen ein und klicken Sie auf `Speichern`.
+
 ![Bild Speicherdialog](../images/rechnung_speichern.jpg)
+
 7. Öffnen Sie das eben erstellte PDF und prüfen Sie, dass die Datei wie erwartet aussieht. Wenn Sie Adobe Acrobat zum Öffnen verwendet haben, sollte angezeigt werden, dass eine `factur-x.xml` Datei eingebettet ist.
+
 ![Bild Prüfen der Rechnung](../images/check_rechnung.jpg)
 
 ## Erstellen einer Rechnung
@@ -104,18 +124,18 @@ Die Datenbeziehung "ALTERNATIVE" bedeutet, dass die Informationen im menschenles
 
 Folgende Felder benötigen eine manuelle Anpassung:
 
-- Aussteller Weitere Adresszeile 1 & 2: Diese Felder erlauben es weitere Adresszeilen abzubilden. Sind sind in der Rechnungsansicht der Vorlage nicht vorhanden und müssen bei Bedarf manuell verknüpft oder manuell ausgefüllt werden.
+- Aussteller Weitere Adresszeile 1 & 2: Diese Felder erlauben es weitere Adresszeilen abzubilden. Sie sind in der Rechnungsansicht der Vorlage nicht vorhanden und müssen bei Bedarf manuell verknüpft oder manuell ausgefüllt werden.
 - Aussteller Bundesland: Ist in der Rechnungsansicht der Vorlage nicht vorhanden und müssen bei Bedarf manuell verknüpft oder manuell ausgefüllt werden.
-- Aussteller Umsatzsteuer-Id: Pflichtfeld, in der Vorlage ist diese Information in der Fußzeile untergebracht. Falls Sie die Fußzeile anpassen, bedenken Sie das die Umsatzsteuer-Id weiterhin in beiden Ansichten vorhanden und den gleichen Wert haben muss.
+- Aussteller Umsatzsteuer-Id: Pflichtfeld, in der Vorlage ist diese Information in der Fußzeile untergebracht. Falls Sie die Fußzeile anpassen, bedenken Sie, dass die Umsatzsteuer-Id weiterhin in beiden Ansichten vorhanden sein und den gleichen Wert haben muss.
 - Zus. Informationen Fußzeile: Die Rechnungsansicht der Vorlage enthält diverse, teilweise optionale Informationen. Da diese im Factur-X Standard keinem Feld zugeordnet sind, werden sie in ein Freitextfeld eingefügt. Sie können das Feld für diverse Informationen nutzen, die anders nicht in die Datenansicht passen.
-- Kunde Weitere Adresszeile 1 & 2: Diese Felder erlauben es weitere Adresszeilen abzubilden. Sind sind in der Rechnungsansicht der Vorlage nicht vorhanden und müssen bei Bedarf manuell verknüpft oder manuell ausgefüllt werden.
+- Kunde Weitere Adresszeile 1 & 2: Diese Felder erlauben es weitere Adresszeilen abzubilden. Sie sind in der Rechnungsansicht der Vorlage nicht vorhanden und müssen bei Bedarf manuell verknüpft oder manuell ausgefüllt werden.
 - Kunde Bundesland: Ist in der Rechnungsansicht der Vorlage nicht vorhanden und müssen bei Bedarf manuell verknüpft oder manuell ausgefüllt werden.
 - Kunde Umsatzsteuer-Id: Ist in der Rechnungsansicht der Vorlage nicht vorhanden und müssen bei Bedarf manuell verknüpft oder manuell ausgefüllt werden.
 - Block Lieferadresse: Übernimmt aktuell die Anschrift des Kunden aus der Datenansicht. Muss bei abweichender Lieferadresse angepasst werden.
 - Zahlungsbedingungen Text: Informationen über Besonderheiten wie z.B. Skonto können nicht direkt in der Datenansicht abgebildet werden und müssen daher im Beschreibungstext der Zahlungsbedingungen erwähnt werden.
 - Währungscode: Fest auf Euro (EUR) gesetzt.
 - Anzahl zusätzlicher Anhänge: Es ist möglich zusätzliche Dateien in die E-Rechnung einzubetten. Dies hat keinen Einfluss auf die Gültigkeit der Rechnung.
-- Tabelle Steuerkategorie und Positionsdaten: Da die Anzahl der Positionen und Steuerkategorien schwankt, muss die Tabelle entsprechend angepasst werden. Wie das funktioniert ist im Abschnitt [Hinzufügen und Entfernen von Positonen/Steuerkategorien](#anpassen-der-anzahl-an-positionen-oder-steuerkategorien) erklärt.
+- Tabelle Steuerkategorie und Positionsdaten: Da die Anzahl der Positionen und Steuerkategorien schwankt, muss die Tabelle entsprechend angepasst werden. Wie das funktioniert ist im Abschnitt [Hinzufügen und Entfernen von Positionen/Steuerkategorien](#anpassen-der-anzahl-an-positionen-oder-steuerkategorien) erklärt.
 
 **Hinweis:** Wenn Sie eine Information in der Rechnungsansicht haben, die in kein Feld der Datenansicht passt, nutzen Sie eines der folgenden Felder:
 
@@ -145,7 +165,7 @@ Bevor Sie ihre erste eigene Rechnung erstellen, entfernen Sie das Beispiellogo a
 
 Die Größe des Bereichs ist so gewählt, dass das Adressfeld der ausgedruckten Rechnung unter dem Fenster eines DIN A4 Umschlags liegt. Für Briefumschlänge im Format DIN lang sind Pfalzmarkierungen auf der ersten Rechnungsseite platziert. Um diese Abstände anzupassen, können Sie die Größe von Zeile 1 und Spalte A anpassen. Beachten Sie aber, dass es einen voreingestellten Druckrand gibt, der beim Druck hinzugefügt wird. Die Einstellung dafür ist im Menü unter `Format` -> `Seitenvorlage` -> `Allgemein` im Abschnitt `Seitenränder`zu finden.
 
-Im nächsten Schritt tragen Sie Ihre Kontaktdaten in die dafür vorgesehenen Felder im oberen rechten Bereich der Rechnung ein. Vergessen Sie nicht auch die Zeile(n) über der Empfängeradresse anzupassen. Falls Sie bestimmte Kontaktdaten nicht angeben wollen, lassen Sie das Feld frei und löschen Sie den Beschreibungstext im Feld davor. **Falls Sie die nun freie Zeile stört, verringern Sie die Größe der Zeile, löschen Sie diese aber keinesfalls und schieben Sie den Inhalt der darunter liegenden Feler auch NICHT nach oben.**
+Im nächsten Schritt tragen Sie Ihre Kontaktdaten in die dafür vorgesehenen Felder im oberen rechten Bereich der Rechnung ein. Vergessen Sie nicht auch die Zeile(n) über der Empfängeradresse anzupassen. Falls Sie bestimmte Kontaktdaten nicht angeben wollen, lassen Sie das Feld frei und löschen Sie den Beschreibungstext im Feld davor. **Falls Sie die nun freie Zeile stört, verringern Sie die Größe der Zeile, löschen Sie diese aber keinesfalls und schieben Sie den Inhalt der darunter liegenden Felder auch NICHT nach oben.**
 
 Zum Schluss füllen Sie die Fußzeile aus. Die Informationen aus den Zeilen `Bankverbindung` und `Handelsregister` werden als Freitext in die xml Datei eingefügt und können von Ihnen durch beliebige andere Informationen ersetzt oder freigelassen werden. **Von den Feldern Ust-IdNr. und Steuernummer muss mindestens eines vorhanden und ausgefüllt sein.** Für Felder die Sie nicht verwenden wollen, können Sie natürlich auch den Beschreibungstext entfernen.
 
@@ -214,7 +234,9 @@ Sobald die Positions- und Umsatzsteuerdaten komplett sind, sollten auch die Bele
 
 ### Verwendung der Vorlage mit Adressdatenbankanbindung
 
-Neben der Standardvorlage `factur-X_Rechnung_einfach.ods` ist [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) noch eine experimentelle Vorlage `factur-X_Rechnung_mit_Datenbank.ods` vorhanden. Zu dieser laden Sie bitte auch die Datei `Adressdatenbank.odb` herunter.
+Neben der Standardvorlage `factur-X_Rechnung_einfach.ods` ist [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) noch eine experimentelle Vorlage `factur-X_Rechnung_mit_Datenbank.ods` vorhanden. Zu dieser laden Sie bitte auch die Datei `Adressdatenbank.odb` herunter. 
+
+Falls Sie beim Öffnen der Datenbank aufgefordert werden, eine "Java Runtime Environment" zu installieren, können Sie diese [hier](https://www.java.com/de/download/manual.jsp) herunterladen.
 
 #### Adressen eintragen
 
@@ -290,7 +312,7 @@ Es folgt eine kurze Erläuterung zu den Werten, die nicht direkt aus der Rechnun
 | 22  | Zusatz-Information| Zusammengesetzung aus Feld mit Beschreibung des Inhalts und dem Wert. Dies ist notwendig, da die Werte in ein Notiz Feld geschrieben werden und sonst nicht klar wäre, was der Wert bedeuten soll. |
 | 38-45 | Lieferadresse | Verweist auf Kundeninformation, da angenommen wird, dass Liefer- und Rechnungsadresse identisch sind |
 | 50 | Währungscode | Währung der Rechnung, auf EUR festgelegt. Codes müssen ISO 4217 entsprechen.|
-| 52-52 | Beträge | Die Wert Funktion konvertiert den Feldinhalt zu einer Zahl ohne zusätzliche Währungszeichen oä |
+| 52-57 | Beträge | Die Wert Funktion konvertiert den Feldinhalt zu einer Zahl ohne zusätzliche Währungszeichen oä |
 | Steuerkategorie Spalte B | Steuerkategorie Code | Nimmt das erste Zeichen des entspr. Feldes. Die möglichen Steuerkategorien sind so definiert, dass der erste Buchstabe der Kategorie entspricht. Kategorie AE wird zur Zeit nicht unterstützt. |
 |Steuerkategorie F | Grund | Die T Funktion sorgt dafür, dass das Feld leer bleibt, wenn kein Text vorhanden ist. Das verhindert, dass das Feld ungewollt den Wert "0" enthalten kann.|
 | Position E | Einheitencode | Schägt den Einheitencode im Codes Tab nach. Codes müssen UN/ECE Rec No 20 entsprechen. Im Tab Codes findet sich nur eine Auswahl, welche aber erweitert werden kann. Dabei nicht vergessen, die Formel in Tab 2 anzupassen, sodass sie den neuen Wert in Tab 3 miteinbezieht. |
@@ -312,9 +334,9 @@ Falls Sie die Zellformatierung anpassen sollen, klicken Sie mit rechts auf die Z
 | Fehlermeldung | Fehlerursache | Lösung
 |---|---|---|
 | Das Dokument muss mindestens zwei Tabs enthalten. | Es fehlen wichtige Tabs wie Daten- oder Rechnungsansicht. | Laden Sie die Vorlage neu herunter (siehe [Installation der Erweiterung](#installation-der-erweiterung)). |
-| Der Wert von Zelle X in Tab zwei ist Y; er muss entwedewr 'rechnung' oder 'gutschrift' sein. | Das Feld Typ in Tab zwei enthält einen ungültigen Wert. Es muss eines der Wörter `rechnung` oder `gutschrift` und in Kleinbuchstaben enthalten. Prüfen Sie auch, dass keine Leerzeichen am Anfang oder Ende stehen. |
-| Die Zelle X im zweiten Tab scheint kein Datumsfeld zu sein.Bitte überprüfen Sie das Format. Dazu klicken Sie mit rechts auf die Zelle und wählen Sie 'Zellen formatieren' aus: Im ersten Tab wählen Sie Datum als Kategorie und prüfen Sie, dass das ausgewählte Format zu dem Wert in der Zelle passt. | Der Inhalt der Zelle kann nicht als Datum interpretiert werden. | Prüfen Sie den Inhalt des Feldes und folgen Sie den Anweisungen in der Fehlermeldung.|
-| Die Zelle X in Tab zwei is ein erforderliches Feld, aber entweder leer oder falsch formatiert. | Ein notwendiges Feld für eine gültige Factur-X Rechnung ist nicht ausgefüllt. | Füllen Sie das angegebene Feld aus. Welche Felder notwendig sind, ist auch in Tab 2 farbig codiert. |
+| Der Wert von Zelle X in Tab zwei ist Y; er muss entweder 'rechnung' oder 'gutschrift' sein. | Das Feld Typ in Tab zwei enthält einen ungültigen Wert. Es muss eines der Wörter `rechnung` oder `gutschrift` und in Kleinbuchstaben enthalten. Prüfen Sie auch, dass keine Leerzeichen am Anfang oder Ende stehen. |
+| Die Zelle X im zweiten Tab scheint kein Datumsfeld zu sein. Bitte überprüfen Sie das Format. Dazu klicken Sie mit rechts auf die Zelle und wählen Sie 'Zellen formatieren' aus: Im ersten Tab wählen Sie Datum als Kategorie und prüfen Sie, dass das ausgewählte Format zu dem Wert in der Zelle passt. | Der Inhalt der Zelle kann nicht als Datum interpretiert werden. | Prüfen Sie den Inhalt des Feldes und folgen Sie den Anweisungen in der Fehlermeldung.|
+| Die Zelle X in Tab zwei ist ein erforderliches Feld, aber entweder leer oder falsch formatiert. | Ein notwendiges Feld für eine gültige Factur-X Rechnung ist nicht ausgefüllt. | Füllen Sie das angegebene Feld aus. Welche Felder notwendig sind, ist auch in Tab 2 farbig codiert. |
 | Der Aussteller der Rechnung muss entweder eine Umsatzsteuer-Id oder eine Steuernummer angeben. | In Deutschland ist die Angabe von UstId oder Steuernummer vorgeschrieben. | Tragen Sie einen oder beide Werte ein. |
 | Der Wert der Zelle X in Tab zwei ist Y; er muss eine Kommazahl sein. | Das Feld enthält keine Kommazahl. | Geben Sie eine Kommazahl ein, achten Sie auf die Zellformatierung und darauf den korrekten Trenner zu verwenden (`,` in deutscher-, `.` in englischer Installation) |
 | Der Wert der Zelle X in Tab zwei ist Y; er muss positiv sein. | Das Feld akzeptiert keine negativen Zahlen. | Prüfen Sie den Feldinhalt und prüfen Sie die Zellenformatierung. |
