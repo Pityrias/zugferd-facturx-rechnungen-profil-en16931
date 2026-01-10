@@ -40,12 +40,12 @@ Unter https://de.libreoffice.org/download/download kann LibreOffice heruntergela
 
 Laden Sie die Datei `factur-x_profile_en-16931.oxt` [hier](https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931) herunter. Klicken Sie dazu auf die Datei und anschließend auf den `Download raw` Button oben rechts.
 
-![Gif Download](../images/download_oxt.gif)
+![Gif Download](images/download_oxt.gif)
 
 Öffnen Sie die heruntergeladene Datei mit einem Doppelklick, um die Erweiterung zu installieren.
 Die Erweiterung wird nun als installiert angezeigt. Klicken Sie auf `Schließen` und wählen Sie `Später starten` aus. Schließen Sie LibreOffice nun. Sollten Sie beim nächsten Start von LibreOffice den Installationsdialog erneut sehen, können Sie diesen mit "Abbrechen" schließen.
 
-![Gif Installation oxt](../images/install_oxt.gif)
+![Gif Installation oxt](images/install_oxt.gif)
 
 ### Herunterladen der Vorlage
 
@@ -67,15 +67,15 @@ Da LibreOffice Erweiterungen (auch Makros genannt) aus unbekannten Quellen ein S
 
 Sind Makros deaktiviert, sieht die Datei nach dem Öffnen wie folgt aus:
 
-![Bild Makros deaktiviert](../images/activate_macros3.jpg)
+![Bild Makros deaktiviert](images/activate_macros3.jpg)
 
 In diesem Fall klicken Sie in der Menüleiste auf `Extras` und dann auf `Optionen`. In folgendem Dialog wählen Sie den Unterpunkt `Sicherheit` unter `LibreOffice` aus. Dort finden Sie einen Button `Makrosicherheit`. Klicken Sie ihn an und wählen Sie dann den Punkt `Mittel` aus. Mit dieser Einstellung werden Sie bei jedem Öffnen eines Dokuments gefragt, ob Sie Makros erlauben wollen. Klicken Sie auf beide `OK` Buttons und starten Sie LibreOffice neu, damit die Änderungen wirksam werden.
 
-![Bild Makros deaktiviert](../images/activate_macros2.jpg)
+![Bild Makros deaktiviert](images/activate_macros2.jpg)
 
 Beim Start sollten Sie jetzt folgenden Dialog sehen.
 
-![Bild Makros deaktiviert](../images/activate_macros.jpg)
+![Bild Makros deaktiviert](images/activate_macros.jpg)
 
 Klicken Sie auf `Makros aktivieren`.
 
@@ -92,20 +92,20 @@ Um direkt eine E-Rechnung aus der Vorlage zu erstellen, führen Sie folgende Sch
 2. Prüfen Sie, dass das Feld `Datum` das aktuelle Datum enthält.
 3. Scrollen Sie nach unten und prüfen Sie, dass das Datum hinter `Zu Zahlen bis zum:` in der Zukunft liegt. Wenn nicht, ändern Sie das Datum.
 
-![Bild Rechnungsansicht](../images/ansicht_rechnung.jpg)
+![Bild Rechnungsansicht](images/ansicht_rechnung.jpg)
 
 4. Klicken Sie am unteren Bildschirmrand auf den Tab `Daten` um die Datenansicht zu öffnen. (siehe Bild Datenansicht)
 5. Klicken Sie auf den Button `Factur-X PDF Rechnung erstellen`.
 
-![Bild Datenansicht](../images/ansicht_daten.jpg)
+![Bild Datenansicht](images/ansicht_daten.jpg)
 
 6. Wählen Sie einen Dateispeicherort aus, geben Sie einen Dateinamen ein und klicken Sie auf `Speichern`.
 
-![Bild Speicherdialog](../images/rechnung_speichern.jpg)
+![Bild Speicherdialog](images/rechnung_speichern.jpg)
 
 7. Öffnen Sie das eben erstellte PDF und prüfen Sie, dass die Datei wie erwartet aussieht. Wenn Sie Adobe Acrobat zum Öffnen verwendet haben, sollte angezeigt werden, dass eine `factur-x.xml` Datei eingebettet ist.
 
-![Bild Prüfen der Rechnung](../images/check_rechnung.jpg)
+![Bild Prüfen der Rechnung](images/check_rechnung.jpg)
 
 ## Erstellen einer Rechnung
 
@@ -209,7 +209,7 @@ Die Positions-Tabelle beinhaltet eine Zeile pro aufgeführter Position, die erst
 
 Das Rechnungstemplate beinhaltet drei Positionen und Steuerkategorien. Da das Hinzufügen neuer Einträge für beide Tabellen gleich funktioniert, erklärt dieses Kapitel am Beispiel der Positionsdaten. Um eine neue Position hinzuzufügen, führen Sie folgende Schritte aus:
 
-![Gif Positionen hinzufügen](../images/add_position_data.jpg)
+![Gif Positionen hinzufügen](images/add_position_data.jpg)
 
 1. Klicken Sie auf die Zeilennummer der letzten Position in der Leiste links. Nun sollte die gesamte Zeile markiert sein.
 2. Klicken Sie mit der rechten Maustaste und wählen Sie `Zeilen unterhalb einfügen` aus.
@@ -242,13 +242,13 @@ Falls Sie beim Öffnen der Datenbank aufgefordert werden, eine "Java Runtime Env
 
 Die Adressdatenbank enthält eine Tabelle, in der Sie die Adressen ihrer Kunden eintragen können. Öffnen Sie die Datei und klicken Sie in der Datenbank-Leiste auf der linken Seite auf den Punkt `Tabellen`. Sie sehen nun die Tabelle `Adressen` in der unteren Hälfte der Ansicht. Öffnen Sie die Tabelle mit einem Doppelklick.
 
-![Bild Datenbank Tabelle](../images/database3.jpg)
+![Bild Datenbank Tabelle](images/database3.jpg)
 
 Es öffnet sich ein weiteres Fenster mit einer Tabellenansicht, hier können Sie die Kontaktdaten ihrer Kunden eintragen. Sobald Sie die notwendigen Daten eingetragen haben, speichern und schließen Sie beide Fenster.
 
 Öffnen Sie die Rechnungsvorlage `factur-X_Rechnung_mit_Datenbank.ods`. Diese hat einen weiteren Tab `Datenbankanbindung`. In der Ansicht finden Sie den Einfügebereich (siehe Markierung "1" im Bild) und die Vorschau der eingetragenen Daten (Markierung "2").
 
-![Bild Tab Datenbankanbindung](../images/database1.jpg)
+![Bild Tab Datenbankanbindung](images/database1.jpg)
 
 #### Verknüpfung Datenquellen
 
@@ -256,7 +256,7 @@ Damit die Daten aus der Adressdatei in der Rechnung zur Verfügung stehen, muss 
 
 Klicken Sie in der Rechnungsvorlage in der Menüleiste auf `Ansicht` und dann `Datenquellen`. Es öffnen sich zwei Bereiche oberhalb der Rechnung. Der linke Teil enthält eine Liste verknüpfter Datenquellen, der Eintrag `Bibliography` ist ein Beispieleintrag der immer vorhanden ist. Ist die Adressdatenbank in diesem Fenster aufgeführt, kann der Rest dieses Abschnitts übersprungen werden.
 
-![Gif Registrierung Datenquellen](../images/link_database.gif)
+![Gif Registrierung Datenquellen](images/link_database.gif)
 
 Klicken Sie mit der rechten Maustaste in das Feld und wählen Sie `Registrierte Datenbanken`aus.
 
@@ -268,7 +268,7 @@ Sie sehen die Adressdatenbank nun in dem Datenquellen-Bereich, in dem vorher nur
 
 Um Kontaktdaten in die Rechnung einzufügen, stellen Sie sicher, dass die Rechnungsvorlage im Tab `Datenbankanbindung` ist und die Datenquellen-Ansicht eingeschaltet ist (Menü-> Ansicht -> Datenquellen oder Strg+Shift+F4). Klicken Sie auf das kleine Plus-Symbol neben dem Namen der Adressdatenbank in der Datenquellen-Ansicht und danach auf das kleine Plus neben dem Eintrag `Tabellen`. Mit einem Doppelklick auf den Namen der Adresstabelle (hier `Adressen`) erscheinen ihre Kundendaten im rechten Fenster der Datenquellen-Ansicht.
 
-![Gif Datenbankeinbindung nutzen](../images/use_database.gif)
+![Gif Datenbankeinbindung nutzen](images/use_database.gif)
 
 Um eine Adresse aus dieser Ansicht in die Rechnung einzufügen, führen Sie folgende Schritte aus:
 
