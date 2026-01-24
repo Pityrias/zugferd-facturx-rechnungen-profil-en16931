@@ -92,20 +92,20 @@ To create an e-invoice directly from the template, perform the following steps:
 2. Check that the `Date` field contains the current date.
 3. Scroll down and check that the date behind `Payment due date:` is in the future. If not, change the date.
 
-![Invoice View Image](images/ansicht_rechnung.jpg)
+![Invoice View Image](images/invoice_view.jpg)
 
 4. Click on the `data` tab at the bottom of the screen to open the data view. (see Data View Image)
 5. Click on the `Generate Factur-X PDF Invoice` button.
 
-![Data View Image](images/ansicht_daten.jpg)
+![Data View Image](images/data_view.jpg)
 
 6. Select a location, enter a filename, and click `Save`.
 
-![Save Dialog Image](images/rechnung_speichern.jpg)
+![Save Dialog Image](images/save_invoice.jpg)
 
 7. Open the PDF you just created and check that the file looks as expected. If you used Adobe Acrobat to open it, it should show that a `factur-x.xml` file is embedded.
 
-![Check Invoice Image](images/check_rechnung.jpg)
+![Check Invoice Image](images/check_invoice.jpg)
 
 ## Creating an Invoice
 
