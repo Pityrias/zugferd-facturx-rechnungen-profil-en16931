@@ -43,7 +43,7 @@ Download the file `factur-x_profile_en-16931.oxt` [here](https://github.com/Pity
 ![Download Gif](images/download_oxt.gif)
 
 Open the downloaded file with a double-click to install the extension.
-The extension will now be displayed as installed. Click on `Close` and select `Start later`. Close LibreOffice now. If you see the installation dialog again when starting LibreOffice next time, you can close it with "Cancel".
+The extension will now be displayed as installed. Click on `Close` and select `Restart later`. Close LibreOffice now. If you see the installation dialog again when starting LibreOffice next time, you can close it with "Cancel".
 
 ![Install oxt Gif](images/install_oxt.gif)
 
