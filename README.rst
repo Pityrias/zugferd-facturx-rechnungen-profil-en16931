@@ -14,6 +14,8 @@ LibreOffice ZUGFeRD/Factur-X Extension
 
 - `User Guide (english) <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/en/userguide.md>`_
 
+- `Changelog (deutsch/english) <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/Changelog.md>`_
+
 Über dieses Projekt
 ==============================
 
