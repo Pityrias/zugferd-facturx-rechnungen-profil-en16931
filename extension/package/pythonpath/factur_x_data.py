@@ -111,7 +111,8 @@ class CategoryData:
         return valid
 
     def has_exempt_reason(self):
-        return len(self.exempt_reason) != 0
+        # Treat whitespace-only values as empty
+        return len(self.exempt_reason.strip()) > 0
 
     def get_data_from_sheet(self, data_sheet, line):
         cell = data_sheet.getCellByPosition(1, line - 1)
@@ -161,6 +162,11 @@ def check_category_data(category_data):
     for category in category_data:
         if not category.is_valid():
             return (False, _(f"Tax category {cnt} lacks required fields"))
+        if category.has_exempt_reason() and category.rate != 0.0:
+            return (
+                False,
+                _(f"Tax category {cnt} has tax exemption reason but non-zero rate"),
+            )
         calc_tax_total = round(category.rate / 100 * category.taxed_amount, 2)
         if abs(calc_tax_total - category.sum_tax) > 0.001:
             return (
