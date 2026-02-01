@@ -319,7 +319,7 @@ Es folgt eine kurze Erläuterung zu den Werten, die nicht direkt aus der Rechnun
 | Position G | Ust % | Zieht den Steuersatz aus der Spalte mit der Steuerkategorie jeder Position. Es wird die Klammer rechts entfernt, dann wird anhand der Gesamtlänge des Texts bestimmt ob der Prozentsatz ein- oder zweistellig ist. Dieser wird dann von rechts ausgelesen.
 |Position I | Bemerkung | Die T Funktion sorgt dafür, dass das Feld leer bleibt, wenn kein Text vorhanden ist. Das verhindert, dass das Feld ungewollt den Wert "0" enthalten kann.|
 
-Da die Anzahl der Steuerkategorien und Positionen variabel ist, werden diese Daten anders vom Makro ausgelesen. Für die Steuerkategorien wird geprüft, ob in Spalte A in Zeile 62 der Wert "1" steht. Wenn ja werden die Inhalte der anderen Spalten ausgelesen und als Steuerkategorie interpretiert. Dann wird kontrolliert ob in der nächsten Zeile der Wert "2" steht, und der Vorgang wird wiederholt. Die Schleife bricht ab, sobald eine Zelle in Spalte A nicht die nachfolgende Nummer enthält.
+Da die Anzahl der Steuerkategorien und Positionen variabel ist, werden diese Daten anders vom Makro ausgelesen. Für die Steuerkategorien wird geprüft, ob in Spalte A in Zeile 65 der Wert "1" steht. Wenn ja werden die Inhalte der anderen Spalten ausgelesen und als Steuerkategorie interpretiert. Dann wird kontrolliert ob in der nächsten Zeile der Wert "2" steht, und der Vorgang wird wiederholt. Die Schleife bricht ab, sobald eine Zelle in Spalte A nicht die nachfolgende Nummer enthält.
 
 Für die Positionsdaten geht das Makro gleich vor, wobei die Startzeile sich aus 65 + Anzahl der Steuerkategorien ergibt.
 

@@ -23,6 +23,8 @@ import xml.etree.ElementTree as ET
 from stdnum.vatin import is_valid
 from stdnum.de.stnr import is_valid as tax_id_is_valid
 from stdnum.eu.vat import is_valid as eu_is_valid
+from stdnum.iban import is_valid as iban_is_valid
+from stdnum.bic import is_valid as bic_is_valid
 from PyPDF4 import PdfFileWriter, PdfFileReader
 from PyPDF4.generic import (
     DictionaryObject,
@@ -399,6 +401,45 @@ def generate_facturx_xml(data, position_data, category_data):
         trade_settlement, ET.QName(ns["ram"], "InvoiceCurrencyCode")
     )
     invoice_currency.text = data["invoice_currency"]
+
+    #####################################
+    if (
+        data.get("payment_iban")
+        or data.get("payment_bic")
+        or data.get("payment_account_name")
+        or data.get("payment_bic")
+    ):
+        payment_means = ET.SubElement(
+            trade_settlement,
+            ET.QName(ns["ram"], "SpecifiedTradeSettlementPaymentMeans"),
+        )
+        payment_means_code = ET.SubElement(
+            payment_means, ET.QName(ns["ram"], "TypeCode")
+        )
+        payment_means_code.text = "58"  # "58" means "SEPA Credit Transfer"
+        if data.get("payment_iban") or data.get("payment_account_name"):
+            payment_means_account = ET.SubElement(
+                payment_means, ET.QName(ns["ram"], "PayeePartyCreditorFinancialAccount")
+            )
+            if data.get("payment_iban"):
+                iban = ET.SubElement(
+                    payment_means_account, ET.QName(ns["ram"], "IBANID")
+                )
+                iban.text = data["payment_iban"]
+            if data.get("payment_account_name"):
+                account_name = ET.SubElement(
+                    payment_means_account, ET.QName(ns["ram"], "AccountName")
+                )
+                account_name.text = data["payment_account_name"]
+
+        if data.get("payment_bic"):
+            payment_service = ET.SubElement(
+                payment_means,
+                ET.QName(ns["ram"], "PayeeSpecifiedCreditorFinancialInstitution"),
+            )
+            bic = ET.SubElement(payment_service, ET.QName(ns["ram"], "BICID"))
+            bic.text = data["payment_bic"]
+
     ### tax category data
     for category in category_data:
         trade_tax = ET.SubElement(
@@ -702,45 +743,60 @@ def get_and_check_data(doc, data_sheet):
             "required": False,
             "line": 48,
         },
+        "payment_iban": {
+            "type": "char",
+            "required": False,
+            "line": 49,
+        },
+        "payment_account_name": {
+            "type": "char",
+            "required": False,
+            "line": 50,
+        },
+        "payment_bic": {
+            "type": "char",
+            "required": False,
+            "line": 51,
+        },
         "invoice_currency": {
             "type": "char",
             "required": True,
-            "line": 50,
+            "line": 53,
         },
         "total_without_tax": {
             "type": "float",
             "required": True,
-            "line": 52,
+            "line": 55,
         },
         "total_without_tax_inkl_charges": {
             "type": "float",
             "required": False,
-            "line": 53,
+            "line": 56,
         },
         "total_tax": {
             "type": "float",
             "required": True,
-            "line": 54,
+            "line": 57,
         },
         "total_with_tax": {
             "type": "float",
             "required": True,
-            "line": 55,
+            "line": 58,
         },
         "deposits": {
             "type": "float",
             "required": False,
-            "line": 56,
+            "line": 59,
         },
         "total_due": {
             "type": "float",
             "required": True,
-            "line": 57,
+            "line": 60,
         },
         "attachment_count": {
             "type": "int",
             "required": False,
-            "line": 59,
+            "line": 62,
         },
     }
 
@@ -841,6 +897,12 @@ def get_and_check_data(doc, data_sheet):
             elif field.endswith("_tax_id"):
                 if not tax_id_is_valid(data[field]):
                     msg_box(doc, msg_start + _("this german tax number is invalid."))
+            elif field == "payment_iban":
+                if not iban_is_valid(data[field]):
+                    return msg_box(doc, msg_start + _("this IBAN is invalid."))
+            elif field == "payment_bic":
+                if not bic_is_valid(data[field]):
+                    return msg_box(doc, msg_start + _("this BIC is invalid."))
             elif field == "invoice_currency":  # required field
                 if len(data[field]) != 3 or not data[field].isalpha():
                     return msg_box(
@@ -993,7 +1055,7 @@ def generate_facturx_invoice_v1(button_arg=None):
         return
 
     # get category data
-    starting_line_tax_categories = 62
+    starting_line_tax_categories = 65
     category_data = get_tax_category_data(doc, data_sheet, starting_line_tax_categories)
     category_check_result = factur_x_data.check_category_data(category_data)
     if category_check_result[0] == False:
@@ -1001,7 +1063,7 @@ def generate_facturx_invoice_v1(button_arg=None):
 
     # get position data from sheet
     position_starting_line = get_position_data_starting_line(
-        doc, data_sheet, 62 + len(category_data) + 3, 0, 1, 2
+        doc, data_sheet, starting_line_tax_categories + len(category_data) + 3, 0, 1, 2
     )
     if position_starting_line < 0:
         return msg_box(

@@ -319,7 +319,7 @@ The following is a brief explanation of the values that are not directly copied 
 | Position G | VAT % | Pulls the tax rate from the column with the tax category of each position. The right parenthesis is removed, then based on the total length of the text it is determined whether the percentage is one or two digits. This is then read from the right.
 |Position I | Note | The T function ensures that the field remains empty if no text is present. This prevents the field from unintentionally containing the value "0".|
 
-Since the number of tax categories and positions varies, these are read differently by the macro. For tax categories, it is checked whether in column A in row 62 the value "1" is present. If yes, the contents of the other columns are read and interpreted as tax category. Then it is checked whether in the next row the value "2" is present, and the process is repeated. The loop breaks as soon as a cell in column A does not contain the subsequent number.
+Since the number of tax categories and positions varies, these are read differently by the macro. For tax categories, it is checked whether in column A in row 65 the value "1" is present. If yes, the contents of the other columns are read and interpreted as tax category. Then it is checked whether in the next row the value "2" is present, and the process is repeated. The loop breaks as soon as a cell in column A does not contain the subsequent number.
 
 For position data, the macro proceeds in the same way, where the start row is calculated as 65 + number of tax categories.
 
