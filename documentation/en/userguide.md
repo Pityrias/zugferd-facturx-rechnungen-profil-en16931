@@ -140,8 +140,8 @@ The following fields require manual adjustment:
 **Note:** If you have information in the invoice view that does not fit into any field in the data view, use one of the following fields:
 
 * Note Text
-* Additional Footer Information Bank Details
-* Additional Footer Information Commercial Register
+* Additional Footer Information 1
+* Additional Footer Information 2
 * Payment Terms Text
 * Note field of Positions, if the information relates to a position
 
@@ -167,7 +167,7 @@ The size of the area is chosen so that the address field of the printed invoice 
 
 In the next step, enter your contact details in the designated fields in the upper right area of the invoice. Don't forget to also adjust the line(s) above the recipient address. If you do not want to provide certain contact details, leave the field blank and delete the description text in the field before it. **If the now free line bothers you, reduce the size of the row, but do not delete it under any circumstances and do NOT move the content of the fields below up.**
 
-Finally, fill out the footer. The information from the `Bank Details` and `Commercial Register` lines is inserted as free text into the XML file and can be replaced or left blank by you with any other information. **At least one of the fields VAT ID and Tax Number must be present and filled in.** For fields you do not want to use, you can of course also remove the description text.
+Finally, fill out the footer. The information from the `Bank Details` lines will be used to fill out the payment terms. **This will lead to credit transfer being entered as accepted means of payment in the xml file. If you don't want this, delete the contents of the field `IBAN`, `Account name` and `BIC` in the `Payment Terms` section of the data view. Instead enter these values in the `Add. Information Footnote` section.**  The `Commercial Register` line is optional and will be inserted as free text into the XML file. It can be replaced with any other information or be left blank. **At least one of the fields VAT ID and Tax Number must be present and filled in.** For fields you do not want to use, you can of course also remove the description text.
 
 Save the modified template now so that you do not have to repeat these general adjustments for each invoice.
 
@@ -358,5 +358,7 @@ If you need to adjust the cell formatting, right-click on the cell and select `F
 | Position X: The net sum does not correspond to the product of net price and quantity | An error in the calculation of the net sum of a position was found. | Check the calculation manually. Check the values, formulas, and cell formats. The net amount of a position results from net price multiplied by quantity. |
 | At least one tax category must be listed. | No tax category is specified. | Specify a tax category, in the `codes` tab you will find an explanation of the supported categories.|
 | Tax category X: The sum of taxes does not correspond to the tax rate of the taxable amount. | An error in the calculation of the tax sum of a category was found. | Check the calculation manually. Check the values, formulas, and cell formats. The sum of taxes results from the taxable amount in the category multiplied by the tax rate. |
-
+| Tax category X has tax exemption reason but non-zero rate. | A tax exemption reason cannot be given while tax > 0 is specified. | Check the exemption reason and the  tax rate for the given category. |
+| Position X lacks required fields. | No all required fields for a position are filled out. | Check the position tables for missing data. |
+| Tax category X lacks required fields. | No all required fields for a tax category are filled out. | Check the tax category tables for missing data. |
 

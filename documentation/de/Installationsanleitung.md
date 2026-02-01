@@ -140,8 +140,8 @@ Folgende Felder benötigen eine manuelle Anpassung:
 **Hinweis:** Wenn Sie eine Information in der Rechnungsansicht haben, die in kein Feld der Datenansicht passt, nutzen Sie eines der folgenden Felder:
 
 * Notiz-Text
-* Zus. Informationen Fußzeile Bankverbindung
-* Zus. Informationen Fußzeile Handelsregister
+* Zus. Informationen Fußzeile 1
+* Zus. Informationen Fußzeile 2
 * Zahlungsbedingungen Text
 * Bemerkung zu Position, falls sich die Information auf eine Position bezieht
 
@@ -167,7 +167,8 @@ Die Größe des Bereichs ist so gewählt, dass das Adressfeld der ausgedruckten 
 
 Im nächsten Schritt tragen Sie Ihre Kontaktdaten in die dafür vorgesehenen Felder im oberen rechten Bereich der Rechnung ein. Vergessen Sie nicht auch die Zeile(n) über der Empfängeradresse anzupassen. Falls Sie bestimmte Kontaktdaten nicht angeben wollen, lassen Sie das Feld frei und löschen Sie den Beschreibungstext im Feld davor. **Falls Sie die nun freie Zeile stört, verringern Sie die Größe der Zeile, löschen Sie diese aber keinesfalls und schieben Sie den Inhalt der darunter liegenden Felder auch NICHT nach oben.**
 
-Zum Schluss füllen Sie die Fußzeile aus. Die Informationen aus den Zeilen `Bankverbindung` und `Handelsregister` werden als Freitext in die xml Datei eingefügt und können von Ihnen durch beliebige andere Informationen ersetzt oder freigelassen werden. **Von den Feldern Ust-IdNr. und Steuernummer muss mindestens eines vorhanden und ausgefüllt sein.** Für Felder die Sie nicht verwenden wollen, können Sie natürlich auch den Beschreibungstext entfernen.
+Zum Schluss füllen Sie die Fußzeile aus. Die Informationen aus den Zeilen `Bankverbindung` werden als Zahlungsbedingungen in die xml Datei eingefügt. **Damit wird die Bezahlungsart Überweisung als akzeptierte Zahlungsmethode in die xml Datei eingetragen. Möchten Sie das nicht, entfernen Sie die Werte in den Feldern "IBAN", "Kontoinhaber" und "BIC". Fügen Sie ihre Bankdaten stattdessen im Bereich "Zusätzliche Informationen Fußzeile" ein.** Die Informationen zum `Handelsregister` ist optional und wird als Notiz behandelt. Sie können beliebige Informationen hier einfügen oder das Feld freilassen.
+**Von den Feldern Ust-IdNr. und Steuernummer muss mindestens eines vorhanden und ausgefüllt sein.** Für Felder die Sie nicht verwenden wollen, können Sie natürlich auch den Beschreibungstext entfernen.
 
 Speichern Sie die veränderte Vorlage nun ab, sodass Sie diese allgemeinen Anpassungen nicht bei jeder Rechnung wiederholen müssen.
 
@@ -358,5 +359,7 @@ Falls Sie die Zellformatierung anpassen sollen, klicken Sie mit rechts auf die Z
 | Postion X: Die Nettosumme entspricht nicht dem Produkt aus Nettopreis und Menge | Es wurde ein Fehler in der Berechnung der Nettosumme einer Position gefunden. | Prüfen Sie die Berechnung manuell nach. Kontrollieren Sie die Werte, Formeln und Zellenformate. Der Nettobetrag einer Position ergibt sich aus Nettopreis multipliziert mit der Menge. |
 | Es muss mindestens eine Steuerkategorie aufgeführt sein. | Es ist keine Steuerkategorie angegeben. | Geben Sie eine Steuerkategorie an, im Tab `Codes` finden Sie eine Erklärung zu den unterstützten Kategorien.|
 | Steuerkategorie X: Die Summe der Steuern entspricht nicht der Steuerrate des zu versteuernden Betrags. | Es wurde ein Fehler in der Berechnung der Steuersumme einer Kategorie gefunden. | Prüfen Sie die Berechnung manuell nach. Kontrollieren Sie die Werte, Formeln und Zellenformate. Die Summe der Steuern ergibt sich aus dem in der Kategorie zu versteuernden Betrag multipliziert mit der Steuerrate. |
-
+| Steuerkategorie X gibt einen Grund für Steuerbefreiung an, hat aber eine Steuerrate größer Null. | Ein Grund für Steuerbefreiung kann nicht bei einer Steuerrate > 0 angegeben werden. | Prüfen Sie die Steuerrate und den Grund für Steuerbefreiung für die angegebene Steuerkategorie. |
+| Position X fehlen notwendige Felder. | Nicht alle notwendigen Informationen für eine Position sind vorhanden. | Prüfen Sie die Tabelle mit den Positionsdaten. |
+| Steuerkategorie X fehlen notwendige Felder. | Nicht alle notwendigen Informationen für eine Steuerkategorie sind vorhanden. | Prüfen Sie die Tabelle mit den Steuerkategoriedaten. |
 
