@@ -1000,10 +1000,12 @@ def get_position_data(doc, data_sheet, starting_line):
         item = factur_x_data.ItemData()
         item.get_data_from_sheet(data_sheet, starting_line)
         if not item.is_valid():
-            return msg_box(
-                doc,
-                _(
-                    f"item {item.name} is not valid, check that all required fields are filled."
+            return (
+                msg_box(
+                    doc,
+                    _(
+                        "Position {cnt} is not valid, check that all required fields are filled."
+                    ).format(cnt=cell_value),
                 ),
             )
             break
@@ -1089,15 +1091,17 @@ def generate_facturx_invoice_v1(button_arg=None):
         msg_box(
             doc,
             _(
-                f"The sum of vat over all categories is not equal to the total tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_tax}"
-            ),
+                "The sum of vat over all categories is not equal to the total tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_tax}"
+            ).format(data_val=data_val, calc_sum_tax=calc_sum_tax),
         )
     if abs(calc_sum_taxed_amount - data["total_without_tax"]) > 0.001:
         data_val = data["total_without_tax"]
         msg_box(
             doc,
             _(
-                f"The taxed amount over all tax categories does not match the total without tax. Total tax in invoice {data_val} vs calculated total tax {calc_sum_taxed_amount}"
+                "The taxed amount over all tax categories does not match the total without tax. Total without tax in invoice {data_val} vs calculated value {calc_sum_taxed_amount}".format(
+                    data_val=data_val, calc_sum_taxed_amount=calc_sum_taxed_amount
+                ),
             ),
         )
 
