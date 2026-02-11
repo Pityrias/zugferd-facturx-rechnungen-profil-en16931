@@ -1000,15 +1000,13 @@ def get_position_data(doc, data_sheet, starting_line):
         item = factur_x_data.ItemData()
         item.get_data_from_sheet(data_sheet, starting_line)
         if not item.is_valid():
-            return (
-                msg_box(
-                    doc,
-                    _(
-                        "Position {cnt} is not valid, check that all required fields are filled."
-                    ).format(cnt=cell_value),
-                ),
+            msg_box(
+                doc,
+                _(
+                    "Position {cnt} is not valid, check that all required fields are filled."
+                ).format(cnt=cell_value),
             )
-            break
+            return False
         position_data.append(item)
         # prepare for next loop
         last_position = cell_value
@@ -1076,6 +1074,8 @@ def generate_facturx_invoice_v1(button_arg=None):
         )
         return
     position_data = get_position_data(doc, data_sheet, position_starting_line)
+    if position_data is False:
+        return
     pos_check_result = factur_x_data.check_position_data(position_data)
     if pos_check_result[0] == False:
         return msg_box(doc, pos_check_result[1])
