@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-08 16:42+0100\n"
+"POT-Creation-Date: 2026-02-11 21:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,16 +119,16 @@ msgid ""
 "be either 'invoice' or 'refund'."
 msgstr ""
 
-#: ../extension/package/libreoffice_facturx_macro.py:1007
+#: ../extension/package/libreoffice_facturx_macro.py:1006
 #, python-brace-format
 msgid "Position {cnt} is not valid, check that all required fields are filled."
 msgstr ""
 
-#: ../extension/package/libreoffice_facturx_macro.py:1051
+#: ../extension/package/libreoffice_facturx_macro.py:1049
 msgid "The spreadsheet must contain at least 2 tabs."
 msgstr ""
 
-#: ../extension/package/libreoffice_facturx_macro.py:1074
+#: ../extension/package/libreoffice_facturx_macro.py:1072
 msgid ""
 "Could not find position data. Make sure it starts with position number 1 in "
 "column A and is located under the category data table."

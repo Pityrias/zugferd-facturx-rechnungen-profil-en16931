@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-08 16:42+0100\n"
+"POT-Creation-Date: 2026-02-11 21:32+0100\n"
 "PO-Revision-Date: 2025-07-30 19:49+0200\n"
 "Last-Translator: Luise Preusse <pityrias@posteo.eu>\n"
 "Language-Team: German Luise Preusse <pityrias@posteo.eu>\n"
@@ -91,12 +91,10 @@ msgid "this german tax number is invalid."
 msgstr "diese Steuernummer ist ungültig."
 
 #: ../extension/package/libreoffice_facturx_macro.py:902
-#, fuzzy
 msgid "this IBAN is invalid."
 msgstr "diese IBAN ist ungültig."
 
 #: ../extension/package/libreoffice_facturx_macro.py:905
-#, fuzzy
 msgid "this BIC is invalid."
 msgstr "diese BIC ist ungültig."
 
@@ -137,18 +135,18 @@ msgstr ""
 "Der Wert von Zelle B{line} ({label}) in Tab zwei ist '{value}'; er muss "
 "entweder'rechnung' oder 'gutschrift' sein."
 
-#: ../extension/package/libreoffice_facturx_macro.py:1007
-#, fuzzy, python-brace-format
+#: ../extension/package/libreoffice_facturx_macro.py:1006
+#, python-brace-format
 msgid "Position {cnt} is not valid, check that all required fields are filled."
 msgstr ""
 "Position {cnt} is ungültig, prüfen Sie, dass alle notwendige Felder "
 "ausgefüllt sind"
 
-#: ../extension/package/libreoffice_facturx_macro.py:1051
+#: ../extension/package/libreoffice_facturx_macro.py:1049
 msgid "The spreadsheet must contain at least 2 tabs."
 msgstr "Das Dokument muss mindestens zwei Tabs enthalten."
 
-#: ../extension/package/libreoffice_facturx_macro.py:1074
+#: ../extension/package/libreoffice_facturx_macro.py:1072
 msgid ""
 "Could not find position data. Make sure it starts with position number 1 in "
 "column A and is located under the category data table."
@@ -168,7 +166,7 @@ msgstr ""
 "Steuersumme{calc_sum_tax}"
 
 #: ../extension/package/libreoffice_facturx_macro.py:1102
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "The taxed amount over all tax categories does not match the total without "
 "tax. Total without tax in invoice {data_val} vs calculated value "
@@ -250,7 +248,7 @@ msgid "Tax category {cnt} lacks required fields"
 msgstr "Steuerkategorie {cnt} fehlen notwendige Felder"
 
 #: ../extension/package/pythonpath/factur_x_data.py:172
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Tax category {cnt} has tax exemption reason but non-zero rate"
 msgstr ""
 "Steuerkategorie {cnt} gibt einen Grund für Steuerbefreiung an, hat aber eine "
