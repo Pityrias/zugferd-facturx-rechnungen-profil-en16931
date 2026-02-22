@@ -5,6 +5,7 @@ Diese Anleitung erklärt die Verwendung der "factur-x_profile_en-16931" LibreOff
 - [Benutzerhandbuch](#benutzerhandbuch)
   - [Installation](#installation)
     - [Installation von LibreOffice](#installation-von-libreoffice)
+      - [Hinweise für Linux-Anwender](#hinweise-für-linux-anwender)
     - [Installation der Erweiterung](#installation-der-erweiterung)
     - [Herunterladen der Vorlage](#herunterladen-der-vorlage)
     - [Einstellungen zur Makrosicherheit](#einstellungen-zur-makrosicherheit)
@@ -35,6 +36,10 @@ Diese Anleitung erklärt die Verwendung der "factur-x_profile_en-16931" LibreOff
 ### Installation von LibreOffice
 
 Unter https://de.libreoffice.org/download/download kann LibreOffice heruntergeladen werden. Es sollte Version 25.2.5 oder neuer installiert sein. Falls Sie Hilfe bei der Installation benötigen, finden Sie eine Anleitung [hier](https://de.libreoffice.org/get-help/install-howto/).
+
+#### Hinweise für Linux-Anwender
+
+In einigen Linux Distributionen ist die LibreOffice Installation über die Paketverwaltung eine Minimalvariante, die Python-Macros nicht unterstützt. Falls Sie Linux benutzen und im Laufe der Einrichtung Fehler bemerken, prüfen Sie ob der `libreoffice-script-provider-python` vorhanden ist. Under Debian/Ubuntu können Sie das mit `apt list --installed | grep libreoffice-script-provider-python` tun und bei Bedarf mit `sudo apt install libreoffice-script-provider-python` die Komponente nachinstallieren.
 
 ### Installation der Erweiterung
 

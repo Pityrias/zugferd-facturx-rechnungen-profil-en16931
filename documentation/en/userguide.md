@@ -5,6 +5,7 @@ This guide explains the use of the "factur-x_profile_en-16931" LibreOffice exten
 - [User Guide](#user-guide)
   - [Installation](#installation)
     - [Installing LibreOffice](#installing-libreoffice)
+      - [Note for linux users](#note-for-linux-users)
     - [Installing the Extension](#installing-the-extension)
     - [Downloading the Template](#downloading-the-template)
     - [Macro Security Settings](#macro-security-settings)
@@ -35,6 +36,10 @@ This guide explains the use of the "factur-x_profile_en-16931" LibreOffice exten
 ### Installing LibreOffice
 
 LibreOffice can be downloaded from https://de.libreoffice.org/download/download. Version 25.2.5 or newer should be installed. If you need help with the installation, you can find a guide [here](https://de.libreoffice.org/get-help/install-howto/).
+
+#### Note for linux users
+
+In some linux distros the package manager provides a reduced version of LibreOffice that does not support python macros. If you use use a linux distribution and notice errors during setup or use of the extension please check that `libreoffice-script-provider-python` is installed. Under Debian/Ubuntu you can check this with `apt list --installed | grep libreoffice-script-provider-python` and install the component with `sudo apt install libreoffice-script-provider-python`.
 
 ### Installing the Extension
 
