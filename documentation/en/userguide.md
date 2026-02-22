@@ -39,7 +39,7 @@ LibreOffice can be downloaded from https://de.libreoffice.org/download/download.
 
 #### Note for linux users
 
-In some linux distros the package manager provides a reduced version of LibreOffice that does not support python macros. If you use use a linux distribution and notice errors during setup or use of the extension please check that `libreoffice-script-provider-python` is installed. Under Debian/Ubuntu you can check this with `apt list --installed | grep libreoffice-script-provider-python` and install the component with `sudo apt install libreoffice-script-provider-python`.
+In some linux distros the package manager provides a reduced version of LibreOffice that does not support python macros. If you use a linux distribution and notice errors during setup please check that `libreoffice-script-provider-python` is installed. Under Debian/Ubuntu you can check this with `apt list --installed | grep libreoffice-script-provider-python` and install the component with `sudo apt install libreoffice-script-provider-python`.
 
 ### Installing the Extension
 
