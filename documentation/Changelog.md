@@ -1,5 +1,15 @@
 # Changelog
 
+## 22.02.2026
+
+**Erweiterung Version 1.0.0**
+
+* Neue Funktion: Hinzufügen eines kurzen Abschnitts zur Installationsanleitung um ein häufiges Problem unter Linux zu beheben
+
+**Extension Version 1.0.0**
+
+* New Feature: Added a small section to userguide.md that explains a common setup problem on linux
+
 ## 11.02.2026
 
 **Erweiterung Version 0.2.1**
