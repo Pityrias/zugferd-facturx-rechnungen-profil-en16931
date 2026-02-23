@@ -4,10 +4,12 @@
 
 **Erweiterung Version 1.0.0**
 
+* Neue Funktion: Die Erweiterung ist jetzt in der LibreOffice Extension Sammlung verfügbar
 * Neue Funktion: Hinzufügen eines kurzen Abschnitts zur Installationsanleitung um ein häufiges Problem unter Linux zu beheben
 
 **Extension Version 1.0.0**
 
+* New Feature: The extension is now available in the LibreOffice extension center
 * New Feature: Added a small section to userguide.md that explains a common setup problem on linux
 
 ## 11.02.2026

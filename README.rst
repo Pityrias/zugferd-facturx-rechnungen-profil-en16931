@@ -40,8 +40,8 @@ Diese Software ist ein Open-Source Projekt und unter der `GPL-3 Lizenz <https://
 Benutzung
 --------
 
-Dieses Makro ist noch in einer frühen Entwicklungsphase und ist noch nicht im LibreOffice Extension Center auffindbar. Der aktuelle Stand der Erweiterung kann `hier <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_ heruntergeladen werden.
-Eine Anleitung für Benutzer findet sich `hier <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/de/Installationsanleitung.md>`_.
+Das letzte Release des Macros kann von der `LibreOffice Extension Sammlung <https://extensions.libreoffice.org/en/extensions/show/99520>`_ oder direkt `hier auf Github <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_ heruntergeladen werden.
+Eine Anleitung für Setup und Benutzung der Erweiterung findet sich `hier <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/de/Installationsanleitung.md>`_, die dazugehörigen Rechnungsvorlagen sind in der Dateiübersicht `hier <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931>`_ abgelegt.
 
 ==============================
 
@@ -66,6 +66,6 @@ This software is an open-source project and is licensed under the `GPL-3 license
 Usage
 --------
 
-This macro is still in an early development phase and is not yet available in the libreoffice extension center. The current version of the extension can be downloaded `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_.
-Currently the user manual and invoice template are available `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/en/userguide.md>`_.
+The last release of this macro can be downloaded from the `LibreOffice Extension Center <https://extensions.libreoffice.org/en/extensions/show/99520>`_ or directly `here on Github <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/factur-x_profile_en-16931.oxt>`_.
+A user manual with detailed instructions for setup and usage is available `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931/blob/master/documentation/en/userguide.md>`_. The matching invoice templates are available in the file overview `here <https://github.com/Pityrias/zugferd-facturx-rechnungen-profil-en16931>`_.
 
