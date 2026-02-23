@@ -6,11 +6,13 @@
 
 * Neue Funktion: Die Erweiterung ist jetzt in der LibreOffice Extension Sammlung verfügbar
 * Neue Funktion: Hinzufügen eines kurzen Abschnitts zur Installationsanleitung um ein häufiges Problem unter Linux zu beheben
+* Fehlerbehebung: Fehlende Verlinkung zwischen Rechnungs- und Datenbankansicht hinzugefügt
 
 **Extension Version 1.0.0**
 
 * New Feature: The extension is now available in the LibreOffice extension center
 * New Feature: Added a small section to userguide.md that explains a common setup problem on linux
+* Bugfix: Fixed link between invoice and database view
 
 ## 11.02.2026
 
