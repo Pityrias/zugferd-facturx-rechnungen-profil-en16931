@@ -32,6 +32,7 @@ class ItemData:
     def __init__(self):
         self.name = ""
         self.netto_price = float("nan")
+        sef.line_discount = float("nan")
         self.amount = float("nan")
         self.unit = ""
         self.tax_category = ""
@@ -49,6 +50,9 @@ class ItemData:
             and self.netto_total != float("nan")
         )
         return valid
+
+    def has_line_discount(self):
+        return self.line_discount != float("nan") and self.line_discount > 0.0
 
     def has_unit(self):
         return len(self.unit) != 0
@@ -83,9 +87,13 @@ class ItemData:
 
         cell = data_sheet.getCellByPosition(7, line - 1)
         if cell:
-            self.netto_total = cell.getValue()
+            self.line_discount = cell.getValue()
 
         cell = data_sheet.getCellByPosition(8, line - 1)
+        if cell:
+            self.netto_total = cell.getValue()
+
+        cell = data_sheet.getCellByPosition(9, line - 1)
         if cell:
             self.note = cell.getString()
 
@@ -152,6 +160,13 @@ def check_position_data(position_data):
                 ).format(cnt=cnt),
             )
         cnt += 1
+        if pos.has_line_discount() and pos.line_discount >= 0.0:
+            return (
+                False,
+                _(
+                    "Position {cnt}: line discount must be greater than zero if present"
+                ).format(cnt=cnt),
+            )
     return (True, "")
 
 
