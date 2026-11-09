@@ -52,6 +52,9 @@ class ItemData:
         return valid
 
     def has_line_discount(self):
+        return self.line_discount != float("nan") and self.line_discount < 0.0
+
+    def has_line_charge(self):
         return self.line_discount != float("nan") and self.line_discount > 0.0
 
     def has_unit(self):
