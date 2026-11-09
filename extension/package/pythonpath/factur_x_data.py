@@ -15,6 +15,7 @@
 
 import os
 import gettext
+import math
 
 # Set up gettext to use the same domain and localedir as libreoffice_facturx_macro.py
 macro_path = os.path.dirname(os.path.abspath(__file__))
@@ -32,7 +33,7 @@ class ItemData:
     def __init__(self):
         self.name = ""
         self.netto_price = float("nan")
-        sef.line_discount = float("nan")
+        self.line_discount = float("nan")
         self.amount = float("nan")
         self.unit = ""
         self.tax_category = ""
@@ -43,19 +44,20 @@ class ItemData:
     def is_valid(self):
         valid = (
             len(self.name) != 0
-            and self.netto_price != float("nan")
+            and math.isfinite(self.netto_price)
+            and math.isfinite(self.amount)
             and self.amount >= 0.00000
             and len(self.tax_category) != 0
-            and self.tax_rate != float("nan")
-            and self.netto_total != float("nan")
+            and math.isfinite(self.tax_rate)
+            and math.isfinite(self.netto_total)
         )
         return valid
 
     def has_line_discount(self):
-        return self.line_discount != float("nan") and self.line_discount < 0.0
+        return math.isfinite(self.line_discount) and self.line_discount < 0.0
 
     def has_line_charge(self):
-        return self.line_discount != float("nan") and self.line_discount > 0.0
+        return math.isfinite(self.line_discount) and self.line_discount > 0.0
 
     def has_unit(self):
         return len(self.unit) != 0
@@ -154,22 +156,15 @@ def check_position_data(position_data):
     for pos in position_data:
         if not pos.is_valid():
             return (False, _("Position {cnt} lacks required fields").format(cnt=cnt))
-        calc_price = round(pos.netto_price * pos.amount, 2)
+        calc_price = round(pos.netto_price * pos.amount + pos.line_discount, 2)
         if abs(calc_price - pos.netto_total) > 0.001:
             return (
                 False,
                 _(
-                    "Position {cnt}: netto total is not equal to netto price times the amount"
+                    "Position {cnt}: netto total is not equal to netto price times the amount plus line discount or charge"
                 ).format(cnt=cnt),
             )
         cnt += 1
-        if pos.has_line_discount() and pos.line_discount >= 0.0:
-            return (
-                False,
-                _(
-                    "Position {cnt}: line discount must be greater than zero if present"
-                ).format(cnt=cnt),
-            )
     return (True, "")
 
 
