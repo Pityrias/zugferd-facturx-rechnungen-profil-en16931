@@ -210,7 +210,7 @@ def generate_facturx_xml(data, position_data, category_data):
             line_trade_discount_amount = ET.SubElement(
                 line_trade_discount, ET.QName(ns["ram"], "ActualAmount")
             )
-            line_trade_discount_amount.text = "%.2f" % pos.line_discount
+            line_trade_discount_amount.text = "%.2f" % abs(pos.line_discount)
 
         line_summation = ET.SubElement(
             line_settlement,
