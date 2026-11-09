@@ -200,7 +200,7 @@ msgstr ""
 #: ../extension/package/pythonpath/factur_x_data.py:151
 #, python-brace-format
 msgid ""
-"Position {cnt}: netto total is not equal to netto price times the amount"
+"Position {cnt}: netto total is not equal to netto price times the amount plus line discount or charge"
 msgstr ""
 
 #: ../extension/package/pythonpath/factur_x_data.py:160

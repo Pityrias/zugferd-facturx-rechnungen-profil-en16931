@@ -227,9 +227,9 @@ msgstr "Position {cnt} lacks required fields"
 #: ../extension/package/pythonpath/factur_x_data.py:151
 #, python-brace-format
 msgid ""
-"Position {cnt}: netto total is not equal to netto price times the amount"
+"Position {cnt}: netto total is not equal to netto price times the amount plus line discount or charge"
 msgstr ""
-"Position {cnt}: netto total is not equal to netto price times the amount"
+"Position {cnt}: netto total is not equal to netto price times the amount plus line discount or charge"
 
 #: ../extension/package/pythonpath/factur_x_data.py:160
 msgid "There must be at least one tax category listed"
