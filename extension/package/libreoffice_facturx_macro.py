@@ -193,14 +193,20 @@ def generate_facturx_xml(data, position_data, category_data):
 
         line_tax_rate.text = "%.2f" % pos.tax_rate
 
-        if pos.has_line_discount():
+        if pos.has_line_discount() or pos.has_line_charge():
             line_trade_discount = ET.SubElement(
                 line_settlement, ET.QName(ns["ram"], "SpecifiedTradeAllowanceCharge")
             )
             line_trade_discount_indicator = ET.SubElement(
                 line_trade_discount, ET.QName(ns["ram"], "ChargeIndicator")
             )
-            line_trade_discount_indicator.text = "false"
+            line_trade_discount_indicator_indicator = ET.SubElement(line_trade_discount_indicator, ET.QName(ns["ram"], "Indicator"))
+
+            if pos.has_line_discount():
+                line_trade_discount_indicator_indicator.text = "false"
+            else:
+                line_trade_discount_indicator_indicator.text = "true"
+
             line_trade_discount_amount = ET.SubElement(
                 line_trade_discount, ET.QName(ns["ram"], "ActualAmount")
             )
