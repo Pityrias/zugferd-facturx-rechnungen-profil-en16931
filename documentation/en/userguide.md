@@ -208,7 +208,8 @@ The position table contains one row per listed position, the first two rows expl
 
 - Column A Number: Created automatically and is present for technical reasons.
 - Column E Unit Code: Optional coding for the unit of quantity. These codes are defined in UN/ECE Recommendation No. 20 "Codes for Units of Measure Used in International Trade". Common example codes are listed in Tab 3 `codes`, for example the unit `pcs` is entered as `C62`.
-- Column I Remark: Text field for information and remarks on the position that cannot be displayed otherwise.
+- Column H Charge/Discount: Enter a positive value for a surcharge or a negative value for a discount. Leave the field empty or enter 0 if there is no charge or discount. The position net amount is calculated as the net unit price multiplied by the quantity, plus this value.
+- Column J Remark: Text field for information and remarks on the position that cannot be displayed otherwise.
 
 #### Adding and Removing Positions/Tax Categories
 
@@ -360,7 +361,7 @@ If you need to adjust the cell formatting, right-click on the cell and select `F
 | Invoices that include tax category K must specify a VAT ID for buyer and seller. | VAT ID information is missing. | Enter the VAT ID of buyer and seller.|
 | The net sum of all positions does not match the total sum without taxes. | An error in the calculation of the net total sum was found. | Check the calculation manually. Check the values, formulas, and cell formats. |
 | At least one position must be listed. | You are trying to issue an invoice for nothing. | Make sure that at least one position is present and represented in the invoice and data view. |
-| Position X: The net sum does not correspond to the product of net price and quantity | An error in the calculation of the net sum of a position was found. | Check the calculation manually. Check the values, formulas, and cell formats. The net amount of a position results from net price multiplied by quantity. |
+| Position {cnt}: netto total is not equal to netto price times the amount plus line discount or charge | An error in the calculation of the net sum of a position was found. | Check the calculation manually. Check the values, formulas, and cell formats. The net amount of a position results from net price multiplied by quantity, plus any line discount or charge. |
 | At least one tax category must be listed. | No tax category is specified. | Specify a tax category, in the `codes` tab you will find an explanation of the supported categories.|
 | Tax category X: The sum of taxes does not correspond to the tax rate of the taxable amount. | An error in the calculation of the tax sum of a category was found. | Check the calculation manually. Check the values, formulas, and cell formats. The sum of taxes results from the taxable amount in the category multiplied by the tax rate. |
 | Tax category X has tax exemption reason but non-zero rate. | A tax exemption reason cannot be given while tax > 0 is specified. | Check the exemption reason and the  tax rate for the given category. |

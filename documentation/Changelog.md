@@ -1,5 +1,17 @@
 # Changelog
 
+## 09.11.2026
+
+**Erweiterung Version 1.1.0**
+
+* Neue Funktion: Hinzufügen eines Feldes für Rabatte und Zuschläge pro Positionszeile
+* Fehlerbehebung: Fehler behoben, bei dem Telefon und Fax mit zu vielen Doppelpunkten angezeigt wurden
+
+**Extension Version 1.1.0**
+
+* New Feature: Added a field for discounts and charges per position line
+* Bugfix: Fixed a bug, where phone and fax had too many colons displayed
+
 ## 22.02.2026
 
 **Erweiterung Version 1.0.0**

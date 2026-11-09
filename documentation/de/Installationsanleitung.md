@@ -209,7 +209,8 @@ Die Positions-Tabelle beinhaltet eine Zeile pro aufgeführter Position, die erst
 
 - Spalte A Nummer: Wird automatisch erstellt und ist aus technischen Gründen vorhanden.
 - Spalte E Einheitencode: Optionale Codierung für die Einheit der Menge. Diese Codes kommen aus der UN/ECE Recommendation No. 20 „Codes for Units of Measure Used in International Trade“. Häufige Beispielcodes sind in Tab 3 `Codes` aufgeführt, so wird die Einheit `Stck` beispielsweise als `C62` eingetragen.
-- Spalte I Bemerkung: Freitextfeld für anders nicht abbildbare Informationen und Bemerkungen zur Position.
+- Spalte H Zuschlag/Rabatt: Tragen Sie für einen Zuschlag einen positiven und für einen Rabatt einen negativen Wert ein. Wenn es keinen Zuschlag oder Rabatt gibt, lassen Sie das Feld leer oder tragen Sie 0 ein. Der Nettobetrag der Position wird als Nettopreis pro Einheit multipliziert mit der Menge zuzüglich dieses Werts berechnet.
+- Spalte J Bemerkung: Freitextfeld für anders nicht abbildbare Informationen und Bemerkungen zur Position.
 
 #### Hinzufügen und Entfernen von Positonen/Steuerkategorien
 
@@ -361,7 +362,7 @@ Falls Sie die Zellformatierung anpassen sollen, klicken Sie mit rechts auf die Z
 | Rechnungen die Steuerkategorie K beinhalten, müssen für Käufer und Verkäufer eine Umsatzsteuer-Id angeben. | Es fehlen Angaben zur Umsatzsteuer-Id. | Tragen Sie die Umsatzsteuer-Id von Käufer und Verkäufer ein.|
 | Die Netto-Summe aller Positionen stimmt nicht mit der Gesamtsumme ohne Steuern überein. | Es wurde ein Fehler in der Berechnung der Netto-Gesamtsumme gefunden. | Prüfen Sie die Berechnung manuell nach. Kontrollieren Sie die Werte, Formeln und Zellenformate. |
 | Es muss mindestens eine Position aufgeführt sein. | Sie versuchen eine Rechnung über nichts auszustellen. | Stellen Sie sicher, dass mindestens eine Positon vorhanden und in Rechnungs- und Datenansicht abgebildet ist. |
-| Postion X: Die Nettosumme entspricht nicht dem Produkt aus Nettopreis und Menge | Es wurde ein Fehler in der Berechnung der Nettosumme einer Position gefunden. | Prüfen Sie die Berechnung manuell nach. Kontrollieren Sie die Werte, Formeln und Zellenformate. Der Nettobetrag einer Position ergibt sich aus Nettopreis multipliziert mit der Menge. |
+| Position {cnt}: Die Nettosumme entspricht nicht dem Produkt aus Nettopreis und Menge zuzüglich Zeilenrabatt oder -zuschlag. | Es wurde ein Fehler in der Berechnung der Nettosumme einer Position gefunden. | Prüfen Sie die Berechnung manuell nach. Kontrollieren Sie die Werte, Formeln und Zellenformate. Der Nettobetrag einer Position ergibt sich aus Nettopreis multipliziert mit der Menge zuzüglich eines Zeilenrabatts oder -zuschlags. |
 | Es muss mindestens eine Steuerkategorie aufgeführt sein. | Es ist keine Steuerkategorie angegeben. | Geben Sie eine Steuerkategorie an, im Tab `Codes` finden Sie eine Erklärung zu den unterstützten Kategorien.|
 | Steuerkategorie X: Die Summe der Steuern entspricht nicht der Steuerrate des zu versteuernden Betrags. | Es wurde ein Fehler in der Berechnung der Steuersumme einer Kategorie gefunden. | Prüfen Sie die Berechnung manuell nach. Kontrollieren Sie die Werte, Formeln und Zellenformate. Die Summe der Steuern ergibt sich aus dem in der Kategorie zu versteuernden Betrag multipliziert mit der Steuerrate. |
 | Steuerkategorie X gibt einen Grund für Steuerbefreiung an, hat aber eine Steuerrate größer Null. | Ein Grund für Steuerbefreiung kann nicht bei einer Steuerrate > 0 angegeben werden. | Prüfen Sie die Steuerrate und den Grund für Steuerbefreiung für die angegebene Steuerkategorie. |
